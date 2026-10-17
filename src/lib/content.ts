@@ -1,51 +1,93 @@
-// PLACEHOLDER content. Replace with the resort's real rooms, dining and activities.
+// Content taken from the current kohrusseyresort.com homepage. Sections that only had a
+// short summary there (villas, restaurants, activities, weddings, offers) carry just that
+// summary until the full page copy is supplied.
 
-export type Room = {
-  slug: string;
-  name: string;
-  summary: string;
-  sleeps: number;
-  features: string[];
+export const intro =
+  "Koh Russey Resort is a luxury private island resort in Cambodia, offering secluded beachfront villas near Koh Rong. Surrounded by pristine copper sand beaches and untouched tropical nature, it is one of the country’s most exclusive island escapes for romantic getaways, weddings, and private retreats.";
+
+export const villas = {
+  eyebrow: "Beach Accommodation",
+  title: "Where Oceanfront Dreams Come Alive",
+  body: "Each villa features a private pool, well-equipped interiors, and comfortable beds to ensure a peaceful and relaxing stay. With breathtaking views of the warm waters and sandy beaches just steps away, you’ll find the perfect balance of tranquility and sophistication.",
+  types: [
+    { slug: "garden-pavilion", name: "Garden Pavilion" },
+    { slug: "ocean-pavilion", name: "Ocean Pavilion" },
+    { slug: "beach-pavilion", name: "Beach Pavilion" },
+    { slug: "beachfront-villas", name: "Beachfront Villas" },
+  ],
 };
-
-export const rooms: Room[] = [
-  {
-    slug: "beachfront-bungalow",
-    name: "Beachfront Bungalow",
-    summary: "Steps from the sand, with a private terrace facing the water.",
-    sleeps: 2,
-    features: ["Sea view terrace", "Air conditioning", "Private bathroom", "Wi-Fi"],
-  },
-  {
-    slug: "garden-bungalow",
-    name: "Garden Bungalow",
-    summary: "A quiet retreat set among the trees, a short walk from the beach.",
-    sleeps: 2,
-    features: ["Garden terrace", "Fan or air conditioning", "Private bathroom", "Wi-Fi"],
-  },
-  {
-    slug: "family-villa",
-    name: "Family Villa",
-    summary: "Extra space for families and small groups travelling together.",
-    sleeps: 4,
-    features: ["Two bedrooms", "Living area", "Air conditioning", "Private bathroom"],
-  },
-];
 
 export const dining = {
-  title: "Dining",
-  body: "Fresh seafood, local Khmer flavours and Western favourites, served overlooking the sea.",
+  title: "Fine Dining & Culinary Experiences in Cambodia",
+  body: "Savor authentic Khmer flavors and international cuisine at Koh Russey Resort’s beachfront restaurants and bars, where every meal is crafted to perfection.",
 };
 
-export const activities = [
-  { title: "Snorkelling", body: "Explore the clear water around the island." },
-  { title: "Kayaking", body: "Paddle the coastline at your own pace." },
-  { title: "Island walks", body: "Follow quiet trails and find empty beaches." },
-  { title: "Sunset on the beach", body: "End the day with a drink on the sand." },
-];
+export const activities = {
+  title: "Island Experiences in Cambodia",
+  body: "Discover Koh Russey Resort’s private-island activities, from snorkeling and paddleboarding to cultural tours and spa rituals, creating lasting memories in one of the best beach resorts in Cambodia.",
+  items: ["Snorkeling", "Paddleboarding", "Cultural tours", "Spa rituals"],
+};
 
-export const highlights = [
-  { title: "On the beach", body: "Wake up a few steps from the water." },
-  { title: "Island dining", body: "Fresh, local food served by the sea." },
-  { title: "Slow days", body: "Snorkel, paddle, read, repeat." },
+export const spa = {
+  title: "A Journey Within: Island Spa & Wellness",
+  body: "Unwind together with signature couples’ massages, healing therapies, and yoga sessions, the perfect complement to weddings, honeymoons, and romantic escapes.",
+};
+
+export const allInclusive = {
+  eyebrow: "Best offer",
+  title: "All-Inclusive Villa Experience",
+  body: "Experience the ultimate finery with our exclusive All-Inclusive Villa Offer at Koh Russey Resort. Book your private villa and enjoy unlimited meals, drinks, and minibar treats, all included. Escape to a worry-free paradise where indulgence meets relaxation, with every gourmet experience covered. Perfect for couples, families, or anyone seeking a premium getaway!",
+};
+
+export const weddings = {
+  title: "Weddings & Private Retreats",
+  body: "A private island with secluded beaches, ideal for romantic getaways, weddings and private retreats.",
+};
+
+export const location = {
+  title: "Off the coast of Sihanoukville",
+  body: "Koh Russey is part of the stunning Koh Rong archipelago in Cambodia’s Gulf of Thailand. Just a short boat ride from the mainland, our island sits in a turquoise stretch of water surrounded by pristine beaches and lush tropical landscapes. Its peaceful setting offers the perfect balance: close enough to explore the beauty and culture of the Koh Rong islands, yet secluded enough to feel like your own private paradise.",
+};
+
+export const shuttles = {
+  note: "For flexibility, we offer transfers at your preferred time for an additional $80 per way.",
+  seasons: [
+    {
+      name: "Green Season",
+      dates: "1st May to 31st October",
+      groups: [
+        { label: "Weekdays (Monday to Thursday)", fromRream: ["14h00"], fromResort: ["11h00"] },
+        { label: "Weekends (Friday to Sunday)", fromRream: ["13h30", "14h30"], fromResort: ["10h00", "11h30"] },
+      ],
+    },
+    {
+      name: "High Season",
+      dates: "1st November to 30th April",
+      groups: [
+        { label: "Every day", fromRream: ["13h30", "14h30"], fromResort: ["10h00", "11h30"] },
+      ],
+    },
+  ],
+};
+
+// Short excerpts from guest reviews shown on the current site.
+export const reviews = [
+  {
+    author: "Simon E.",
+    title: "Tranquil haven",
+    quote:
+      "It’s a tranquil haven with beautiful architecture and views, wonderful staff, an exceptionally large and gorgeous pool, good food (esp breakfast) etc. etc. 100% recommendable.",
+  },
+  {
+    author: "Malcolm Wilkes",
+    title: "So pleased",
+    quote:
+      "Bamboo island is tiny which means you have seclusion with Koh Russey resort being in a sheltered bay with a nice sandy beach.",
+  },
+  {
+    author: "Dorothy Srun",
+    title: "Gorgeous Resort",
+    quote:
+      "Gorgeous resort with inspiring architecture throughout. Saw lots of tropical fish, cuttlefish, a nudibranch and multiple octopus when snorkeling!",
+  },
 ];

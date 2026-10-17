@@ -10,7 +10,7 @@ export function Header() {
           {site.name}
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-6 text-sm md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-5 text-sm lg:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className="hover:text-sea">
               {item.label}
@@ -20,7 +20,7 @@ export function Header() {
         </nav>
 
         {/* No-JS mobile menu */}
-        <details className="group relative md:hidden">
+        <details className="group relative lg:hidden">
           <summary className="cursor-pointer list-none rounded border border-line px-3 py-2 text-sm font-medium">
             Menu
           </summary>

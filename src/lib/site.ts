@@ -1,27 +1,39 @@
-// Central site configuration. Everything marked PLACEHOLDER must be replaced with
-// the resort's real details before launch.
+// Central site configuration. Contact details come from the current kohrusseyresort.com.
 
 export const site = {
   name: "Koh Russey Resort",
-  tagline: "Island escape on the Cambodian coast",
+  tagline: "A Private Island Resort in Cambodia",
+  title: "Private Island Resort in Cambodia",
   description:
-    "Koh Russey Resort: beachside stays, island dining and unhurried days by the sea in Cambodia.",
+    "Discover Koh Russey, a secluded private island resort in Cambodia near Sihanoukville. Enjoy beachfront villas, pristine beaches and peaceful island stays.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kohrusseyresort.com",
-  // PLACEHOLDER contact details
   contact: {
-    email: "info@example.com",
-    phone: "+855 00 000 000",
-    whatsapp: "85500000000", // digits only, no "+"
-    address: "Koh Russey, Cambodia",
+    email: "reservations@kohrusseyresort.com",
+    phone: "+855 81 222 921",
+    whatsapp: "85581222921", // digits only, no "+"
+    telegram: "https://t.me/Kohrusseyresortteam",
+    resortAddress:
+      "Bamboo Island, Ong Village, Prey Nup District, Ream Commune, Preah Sihanouk 18108, Cambodia",
+    loungeName: "Ream Lounge",
+    loungeAddress: "Ream Commune, Preah Sihanouk, Cambodia",
+    mapUrl: "https://maps.app.goo.gl/RUkioEgijbeLmdBv5",
+  },
+  social: {
+    facebook: "https://www.facebook.com/kohrusseyresort",
+    instagram: "https://www.instagram.com/kohrusseyresort/",
+    tiktok: "https://www.tiktok.com/@kohrusseyresort",
   },
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
 } as const;
 
 export const nav = [
-  { href: "/rooms", label: "Rooms" },
-  { href: "/experiences", label: "Dining & Activities" },
+  { href: "/villas", label: "Villas" },
+  { href: "/restaurants", label: "Restaurants" },
+  { href: "/activities", label: "Activities" },
+  { href: "/weddings", label: "Weddings" },
+  { href: "/offers", label: "Offers" },
+  { href: "/getting-here", label: "Getting here" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/location", label: "Getting here" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
@@ -40,4 +52,8 @@ export function isBookingExternal(): boolean {
 
 export function whatsappLink(message = "Hello! I'd like to ask about staying at Koh Russey Resort."): string {
   return `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+export function telLink(): string {
+  return `tel:${site.contact.phone.replace(/\s/g, "")}`;
 }
