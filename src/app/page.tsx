@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookButton } from "@/components/BookButton";
+import { ExelyWidget } from "@/components/ExelyWidget";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import {
   activities,
@@ -59,6 +60,10 @@ export default function Home() {
             </a>
           </p>
         </div>
+      </section>
+
+      <section aria-label="Check availability" className="mx-auto max-w-6xl px-4 pt-10">
+        <ExelyWidget widget="search-form" containerId="be-search-form" />
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-6 px-4 py-16 md:grid-cols-3">

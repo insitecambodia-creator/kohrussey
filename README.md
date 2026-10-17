@@ -25,12 +25,17 @@ WordPress URLs (for example `/about-us/` and `/private-beachfront-residence/`) t
 
 ## Exely booking
 
-Set `NEXT_PUBLIC_EXELY_BOOKING_URL` to the property's hosted Exely booking page. Every
-"Book now" / "Check availability" button (`src/components/BookButton.tsx`) opens it in a new tab.
-Until it is set, the buttons fall back to the Contact page.
+Booking runs on the Exely booking engine, embedded the same way as on the current site.
 
-If Exely supplies an embeddable widget snippet instead, it can be added to a dedicated page using
-`next/script`; that is not wired up yet because the snippet has not been provided.
+- `src/components/ExelyWidget.tsx` loads Exely's `integration/loader.js` and mounts a widget
+  into a container: the `booking-form` on `/booking` and the `search-form` availability bar on
+  the homepage.
+- The property's context ID and loader hosts are in `src/lib/site.ts` (`site.exely`).
+- Every "Book now" / "Check availability" button links to `/booking`.
+- `/booking` is `noindex`, as on the current site.
+
+The availability bar on the homepage is configured inside Exely (where it sends guests after a
+search). Make sure it points at `/booking` on the live domain.
 
 ## Content
 

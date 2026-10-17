@@ -23,6 +23,12 @@ export const site = {
     instagram: "https://www.instagram.com/kohrusseyresort/",
     tiktok: "https://www.tiktok.com/@kohrusseyresort",
   },
+  // Exely booking-engine integration, copied from the current site's booking page.
+  exely: {
+    contextId: "BE-INT-kohrusseyresort-com_2026-02-20",
+    language: "en",
+    hosts: ["kh-ibe.hopenapi.com", "ibe.hopenapi.com", "ibe.behopenapi.com"],
+  },
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
 } as const;
 
@@ -37,17 +43,9 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-/**
- * Exely booking engine. Booking is handled entirely by Exely; the site only links
- * to it. Set NEXT_PUBLIC_EXELY_BOOKING_URL to the hosted booking page for the
- * property. If it is unset, booking buttons fall back to the contact page.
- */
+/** Booking is handled by the Exely booking engine, embedded on this page. */
 export function bookingUrl(): string {
-  return process.env.NEXT_PUBLIC_EXELY_BOOKING_URL || "/contact";
-}
-
-export function isBookingExternal(): boolean {
-  return /^https?:\/\//.test(bookingUrl());
+  return "/booking";
 }
 
 export function whatsappLink(message = "Hello! I'd like to ask about staying at Koh Russey Resort."): string {
