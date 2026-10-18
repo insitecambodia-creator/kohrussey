@@ -4,6 +4,7 @@ import "@fontsource-variable/hanken-grotesk";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { images } from "@/lib/images";
 import { site } from "@/lib/site";
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <ScrollReveal />
       </body>
     </html>
   );

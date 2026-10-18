@@ -18,6 +18,7 @@ export default function VillasPage() {
           <article
             key={v.slug}
             id={v.slug}
+            data-reveal-group
             className="grid scroll-mt-24 gap-6 border-b border-ink/15 py-10 md:grid-cols-12 md:items-center"
           >
             <ImagePlaceholder label={`Photo of the ${v.name} coming soon`} className="aspect-[4/3] md:col-span-7" />

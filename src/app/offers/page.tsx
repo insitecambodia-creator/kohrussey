@@ -14,10 +14,10 @@ export default function OffersPage() {
     <>
       <PageHeading title="Promotions & Special Offers" />
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-12">
-        <h2 className="text-3xl md:col-span-5">{allInclusive.title}</h2>
+        <h2 data-reveal="slide" className="text-3xl md:col-span-5">{allInclusive.title}</h2>
         <div className="md:col-span-7">
-          <p className={`text-ink/85 ${prose}`}>{allInclusive.body}</p>
-          <div className="mt-8">
+          <p data-reveal="rise" data-delay="1" className={`text-ink/85 ${prose}`}>{allInclusive.body}</p>
+          <div data-reveal="rise" data-delay="2" className="mt-8">
             <BookButton>Book the all-inclusive package</BookButton>
           </div>
         </div>

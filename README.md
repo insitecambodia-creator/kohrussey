@@ -69,7 +69,13 @@ The visual direction follows `SKILL.md` (the frontend-design guidance in the rep
 - Palette: salt `#F1F5F2`, ink `#0D2623`, pool `#1D5B4D`, lagoon `#2F8F9A`, sand `#E6CB93`. Tokens live in `src/app/globals.css`.
 - Type: Marcellus for headings, Hanken Grotesk for body text, both self-hosted through `@fontsource`.
 - Square corners, ruled rows and a real table for the shuttle times. No card grids.
-- One moment of motion: the hero photo settles on load (`.hero-settle`), switched off for reduced-motion users.
+- Motion: the hero photo settles and its text arrives in sequence on load, then content reveals as you scroll.
+  `src/components/ScrollReveal.tsx` (mounted once in the layout) drives it and the rules are in `globals.css`:
+  `data-reveal="rise"` / `"slide"` for text, `data-reveal-group` for staggered lists and columns,
+  `<Photo>` for photos (a curtain lifts off), `<ParallaxFrame>` for wide photos that also drift on scroll,
+  and `data-delay="1|2|3"` to hold something back a beat. Everything is visible without JavaScript or
+  with reduced motion. Do not put `clip-path` on an element that is observed for reveal: a fully clipped
+  element never counts as visible, so it would never reveal.
 - Shared button and link styles are in `src/lib/ui.ts`.
 
 ## Next.js notes

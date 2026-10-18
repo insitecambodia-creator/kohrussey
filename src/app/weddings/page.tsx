@@ -14,7 +14,7 @@ export default function WeddingsPage() {
     <>
       <PageHeading title={weddings.title} intro={weddings.body} />
       <div className="mx-auto max-w-6xl px-4 py-14">
-        <div className="flex flex-wrap gap-3">
+        <div data-reveal="rise" className="flex flex-wrap gap-3">
           <a
             href={whatsappLink("Hello! I'd like to ask about wedding packages at Koh Russey Resort.")}
             target="_blank"

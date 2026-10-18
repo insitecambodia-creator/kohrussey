@@ -13,10 +13,10 @@ export default function AboutPage() {
     <>
       <PageHeading title="About us" intro={introLead} />
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-12">
-        <div className={`space-y-6 text-ink/85 md:col-span-7 ${prose}`}>
+        <div data-reveal="rise" className={`space-y-6 text-ink/85 md:col-span-7 ${prose}`}>
           <p>{introRest}</p>
         </div>
-        <div className="md:col-span-5">
+        <div data-reveal="rise" data-delay="1" className="md:col-span-5">
           <h2 className="text-2xl">{location.title}</h2>
           <p className="mt-3 text-ink/85">{location.body}</p>
         </div>

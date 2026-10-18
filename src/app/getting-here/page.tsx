@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHeading } from "@/components/PageHeading";
+import { ParallaxFrame } from "@/components/ParallaxFrame";
 import { location, shuttles } from "@/lib/content";
 import { images } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -18,21 +19,23 @@ export default function GettingHerePage() {
     <>
       <PageHeading title="Getting here" intro={location.body} />
       <div className="mx-auto max-w-6xl space-y-20 px-4 py-14">
-        <Image
-          src={images.mapResort.src}
-          alt={images.mapResort.alt}
-          sizes="(min-width: 1152px) 1120px, 100vw"
-          className="aspect-[16/9] w-full object-cover md:aspect-[21/8]"
-        />
+        <ParallaxFrame className="aspect-[16/9] md:aspect-[21/8]">
+          <Image
+            src={images.mapResort.src}
+            alt={images.mapResort.alt}
+            sizes="(min-width: 1152px) 1120px, 100vw"
+            className="h-full w-full object-cover"
+          />
+        </ParallaxFrame>
 
         <section className="grid gap-8 md:grid-cols-12">
           <div className="md:col-span-4">
-            <h2 className="text-3xl">Shuttle schedules</h2>
-            <p className="mt-4 max-w-[32ch] text-ink/80">{shuttles.note}</p>
+            <h2 data-reveal="rise" className="text-3xl">Shuttle schedules</h2>
+            <p data-reveal="rise" data-delay="1" className="mt-4 max-w-[32ch] text-ink/80">{shuttles.note}</p>
           </div>
           <div className="space-y-12 md:col-span-8">
             {shuttles.seasons.map((season) => (
-              <table key={season.name} className="w-full table-fixed text-sm sm:text-base">
+              <table key={season.name} data-reveal="rise" className="w-full table-fixed text-sm sm:text-base">
                 <caption className="pb-3 text-left font-display text-2xl">
                   {season.name}
                   <span className="ml-3 font-sans text-base text-ink/70">{season.dates}</span>
@@ -72,8 +75,8 @@ export default function GettingHerePage() {
         </section>
 
         <section className="grid gap-8 md:grid-cols-12">
-          <h2 className="text-3xl md:col-span-4">Where to find us</h2>
-          <div className="space-y-4 md:col-span-8">
+          <h2 data-reveal="rise" className="text-3xl md:col-span-4">Where to find us</h2>
+          <div data-reveal="rise" data-delay="1" className="space-y-4 md:col-span-8">
             <p>
               <strong className="font-medium">{site.contact.loungeName}</strong>
               <br />

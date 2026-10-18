@@ -16,7 +16,7 @@ export default function ContactPage() {
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 md:grid-cols-2">
         <section>
           <h2 className="text-3xl">Direct booking</h2>
-          <dl className="mt-6 divide-y divide-ink/15 border-y border-ink/15 [&_dd]:break-words">
+          <dl data-reveal-group className="mt-6 divide-y divide-ink/15 border-y border-ink/15 [&_dd]:break-words">
             <div className="grid grid-cols-[6rem_minmax(0,1fr)] py-3">
               <dt className="text-ink/70">Phone</dt>
               <dd>
@@ -52,8 +52,8 @@ export default function ContactPage() {
           </dl>
         </section>
         <section>
-          <h2 className="text-3xl">Find us</h2>
-          <address className="mt-6 space-y-4 not-italic text-ink/85">
+          <h2 data-reveal="rise" className="text-3xl">Find us</h2>
+          <address data-reveal="rise" data-delay="1" className="mt-6 space-y-4 not-italic text-ink/85">
             <p>
               <strong className="font-medium">{c.loungeName}</strong>
               <br />
