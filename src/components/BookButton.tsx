@@ -1,24 +1,18 @@
 import Link from "next/link";
 import { bookingUrl } from "@/lib/site";
+import { button } from "@/lib/ui";
 
 type Props = {
   children?: React.ReactNode;
-  variant?: "solid" | "outline";
+  /** `light` sits on a light background, `dark` on a dark one. */
+  on?: "light" | "dark";
   className?: string;
 };
 
-const styles = {
-  solid: "bg-coral text-white hover:bg-[#bf5530]",
-  outline: "border border-white/80 text-white hover:bg-white/10",
-};
-
 /** Sends guests to the booking page, which embeds the Exely booking engine. */
-export function BookButton({ children = "Book now", variant = "solid", className = "" }: Props) {
+export function BookButton({ children = "Book now", on = "light", className = "" }: Props) {
   return (
-    <Link
-      href={bookingUrl()}
-      className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-colors ${styles[variant]} ${className}`}
-    >
+    <Link href={bookingUrl()} className={`${on === "dark" ? button.sand : button.dark} ${className}`}>
       {children}
     </Link>
   );

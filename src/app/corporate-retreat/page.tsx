@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PageHeading } from "@/components/PageHeading";
 import { images } from "@/lib/images";
 import { site, whatsappLink } from "@/lib/site";
+import { button } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Corporate retreat",
@@ -13,34 +14,31 @@ export default function CorporateRetreatPage() {
   return (
     <>
       <PageHeading title="Corporate retreat" intro="A private island setting for team retreats and group activities." />
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        <div className="grid items-start gap-6 md:grid-cols-5">
+      <div className="mx-auto max-w-6xl px-4 py-14">
+        <div className="grid items-start gap-4 md:grid-cols-5">
           <Image
             src={images.corporateBeach.src}
             alt={images.corporateBeach.alt}
             sizes="(min-width: 1152px) 670px, (min-width: 768px) 60vw, 100vw"
-            className="w-full rounded-xl md:col-span-3"
+            className="w-full md:col-span-3"
           />
           <Image
             src={images.retreatLawn.src}
             alt={images.retreatLawn.alt}
             sizes="(min-width: 1152px) 450px, (min-width: 768px) 40vw, 100vw"
-            className="w-full rounded-xl md:col-span-2"
+            className="w-full md:col-span-2"
           />
         </div>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-10 flex flex-wrap gap-3">
           <a
             href={whatsappLink("Hello! I'd like to ask about a corporate retreat at Koh Russey Resort.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex rounded-full bg-sea px-6 py-3 text-sm font-semibold text-white hover:bg-sea-dark"
+            className={button.dark}
           >
-            Ask about a retreat
+            Ask about a retreat on WhatsApp
           </a>
-          <a
-            href={`mailto:${site.contact.email}`}
-            className="inline-flex rounded-full border border-sea px-6 py-3 text-sm font-semibold text-sea hover:bg-sea/5"
-          >
+          <a href={`mailto:${site.contact.email}`} className={button.outline}>
             Email reservations
           </a>
         </div>

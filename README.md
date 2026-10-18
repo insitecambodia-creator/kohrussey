@@ -62,6 +62,16 @@ map viewer's controls and resized to 2400px wide.
 The site is `noindex` with `Disallow: /` until `NEXT_PUBLIC_ALLOW_INDEXING=true`, so the redesign
 cannot compete with the live site before launch.
 
+## Design
+
+The visual direction follows `SKILL.md` (the frontend-design guidance in the repo root).
+
+- Palette: salt `#F1F5F2`, ink `#0D2623`, pool `#1D5B4D`, lagoon `#2F8F9A`, sand `#E6CB93`. Tokens live in `src/app/globals.css`.
+- Type: Marcellus for headings, Hanken Grotesk for body text, both self-hosted through `@fontsource`.
+- Square corners, ruled rows and a real table for the shuttle times. No card grids.
+- One moment of motion: the hero photo settles on load (`.hero-settle`), switched off for reduced-motion users.
+- Shared button and link styles are in `src/lib/ui.ts`.
+
 ## Next.js notes
 
 `cacheComponents` is on, so components must not read the current time (`new Date()`) during

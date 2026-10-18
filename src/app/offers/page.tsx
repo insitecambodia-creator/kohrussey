@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BookButton } from "@/components/BookButton";
 import { PageHeading } from "@/components/PageHeading";
 import { allInclusive } from "@/lib/content";
+import { prose } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Promotions & Special Offers",
@@ -12,15 +13,14 @@ export default function OffersPage() {
   return (
     <>
       <PageHeading title="Promotions & Special Offers" />
-      <div className="mx-auto max-w-3xl px-4 py-12">
-        <article className="rounded-2xl bg-white p-8 ring-1 ring-line">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-coral">{allInclusive.eyebrow}</p>
-          <h2 className="mt-1 font-serif text-2xl font-semibold text-sea-dark">{allInclusive.title}</h2>
-          <p className="mt-3 text-ink/80">{allInclusive.body}</p>
-          <div className="mt-6">
-            <BookButton>Go for our all-inclusive package</BookButton>
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-12">
+        <h2 className="text-3xl md:col-span-5">{allInclusive.title}</h2>
+        <div className="md:col-span-7">
+          <p className={`text-ink/85 ${prose}`}>{allInclusive.body}</p>
+          <div className="mt-8">
+            <BookButton>Book the all-inclusive package</BookButton>
           </div>
-        </article>
+        </div>
       </div>
     </>
   );

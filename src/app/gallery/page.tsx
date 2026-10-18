@@ -12,14 +12,14 @@ export default function GalleryPage() {
   return (
     <>
       <PageHeading title="Gallery" />
-      <div className="mx-auto max-w-6xl columns-1 gap-4 px-4 py-12 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+      <div className="mx-auto max-w-6xl columns-1 gap-4 px-4 py-14 sm:columns-2 lg:columns-3 [&>*]:mb-4">
         {gallery.map((img) => (
           <Image
             key={img.alt}
             src={img.src}
             alt={img.alt}
             sizes="(min-width: 1152px) 370px, (min-width: 640px) 50vw, 100vw"
-            className="w-full break-inside-avoid rounded-xl"
+            className="w-full break-inside-avoid"
           />
         ))}
       </div>

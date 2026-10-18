@@ -13,14 +13,14 @@ export default function SpaPage() {
   return (
     <>
       <PageHeading title={spa.title} intro={spa.body} />
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-12 sm:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl gap-4 px-4 py-14 sm:grid-cols-2">
         {[images.massageBeach1, images.massageBeach2].map((img) => (
           <Image
             key={img.alt}
             src={img.src}
             alt={img.alt}
             sizes="(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw"
-            className="aspect-[4/5] w-full rounded-xl object-cover"
+            className="aspect-[4/5] w-full object-cover"
           />
         ))}
       </div>

@@ -2,8 +2,13 @@
 // short summary there (villas, restaurants, activities, weddings, offers) carry just that
 // summary until the full page copy is supplied.
 
-export const intro =
-  "Koh Russey Resort is a luxury private island resort in Cambodia, offering secluded beachfront villas near Koh Rong. Surrounded by pristine copper sand beaches and untouched tropical nature, it is one of the country’s most exclusive island escapes for romantic getaways, weddings, and private retreats.";
+export const introLead =
+  "Koh Russey Resort is a luxury private island resort in Cambodia, offering secluded beachfront villas near Koh Rong.";
+
+export const introRest =
+  "Surrounded by pristine copper sand beaches and untouched tropical nature, it is one of the country’s most exclusive island escapes for romantic getaways, weddings, and private retreats.";
+
+export const intro = `${introLead} ${introRest}`;
 
 export const villas = {
   eyebrow: "Beach Accommodation",

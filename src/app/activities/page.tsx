@@ -4,50 +4,60 @@ import Link from "next/link";
 import { PageHeading } from "@/components/PageHeading";
 import { activities } from "@/lib/content";
 import { images } from "@/lib/images";
+import { link } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Activities",
   description: "Snorkeling, paddleboarding, cultural tours and spa rituals on a private island in Cambodia.",
 };
 
-const photos = [images.snorkelingAerial, images.snorkelingBay, images.snorkelingGear];
-
 export default function ActivitiesPage() {
   return (
     <>
       <PageHeading title={activities.title} intro={activities.body} />
-      <div className="mx-auto max-w-6xl space-y-12 px-4 py-12">
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-6xl space-y-20 px-4 py-14">
+        <ul className="grid border-t border-ink/15 sm:grid-cols-2 lg:grid-cols-4">
           {activities.items.map((item) => (
-            <li key={item} className="rounded-xl border border-line bg-white p-5 font-semibold">
+            <li key={item} className="border-b border-ink/15 py-5 font-display text-2xl lg:border-b-0 lg:pr-6">
               {item}
             </li>
           ))}
         </ul>
 
-        <div className="grid gap-4 sm:grid-cols-3">
-          {photos.map((img) => (
+        <div className="grid items-start gap-4 sm:grid-cols-12">
+          <Image
+            src={images.snorkelingAerial.src}
+            alt={images.snorkelingAerial.alt}
+            sizes="(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw"
+            className="aspect-square w-full object-cover sm:col-span-6"
+          />
+          <div className="grid gap-4 sm:col-span-6">
             <Image
-              key={img.alt}
-              src={img.src}
-              alt={img.alt}
-              sizes="(min-width: 1152px) 370px, (min-width: 640px) 33vw, 100vw"
-              className="aspect-square w-full rounded-xl object-cover"
+              src={images.snorkelingBay.src}
+              alt={images.snorkelingBay.alt}
+              sizes="(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw"
+              className="aspect-[16/10] w-full object-cover"
             />
-          ))}
+            <Image
+              src={images.snorkelingGear.src}
+              alt={images.snorkelingGear.alt}
+              sizes="(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw"
+              className="aspect-[16/10] w-full object-cover"
+            />
+          </div>
         </div>
 
-        <section>
-          <h2 className="font-serif text-2xl font-semibold text-sea-dark">Snorkeling guidelines</h2>
+        <section className="grid gap-8 md:grid-cols-12">
+          <h2 className="text-3xl md:col-span-4">Snorkeling guidelines</h2>
           <Image
             src={images.snorkelingGuide.src}
             alt={images.snorkelingGuide.alt}
-            sizes="(min-width: 896px) 800px, 100vw"
-            className="mt-4 w-full max-w-3xl rounded-xl border border-line"
+            sizes="(min-width: 1152px) 740px, 100vw"
+            className="w-full border border-ink/15 md:col-span-8"
           />
         </section>
 
-        <Link href="/spa" className="inline-block text-sm font-medium text-sea hover:underline">
+        <Link href="/spa" className={link}>
           Island Spa &amp; Wellness
         </Link>
       </div>

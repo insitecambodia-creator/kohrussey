@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { BookButton } from "@/components/BookButton";
 import { PageHeading } from "@/components/PageHeading";
 import { weddings } from "@/lib/content";
 import { site, whatsappLink } from "@/lib/site";
+import { button } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Wedding Packages",
@@ -13,23 +13,19 @@ export default function WeddingsPage() {
   return (
     <>
       <PageHeading title={weddings.title} intro={weddings.body} />
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="mx-auto max-w-6xl px-4 py-14">
         <div className="flex flex-wrap gap-3">
           <a
             href={whatsappLink("Hello! I'd like to ask about wedding packages at Koh Russey Resort.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex rounded-full bg-sea px-6 py-3 text-sm font-semibold text-white hover:bg-sea-dark"
+            className={button.dark}
           >
-            Ask about wedding packages
+            Ask about weddings on WhatsApp
           </a>
-          <a
-            href={`mailto:${site.contact.email}`}
-            className="inline-flex rounded-full border border-sea px-6 py-3 text-sm font-semibold text-sea hover:bg-sea/5"
-          >
+          <a href={`mailto:${site.contact.email}`} className={button.outline}>
             Email reservations
           </a>
-          <BookButton>Check availability</BookButton>
         </div>
       </div>
     </>

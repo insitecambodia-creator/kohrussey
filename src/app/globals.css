@@ -1,23 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --sand: #faf6ef;
-  --ink: #1b2b2f;
-  --sea: #0f6f7c;
-  --sea-dark: #0a4f59;
-  --coral: #d9663b;
-  --line: #e4dccb;
+  --salt: #f1f5f2;
+  --ink: #0d2623;
+  --pool: #1d5b4d;
+  --lagoon: #2f8f9a;
+  --sand: #e6cb93;
 }
 
 @theme inline {
-  --color-sand: var(--sand);
+  --color-salt: var(--salt);
   --color-ink: var(--ink);
-  --color-sea: var(--sea);
-  --color-sea-dark: var(--sea-dark);
-  --color-coral: var(--coral);
-  --color-line: var(--line);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Khmer", sans-serif;
-  --font-serif: ui-serif, Georgia, "Times New Roman", serif;
+  --color-pool: var(--pool);
+  --color-lagoon: var(--lagoon);
+  --color-sand: var(--sand);
+  --font-display: "Marcellus", Georgia, "Times New Roman", serif;
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, "Noto Sans", "Noto Sans Khmer", sans-serif;
 }
 
 html {
@@ -25,13 +23,51 @@ html {
 }
 
 body {
-  background: var(--sand);
+  background: var(--salt);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid var(--lagoon);
+  outline-offset: 3px;
+}
+
+/* The one moment of motion: the hero photo settles into place on load. */
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-settle {
+  animation: settle 2.4s cubic-bezier(0.2, 0.6, 0.2, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .hero-settle {
+    animation: none;
   }
 }

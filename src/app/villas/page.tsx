@@ -13,18 +13,22 @@ export default function VillasPage() {
   return (
     <>
       <PageHeading title={villas.title} intro={villas.body} />
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {villas.types.map((v) => (
-            <article key={v.slug} id={v.slug} className="overflow-hidden rounded-xl border border-line bg-white">
-              <ImagePlaceholder label={`Photo coming soon: ${v.name}`} className="h-56" />
-              <div className="flex items-center justify-between p-5">
-                <h2 className="font-serif text-xl font-semibold">{v.name}</h2>
+      <div className="mx-auto max-w-6xl px-4">
+        {villas.types.map((v) => (
+          <article
+            key={v.slug}
+            id={v.slug}
+            className="grid scroll-mt-24 gap-6 border-b border-ink/15 py-10 md:grid-cols-12 md:items-center"
+          >
+            <ImagePlaceholder label={`Photo of the ${v.name} coming soon`} className="aspect-[4/3] md:col-span-7" />
+            <div className="md:col-span-5 md:pl-6">
+              <h2 className="text-3xl">{v.name}</h2>
+              <div className="mt-6">
                 <BookButton>Check availability</BookButton>
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
     </>
   );
