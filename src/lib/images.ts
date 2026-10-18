@@ -11,6 +11,11 @@ import corporateBeach from "@/assets/images/corporate-beach-activity.webp";
 import retreatLawn from "@/assets/images/retreat-lawn.webp";
 import mapResort from "@/assets/images/map-resort.webp";
 import horizonRestaurant from "@/assets/images/horizon-restaurant.jpg";
+import spaRoom from "@/assets/images/activity-spa.jpg";
+import wellnessGym from "@/assets/images/activity-wellness.webp";
+import cookingClass from "@/assets/images/activity-cooking-class.webp";
+import pepperTour from "@/assets/images/activity-pepper-tour.webp";
+import beachAerialSunset from "@/assets/images/beach-aerial-sunset.jpg";
 
 export const images = {
   poolMorning: {
@@ -61,6 +66,26 @@ export const images = {
     src: horizonRestaurant,
     alt: "The Horizon Restaurant at dusk: long wooden tables, a row of black pendant lights and open sides looking out to the trees and the sea",
   },
+  spaRoom: {
+    src: spaRoom,
+    alt: "A guest in a robe sitting on a massage bed in a spa treatment room, looking out through sheer curtains",
+  },
+  wellnessGym: {
+    src: wellnessGym,
+    alt: "The resort gym, with cross-trainers, a treadmill and exercise balls beside large windows onto the garden",
+  },
+  cookingClass: {
+    src: cookingClass,
+    alt: "Guests in chef's hats gathered around a cooking station during a cooking class",
+  },
+  pepperTour: {
+    src: pepperTour,
+    alt: "A group of guests in straw hats on a hillside terrace during the visit to a Kampot pepper farm",
+  },
+  beachAerialSunset: {
+    src: beachAerialSunset,
+    alt: "Aerial view at sunset of the long sandy beach, the headland and the villas among the trees",
+  },
   mapResort: {
     src: mapResort,
     alt: "Aerial view of the island and the bay where the resort sits",
@@ -73,11 +98,14 @@ export const gallery = [
   images.oceanfrontDreams,
   images.massageBeach1,
   images.horizonRestaurant,
+  images.beachAerialSunset,
   images.snorkelingAerial,
   images.girlPool,
   images.massageBeach2,
   images.retreatLawn,
+  images.spaRoom,
   images.snorkelingBay,
   images.corporateBeach,
+  images.cookingClass,
   images.snorkelingGear,
 ];

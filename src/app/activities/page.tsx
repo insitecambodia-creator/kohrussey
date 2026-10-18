@@ -11,6 +11,15 @@ export const metadata: Metadata = {
   description: activitiesPage.description,
 };
 
+/** The photo shown with each activity row. Resort activities has its own set of three below. */
+const rowPhotos: Record<string, (typeof images)[keyof typeof images]> = {
+  spa: images.spaRoom,
+  wellness: images.wellnessGym,
+  "khmer-cooking-class": images.cookingClass,
+  "pepper-delights": images.pepperTour,
+};
+const photoSizes = "(min-width: 1152px) 740px, (min-width: 768px) 66vw, 100vw";
+
 /** Hero text arrives in sequence; `--d` is each element's start delay. */
 const delay = (seconds: number) => ({ "--d": `${seconds}s` }) as React.CSSProperties;
 
@@ -47,7 +56,11 @@ export default function ActivitiesPage() {
             {intro.heading}
           </h2>
           <div className="md:col-span-8">
-            <p data-reveal="rise" data-delay="1" className="max-w-[30ch] font-display text-2xl leading-snug md:text-4xl">
+            <p
+              data-reveal="rise"
+              data-delay="1"
+              className="max-w-[30ch] font-display text-2xl leading-snug md:text-4xl"
+            >
               {intro.lead}
             </p>
             <p data-reveal="rise" data-delay="2" className={`mt-6 text-ink/85 ${prose}`}>
@@ -86,19 +99,23 @@ export default function ActivitiesPage() {
                   </Link>
                 </div>
               ) : null}
+              {rowPhotos[b.id] ? <Photo image={rowPhotos[b.id]} sizes={photoSizes} natural className="mt-8" /> : null}
               {b.id === "resort-activities" ? (
-                <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                  <Photo
-                    image={images.snorkelingBay}
-                    sizes="(min-width: 1152px) 360px, (min-width: 640px) 40vw, 100vw"
-                    className="aspect-[4/3]"
-                  />
-                  <Photo
-                    image={images.snorkelingGear}
-                    sizes="(min-width: 1152px) 360px, (min-width: 640px) 40vw, 100vw"
-                    delay={2}
-                    className="aspect-[4/3]"
-                  />
+                <div className="mt-8 space-y-4">
+                  <Photo image={images.beachAerialSunset} sizes={photoSizes} natural />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <Photo
+                      image={images.snorkelingBay}
+                      sizes="(min-width: 1152px) 360px, (min-width: 640px) 40vw, 100vw"
+                      className="aspect-[4/3]"
+                    />
+                    <Photo
+                      image={images.snorkelingGear}
+                      sizes="(min-width: 1152px) 360px, (min-width: 640px) 40vw, 100vw"
+                      delay={2}
+                      className="aspect-[4/3]"
+                    />
+                  </div>
                 </div>
               ) : null}
             </div>

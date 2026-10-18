@@ -46,7 +46,7 @@ Pages built from the saved pages in `content-resource/` (wording copied as writt
 generated from the saved file and checked line by line against it):
 
 - Restaurants, with the Horizon and Beach Shack menus
-- Activities: the five activity sections and the 16 most sought-after experiences (`src/lib/activities.ts`). Left out on
+- Activities: the five activity sections, each with its photo, and the 16 most sought-after experiences (`src/lib/activities.ts`). Left out on
   purpose: the "Download the catalog" form (needs a backend and the PDF) and the Cooking Class, Kayaking and Snorkeling
   buttons (their pages are not built yet; the old addresses redirect to the matching section).
 - Villas & Pavilions: the three pavilions and five pool villas (`src/lib/accommodations.ts`, text only until the villa photos arrive)
