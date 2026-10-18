@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHeading } from "@/components/PageHeading";
 import { location, shuttles } from "@/lib/content";
+import { images } from "@/lib/images";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,6 +15,12 @@ export default function GettingHerePage() {
     <>
       <PageHeading title="Getting here" intro={location.body} />
       <div className="mx-auto max-w-4xl space-y-10 px-4 py-12">
+        <Image
+          src={images.mapResort.src}
+          alt={images.mapResort.alt}
+          sizes="(min-width: 896px) 896px, 100vw"
+          className="w-full rounded-xl"
+        />
         <section>
           <h2 className="font-serif text-2xl font-semibold text-sea-dark">Schedules for shuttles</h2>
           <div className="mt-4 grid gap-6 md:grid-cols-2">

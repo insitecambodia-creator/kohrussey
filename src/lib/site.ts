@@ -43,6 +43,13 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+/** Pages that are linked from the footer only. */
+export const secondaryNav = [
+  { href: "/about", label: "About us" },
+  { href: "/spa", label: "Island Spa & Wellness" },
+  { href: "/corporate-retreat", label: "Corporate retreat" },
+] as const;
+
 /** Booking is handled by the Exely booking engine, embedded on this page. */
 export function bookingUrl(): string {
   return "/booking";

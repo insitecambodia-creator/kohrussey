@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { images } from "@/lib/images";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     description: site.description,
     siteName: site.name,
     type: "website",
+    images: [{ url: images.poolMorning.src.src, width: images.poolMorning.src.width, height: images.poolMorning.src.height }],
   },
   // Search engines stay out until the redesign is ready to go live.
   robots: site.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },

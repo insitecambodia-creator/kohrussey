@@ -45,10 +45,17 @@ Copy, contact details, shuttle times and reviews come from the current homepage 
 Still to add (the homepage only had a short summary of each):
 
 - Full copy for Villas (per villa type), Restaurants, Activities, Spa, Weddings and Offers
-- Photos and logo. `ImagePlaceholder` marks each spot; swap it for `next/image` once the files are in `public/`
-- Gallery
+- Photos of each villa type (the four villa cards show a "Photo coming soon" tile) and the logo
 - The six blog articles
 - Chinese and French versions (the current site has both)
+
+## Images
+
+Photos live in `src/assets/images/` and are registered, with alt text, in `src/lib/images.ts`.
+They are imported statically, so `next/image` knows their dimensions and serves responsive sizes.
+To add a photo: drop the file in that folder, add an entry to `images.ts`, and use it with
+`<Image src={images.x.src} alt={images.x.alt} />`. `map-resort.webp` was cropped to remove the
+map viewer's controls and resized to 2400px wide.
 
 ## Indexing
 

@@ -1,33 +1,31 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BookButton } from "@/components/BookButton";
 import { ExelyWidget } from "@/components/ExelyWidget";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
-import {
-  activities,
-  allInclusive,
-  dining,
-  intro,
-  location,
-  reviews,
-  spa,
-  villas,
-} from "@/lib/content";
+import { images } from "@/lib/images";
+import { allInclusive, intro, location, reviews, spa, villas } from "@/lib/content";
 import { site, telLink, whatsappLink } from "@/lib/site";
 
+// Short teasers; the full copy for each lives on its own page or section below.
 const pillars = [
-  { href: "/villas", label: "Stay", title: villas.title, body: villas.body },
-  { href: "/restaurants", label: "Savour", title: dining.title, body: dining.body },
-  { href: "/activities", label: "Explore", title: activities.title, body: activities.body },
+  { href: "/villas", label: "Stay", title: "Beachfront villas", body: "Each villa has a private pool, with the beach just steps away." },
+  { href: "/restaurants", label: "Savour", title: "Beachfront dining", body: "Authentic Khmer flavors and international cuisine, by the sea." },
+  { href: "/activities", label: "Explore", title: "Island experiences", body: "Snorkeling, paddleboarding, cultural tours and spa rituals." },
 ];
 
 export default function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-sea-dark text-white">
-        <ImagePlaceholder
-          label="Hero photo: Koh Russey beachfront"
-          className="absolute inset-0 -z-10 h-full w-full opacity-60"
+        <Image
+          src={images.poolMorning.src}
+          alt={images.poolMorning.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover"
         />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-sea-dark/90 via-sea-dark/55 to-sea-dark/35" />
         <div className="mx-auto max-w-6xl px-4 py-24 md:py-36">
           <p className="text-sm uppercase tracking-[0.2em] text-white/80">{site.name}</p>
           <h1 className="mt-3 max-w-3xl font-serif text-5xl font-semibold leading-tight md:text-6xl">
@@ -83,27 +81,55 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="mx-auto max-w-6xl px-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-coral">{villas.eyebrow}</p>
-        <h2 className="mt-2 font-serif text-3xl font-semibold text-sea-dark">{villas.title}</h2>
-        <p className="mt-3 max-w-3xl text-ink/80">{villas.body}</p>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {villas.types.map((v) => (
-            <Link key={v.slug} href="/villas" className="overflow-hidden rounded-xl border border-line bg-white">
-              <ImagePlaceholder label={v.name} className="h-44" />
-              <p className="p-4 font-serif text-lg font-semibold">{v.name}</p>
-            </Link>
-          ))}
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-coral">{villas.eyebrow}</p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold text-sea-dark">{villas.title}</h2>
+          <p className="mt-3 text-ink/80">{villas.body}</p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {villas.types.map((v) => (
+              <li key={v.slug}>
+                <Link
+                  href={`/villas#${v.slug}`}
+                  className="inline-block rounded-full border border-line bg-white px-4 py-2 text-sm font-medium hover:border-sea hover:text-sea"
+                >
+                  {v.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <Image
+            src={images.girlPool.src}
+            alt={images.girlPool.alt}
+            sizes="(min-width: 768px) 25vw, 50vw"
+            className="aspect-[3/4] rounded-xl object-cover"
+          />
+          <Image
+            src={images.oceanfrontDreams.src}
+            alt={images.oceanfrontDreams.alt}
+            sizes="(min-width: 768px) 25vw, 50vw"
+            className="mt-8 aspect-[3/4] rounded-xl object-cover"
+          />
         </div>
       </section>
 
       <section className="mx-auto mt-16 grid max-w-6xl gap-6 px-4 md:grid-cols-2">
-        <div className="rounded-2xl bg-white p-8 ring-1 ring-line">
-          <h2 className="font-serif text-2xl font-semibold text-sea-dark">{spa.title}</h2>
-          <p className="mt-3 text-ink/80">{spa.body}</p>
-          <Link href="/spa" className="mt-4 inline-block text-sm font-medium text-sea hover:underline">
-            Discover the spa
-          </Link>
+        <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-line">
+          <Image
+            src={images.massageBeach2.src}
+            alt={images.massageBeach2.alt}
+            sizes="(min-width: 1152px) 560px, (min-width: 768px) 50vw, 100vw"
+            className="aspect-[16/9] w-full object-cover"
+          />
+          <div className="p-8">
+            <h2 className="font-serif text-2xl font-semibold text-sea-dark">{spa.title}</h2>
+            <p className="mt-3 text-ink/80">{spa.body}</p>
+            <Link href="/spa" className="mt-4 inline-block text-sm font-medium text-sea hover:underline">
+              Discover the spa
+            </Link>
+          </div>
         </div>
         <div className="rounded-2xl bg-sea p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">{allInclusive.eyebrow}</p>

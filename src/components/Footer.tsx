@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { nav, site, telLink, whatsappLink } from "@/lib/site";
+import { nav, secondaryNav, site, telLink, whatsappLink } from "@/lib/site";
 
 const social = [
   { label: "Facebook", href: site.social.facebook },
@@ -26,10 +26,7 @@ export function Footer() {
           </ul>
         </div>
         <nav aria-label="Footer" className="flex flex-col gap-2 text-sm">
-          <Link href="/about" className="text-white/80 hover:text-white">
-            About us
-          </Link>
-          {nav.map((item) => (
+          {[...secondaryNav, ...nav].map((item) => (
             <Link key={item.href} href={item.href} className="text-white/80 hover:text-white">
               {item.label}
             </Link>
