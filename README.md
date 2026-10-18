@@ -46,9 +46,10 @@ Pages built from the saved pages in `content-resource/` (wording copied as writt
 generated from the saved file and checked line by line against it):
 
 - Restaurants, with the Horizon and Beach Shack menus
+- Villas & Pavilions: the three pavilions and five pool villas (`src/lib/accommodations.ts`, text only until the villa photos arrive)
 
 Spelling on the current site is kept as is. Likely typos worth a look: "Fettucine", "raddish", "baracuda",
-"shitake", "coco", "tastes buds", "dine and served", "Nicoise", "Sauteed".
+"shitake", "coco", "tastes buds", "dine and served", "Nicoise", "Sauteed", and the villa name "1- Bedroom Garden Pool Villa" (stray space).
 
 Still to add (the homepage only had a short summary of each):
 

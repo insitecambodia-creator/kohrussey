@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/private-beachfront-residence", destination: "/villas", permanent: true },
+      { source: "/private-beachfront-residence/garden-pavilion", destination: "/villas#garden-pavilion", permanent: true },
       { source: "/restaurants-on-the-island", destination: "/restaurants", permanent: true },
       { source: "/restaurants-on-the-island/menu-horizon-2024", destination: "/restaurants#horizon", permanent: true },
       {
