@@ -42,7 +42,7 @@ search). Make sure it points at `/booking` on the live domain.
 Copy, contact details, shuttle times and reviews come from the current homepage and live in
 `src/lib/site.ts` and `src/lib/content.ts`.
 
-Pages built from the saved pages in `content-resource/` (wording copied as written; `src/lib/menus.ts` was
+Pages built from the saved pages in `content-resource/` (wording copied as written, typos corrected; `src/lib/menus.ts` was
 generated from the saved file and checked line by line against it):
 
 - Restaurants, with the Horizon and Beach Shack menus
@@ -51,8 +51,8 @@ generated from the saved file and checked line by line against it):
   buttons (their pages are not built yet; the old addresses redirect to the matching section).
 - Villas & Pavilions: the three pavilions and five pool villas (`src/lib/accommodations.ts`, text only until the villa photos arrive)
 
-Spelling on the current site is kept as is. Likely typos worth a look: "Fettucine", "raddish", "baracuda",
-"shitake", "coco", "tastes buds", "dine and served", "Nicoise", "Sauteed", the villa name "1- Bedroom Garden Pool Villa" (stray space), and missing spaces in the activity descriptions ("inthe", "andwatch", "toenjoy", "ofthe").
+Typos in the original text were corrected (and nothing else was reworded). Every change is listed in
+`docs/content-fixes.md`, with the few judgement calls at the bottom.
 
 Still to add (the homepage only had a short summary of each):
 

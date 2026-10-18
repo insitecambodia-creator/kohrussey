@@ -1,6 +1,6 @@
 // Activities page, copied word for word from the current kohrusseyresort.com
-// "activities-on-the-island" page. Spelling is as on the current site, including some missing
-// spaces ("inthe", "andwatch"); see README.
+// "activities-on-the-island" page. Typos in the original (missing spaces and
+// the like) were corrected; see docs/content-fixes.md.
 //
 // Left out on purpose: the "Download the catalog" form (needs a backend and the PDF) and the
 // Cooking Class, Kayaking and Snorkeling buttons (their pages are not built yet).
@@ -54,14 +54,14 @@ export const activityBlocks: ActivityBlock[] = [
   },
   {
     id: "khmer-cooking-class",
-    title: "Khmer Cooking class",
+    title: "Khmer Cooking Class",
     meta: ["2 hours | Minimum 2 guests"],
-    body: "Uncover the secrets of authentic Khmer cuisine in a cooking class that will introduce you to local ingredients, basic recipes and traditional dishes. Head into our main restaurant where our Executive Chef will be your guide, sharing details of the spices, flavours and cooking techniques as you learn how to cook some local dishes. Then comes the most gratifying part – enjoying the food you have just prepared in the location of your choice.",
+    body: "Uncover the secrets of authentic Khmer cuisine in a cooking class that will introduce you to local ingredients, basic recipes and traditional dishes. Head into our main restaurant where our Executive Chef will be your guide, sharing details of the spices, flavors and cooking techniques as you learn how to cook some local dishes. Then comes the most gratifying part – enjoying the food you have just prepared in the location of your choice.",
   },
   {
     id: "resort-activities",
     title: "Resort activities",
-    body: "The breathtaking 1.2 Km copper sand beach and our location let you enjoy any of our island activities: Kayaking, Stand-Up paddle boarding, Snorkeling, Fishing, Island hopping, Beach picnic, Badminton, Beach Tennis, Beach Volley, Pétanque, Mountain Biking, Sunset cruise, Cinema under the stars and so much more…",
+    body: "The breathtaking 1.2 km copper sand beach and our location let you enjoy any of our island activities: Kayaking, stand-up paddle boarding, snorkeling, fishing, island hopping, beach picnic, badminton, beach tennis, beach volley, pétanque, mountain biking, sunset cruise, cinema under the stars and so much more…",
   },
   {
     id: "pepper-delights",
@@ -83,32 +83,32 @@ export const featuredActivities = {
   items: [
     {
       title: "Tête à Tête",
-      body: "Awaken your senses, and live a unique gastronomic experience while dipping your toes inthe pool, in a romantic candle-lit setting, while the dusk leaves the space to a starlit sky.",
+      body: "Awaken your senses, and live a unique gastronomic experience while dipping your toes in the pool, in a romantic candle-lit setting, while the dusk leaves the space to a starlit sky.",
       label: "3 Hours",
     },
     {
       title: "Beach Picnic",
-      body: "Steal away with your beloved to a secluded spot for an intimate picnic lunch, just the two of you and nature. Imagine…a blanket draped on the sand under the shade, close to the waves, with comfy cushions to lounge on, and small tables laden with gourmet picnic tailored specially for you. An unforgettably romantic experience.",
+      body: "Steal away with your beloved to a secluded spot for an intimate picnic lunch, just the two of you and nature. Imagine… a blanket draped on the sand under the shade, close to the waves, with comfy cushions to lounge on, and small tables laden with gourmet picnic tailored specially for you. An unforgettably romantic experience.",
       label: "3 Hours",
     },
     {
-      title: "Discover Koh Takiev",
+      title: "Discover Koh Ta Kiev",
       body: "A short distance away from Koh Russey lies Koh Ta Kiev, an unspoiled island with a long copper-sand beach and dramatic headlands. Take off on our longtail boat, accompanied by your Leisure Concierge, boat captain and crew, and snorkel around the island, lounge on the beach or jump off the rock cliffs.",
       label: "4 Hours",
     },
     {
       title: "Sunset Cruise",
-      body: "Experience a sunset like never before. Glide away on our speedboat to take in the magical vistas of the Gulf of Thailand as the sun makes it daily descent. Indulge in small canapés, andwatch as the emerald waters surrounding our island and the azure sky above give way toone of nature’s finest light shows. Captain and crew are ready to serve your every whim andbring you back to our shores, when the night will have just begun.",
+      body: "Experience a sunset like never before. Glide away on our speedboat to take in the magical vistas of the Gulf of Thailand as the sun makes its daily descent. Indulge in small canapés, and watch as the emerald waters surrounding our island and the azure sky above give way to one of nature’s finest light shows. Captain and crew are ready to serve your every whim and bring you back to our shores, when the night will have just begun.",
       label: "2 Hours",
     },
     {
       title: "Sun Downer",
-      body: "As the sun vanishes behind the horizon, Koh Russey changes its setting. Lights are lit, nature’s sounds become more vibrating, and the sand turns gold. Share this emotion with your friends and the people you love, tasting a refreshing sangria prepared with fresh fruit and canapes. You’ll never forget our sunset aperitif!",
+      body: "As the sun vanishes behind the horizon, Koh Russey changes its setting. Lights are lit, nature’s sounds become more vibrating, and the sand turns gold. Share this emotion with your friends and the people you love, tasting a refreshing sangria prepared with fresh fruit and canapés. You’ll never forget our sunset aperitif!",
       label: "3 Hours",
     },
     {
       title: "Traditional Fishing",
-      body: "Set off on one of our classic longtail boats and cast your line in the emerald blue waters ofthe Gulf of Thailand. Our captain and boat crew will direct you towards the more promising fishing spots, where barracuda, triggerfish and grouper are plenty.",
+      body: "Set off on one of our classic longtail boats and cast your line in the emerald blue waters of the Gulf of Thailand. Our captain and boat crew will direct you towards the more promising fishing spots, where barracuda, triggerfish and grouper are plenty.",
       label: "3 Hours",
     },
     {
@@ -117,8 +117,8 @@ export const featuredActivities = {
       label: "2 Hours",
     },
     {
-      title: "Koh Takiev Hiking",
-      body: "Unspoiled nature of Koh Ta Kiev is so beautiful and diverse! From sandy landscapes withbushes and flowers to impenetrable jungles with lianas creating their complicated patternsthat connect all trees around, rocky beaches, huge trees, fern fields – all this is waiting for you.",
+      title: "Koh Ta Kiev Hiking",
+      body: "Unspoiled nature of Koh Ta Kiev is so beautiful and diverse! From sandy landscapes with bushes and flowers to impenetrable jungles with lianas creating their complicated patterns that connect all trees around, rocky beaches, huge trees, fern fields – all this is waiting for you.",
       label: "4 Hours",
     },
     {
@@ -128,12 +128,12 @@ export const featuredActivities = {
     },
     {
       title: "Afternoon Tea",
-      body: "After a day spent at the beach, recharge yourself with our delicious afternoon tea. Experience this timeless tradition in the relaxed and natural ambience of our Beach Shack,while looking at an infinite horizon.",
+      body: "After a day spent at the beach, recharge yourself with our delicious afternoon tea. Experience this timeless tradition in the relaxed and natural ambience of our Beach Shack, while looking at an infinite horizon.",
       label: "3 Hours",
     },
     {
       title: "Starlight Cinema",
-      body: "A highly portable cinematic experience…a bamboo screen and mini-projector allow you toenjoy the movie of your choice under a starlit sky on the beach or poolside at your villa. The experience comes complete with a large bucket of popcorn, a choice of soft drinks, juices and beer, and a comfy set-up of blankets and pillows.",
+      body: "A highly portable cinematic experience… a bamboo screen and mini-projector allow you to enjoy the movie of your choice under a starlit sky on the beach or poolside at your villa. The experience comes complete with a large bucket of popcorn, a choice of soft drinks, juices and beer, and a comfy set-up of blankets and pillows.",
       label: "2 Hours",
     },
     {
@@ -143,7 +143,7 @@ export const featuredActivities = {
     },
     {
       title: "Pagoda Blessing",
-      body: "Enjoy a spiritual encounter with a visit to the Ream Pagoda, which overlooks spectacular views of the coastal scenery. The Pagoda’s monks await you with a special Buddhist blessing…you can never have too much luck! You’ll also be invited to experience a traditional fortune-telling ritual where your question will be answered by excerpts from an ancient Khmer manuscript.",
+      body: "Enjoy a spiritual encounter with a visit to the Ream Pagoda, which overlooks spectacular views of the coastal scenery. The Pagoda’s monks await you with a special Buddhist blessing… you can never have too much luck! You’ll also be invited to experience a traditional fortune-telling ritual where your question will be answered by excerpts from an ancient Khmer manuscript.",
       label: "2 Hours",
     },
     {
@@ -158,7 +158,7 @@ export const featuredActivities = {
     },
     {
       title: "SUP and Kayaks",
-      body: "Paddleboard over calm, clear emerald blue waters. Glide away for a morning warmup or alate afternoon sunset experience and take in our long sweeping beach and the tropical forest perched above it. Or steal away from our private beach in our one -or two- person kayaks. Take in the dramatic views of our island from the quiet of the open sea before returning to our shores.",
+      body: "Paddleboard over calm, clear emerald blue waters. Glide away for a morning warmup or a late afternoon sunset experience and take in our long sweeping beach and the tropical forest perched above it. Or steal away from our private beach in our one- or two-person kayaks. Take in the dramatic views of our island from the quiet of the open sea before returning to our shores.",
       label: "3 Hours",
     },
   ],

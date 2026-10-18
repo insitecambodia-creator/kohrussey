@@ -1,6 +1,6 @@
 // Menus and restaurant descriptions copied word for word from the current
 // kohrusseyresort.com Restaurants page (the Horizon 2024 menu and the Beach Shack menu).
-// Spelling is as on the current site, including a few likely typos; see README.
+// Typos in the original were corrected; see docs/content-fixes.md.
 
 export type MenuItem = {
   name: string;
@@ -36,7 +36,7 @@ export const restaurants: Restaurant[] = [
   {
     "id": "horizon",
     "name": "Horizon Restaurant",
-    "description": "Situated at the poolside with the picturesque view of the beach as your background, spend a day at Horizon as they serve a la carte breakfast of your choice from around the world. The atmosphere magically shifts to an evening of elegance when you dine and served International and fine Western Cuisine crafted from fresh farm-to-table ingredients.",
+    "description": "Situated at the poolside with the picturesque view of the beach as your background, spend a day at Horizon as they serve à la carte breakfast of your choice from around the world. The atmosphere magically shifts to an evening of elegance when you dine and are served International and fine Western Cuisine crafted from fresh farm-to-table ingredients.",
     "menu": [
       {
         "title": "Appetizers",
@@ -85,42 +85,42 @@ export const restaurants: Restaurant[] = [
             "name": "Pan-Fried Salmon Fillet",
             "price": "$28",
             "details": [
-              "With quinoa salad, sauteed green beans and broccoli, lemon-butter sauce"
+              "With quinoa salad, sautéed green beans and broccoli, lemon-butter sauce"
             ]
           },
           {
             "name": "Pan-Seared Scallops",
             "price": "$32",
             "details": [
-              "With mashed potatoes, shitake mushrooms, green beans, white sauce"
+              "With mashed potatoes, shiitake mushrooms, green beans, white sauce"
             ]
           },
           {
             "name": "Grilled Duck Breast",
             "price": "$22",
             "details": [
-              "Slow cooked beetroot, mashed potatoes and broccoli, served with teriyaki sauce"
+              "Slow-cooked beetroot, mashed potatoes and broccoli, served with teriyaki sauce"
             ]
           },
           {
-            "name": "Duck leg Confit",
+            "name": "Duck Leg Confit",
             "price": "$26",
             "details": [
-              "With caramelized pineapple, apricot puree, and sauteed broccoli"
+              "With caramelized pineapple, apricot puree, and sautéed broccoli"
             ]
           },
           {
             "name": "Grilled Lamb Racks",
             "price": "$38",
             "details": [
-              "With mashed potatoes, green beans, shitake mushrooms, carrots, olive and mixed herb dressing"
+              "With mashed potatoes, green beans, shiitake mushrooms, carrots, olive and mixed herb dressing"
             ]
           },
           {
             "name": "Grilled Beef Tenderloin",
             "price": "$36",
             "details": [
-              "With mashed potatoes, shitake mushrooms and red wine sauce"
+              "With mashed potatoes, shiitake mushrooms and red wine sauce"
             ]
           }
         ]
@@ -136,10 +136,10 @@ export const restaurants: Restaurant[] = [
             ]
           },
           {
-            "name": "Sauteed Seafood with Green Kampot Pepper",
+            "name": "Sautéed Seafood with Green Kampot Pepper",
             "price": "$20",
             "details": [
-              "Sauteed prawns and squids, green peppercorns, Chinese celery, tomatoes, served with steamed rice"
+              "Sautéed prawns and squids, green peppercorns, Chinese celery, tomatoes, served with steamed rice"
             ]
           },
           {
@@ -153,21 +153,21 @@ export const restaurants: Restaurant[] = [
             "name": "Fish Amok",
             "price": "$22",
             "details": [
-              "Slow cooked baracuda fish in Cambodian seasonings and coconut cream, served with steamed rice"
+              "Slow-cooked barracuda fish in Cambodian seasonings and coconut cream, served with steamed rice"
             ]
           },
           {
             "name": "Chicken Curry",
             "price": "$18",
             "details": [
-              "Slow cooked chicken leg in Cambodian curry spices, served with steamed rice"
+              "Slow-cooked chicken leg in Cambodian curry spices, served with steamed rice"
             ]
           },
           {
             "name": "Beef Loklak",
             "price": "$20",
             "details": [
-              "Wok fried beef cubes, served with pepper-lime dressing and steamed rice"
+              "Wok-fried beef cubes, served with pepper-lime dressing and steamed rice"
             ]
           }
         ]
@@ -183,7 +183,7 @@ export const restaurants: Restaurant[] = [
             "name": "Ice Cream Selections",
             "price": "$8",
             "details": [
-              "Select three scoops among: vanilla, chocolate, coco, passion fruit"
+              "Select three scoops among: vanilla, chocolate, coconut, passion fruit"
             ]
           },
           {
@@ -200,7 +200,7 @@ export const restaurants: Restaurant[] = [
   {
     "id": "beach-shack",
     "name": "Beach Shack",
-    "description": "Located at the beachside, the thatched-roof Beach Shack is the resort’s casual all-day dining spot, built around a central bar and open grill. Offering something unique and delicious for tastes buds, the menu includes authentic Khmer dishes, Asian favorites, Western comfort food, and fresh seafood from the daily catch cooked to perfection on the grill.",
+    "description": "Located at the beachside, the thatched-roof Beach Shack is the resort’s casual all-day dining spot, built around a central bar and open grill. Offering something unique and delicious for taste buds, the menu includes authentic Khmer dishes, Asian favorites, Western comfort food, and fresh seafood from the daily catch cooked to perfection on the grill.",
     "menu": [
       {
         "title": "Salads",
@@ -213,7 +213,7 @@ export const restaurants: Restaurant[] = [
             ]
           },
           {
-            "name": "Nicoise Salad",
+            "name": "Niçoise Salad",
             "price": "$15",
             "details": [
               "Seared tuna, mixed lettuce, potatoes, cherry tomatoes, green beans, topped with boiled egg and honey-mustard dressing"
@@ -223,7 +223,7 @@ export const restaurants: Restaurant[] = [
             "name": "Seafood and Fungus Salad",
             "price": "$18",
             "details": [
-              "Boiled prawns and squids, white raddish, snow fungus, carrots, cucumber, served with sweet and sour dressing"
+              "Boiled prawns and squids, white radish, snow fungus, carrots, cucumber, served with sweet and sour dressing"
             ]
           }
         ]
@@ -282,21 +282,21 @@ export const restaurants: Restaurant[] = [
             "name": "Ham and Cheese Sandwich",
             "price": "$13",
             "details": [
-              "Sliced ham, white toast, emmental cheese, served with fries"
+              "Sliced ham, white toast, Emmental cheese, served with fries"
             ]
           },
           {
             "name": "Smoked Salmon Sandwich",
             "price": "$13",
             "details": [
-              "Croissant with smoked salmon, tomatoes, mixed lettuce served with fries"
+              "Croissant with smoked salmon, tomatoes, mixed lettuce, served with fries"
             ]
           },
           {
             "name": "Fish Burger",
             "price": "$13",
             "details": [
-              "Pan fried fish fillet, coleslaw, served with fries"
+              "Pan-fried fish fillet, coleslaw, served with fries"
             ]
           },
           {
@@ -322,7 +322,7 @@ export const restaurants: Restaurant[] = [
             ]
           },
           {
-            "name": "Stir-Fried yellow Noodles with Chicken, Seafood or Beef",
+            "name": "Stir-Fried Yellow Noodles with Chicken, Seafood or Beef",
             "price": "$12",
             "details": [
               "Served with soy sauce and fresh chilli",
@@ -333,7 +333,7 @@ export const restaurants: Restaurant[] = [
       },
       {
         "title": "Pasta",
-        "note": "Your choice of: Spaghetti, Penne or Fettucine",
+        "note": "Your choice of: Spaghetti, Penne or Fettuccine",
         "items": [
           {
             "name": "Carbonara",
@@ -346,7 +346,7 @@ export const restaurants: Restaurant[] = [
             "name": "Bolognese",
             "price": "$13",
             "details": [
-              "Slow cooked ground beef and carrots in red wine and tomato sauce"
+              "Slow-cooked ground beef and carrots in red wine and tomato sauce"
             ]
           },
           {
@@ -385,7 +385,7 @@ export const restaurants: Restaurant[] = [
       },
       {
         "title": "Side dishes",
-        "note": "Sauteed vegetables, Green salad, French fries, Mashed potatoes"
+        "note": "Sautéed vegetables, Green salad, French fries, Mashed potatoes"
       },
       {
         "title": "Sauces",
@@ -402,7 +402,7 @@ export const restaurants: Restaurant[] = [
             "name": "Ice Cream Selections",
             "price": "$8",
             "details": [
-              "Select three scoops among: vanilla, chocolate, coco, passion fruit"
+              "Select three scoops among: vanilla, chocolate, coconut, passion fruit"
             ]
           },
           {

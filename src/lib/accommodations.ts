@@ -1,6 +1,6 @@
 // Pavilions and villas, copied word for word from the current kohrusseyresort.com
-// "Villas & Pavilions" page (private-beachfront-residence). Spelling is as on the current site;
-// see README for likely typos.
+// "Villas & Pavilions" page (private-beachfront-residence). Typos in the original were corrected;
+// see docs/content-fixes.md.
 
 export type Accommodation = {
   /** Anchor for links such as /villas#garden-pavilion. */
@@ -45,9 +45,9 @@ export const accommodations: Accommodation[] = [
   },
   {
     "slug": "1-bedroom-garden-pool-villa",
-    "name": "1- Bedroom Garden Pool Villa",
+    "name": "1-Bedroom Garden Pool Villa",
     "paragraphs": [
-      "Experience sophistication and tranquility in our 110sqm Garden Pool Villa, designed with a modern minimalist style that floods the space with natural light. The villa features a king-size bed and a built-in sofa bed, ideal for families or friends. Enjoy uninterrupted views of your private 15 sqm pool and the lush resort grounds.",
+      "Experience sophistication and tranquility in our 110sqm Garden Pool Villa, designed with a modern minimalist style that floods the space with natural light. The villa features a king-size bed and a built-in sofa bed, ideal for families or friends. Enjoy uninterrupted views of your private 15sqm pool and the lush resort grounds.",
       "Unwind in the poolside cabana, complete with a sofa and dining area, perfect for relaxation. The expansive garden offers a serene setting or space for outdoor activities."
     ]
   },
