@@ -72,6 +72,24 @@ p {
   animation: settle 2.4s cubic-bezier(0.2, 0.6, 0.2, 1) both;
 }
 
+/*
+ * Sizes the hero video like object-fit: cover. container-type: size makes the (absolutely
+ * positioned, so content-independent) wrapper a size container whose cqw/cqh units the 16:9
+ * iframe can scale against.
+ */
+.hero-video {
+  container-type: size;
+}
+
+.hero-video iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 177.78cqh);
+  height: max(100cqh, 56.25cqw);
+  transform: translate(-50%, -50%);
+}
+
 /* Hero text arrives in sequence on page load (pure CSS, so it works before scripts run). */
 @keyframes rise-in {
   from {

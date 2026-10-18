@@ -29,6 +29,8 @@ export const site = {
     language: "en",
     hosts: ["kh-ibe.hopenapi.com", "ibe.hopenapi.com", "ibe.behopenapi.com"],
   },
+  // Muted looping video behind the homepage hero (a YouTube video ID).
+  heroVideo: { youtubeId: "QvwDAsy68P4" },
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
 } as const;
 

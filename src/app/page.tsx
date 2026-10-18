@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookButton } from "@/components/BookButton";
 import { ExelyWidget } from "@/components/ExelyWidget";
+import { HeroVideo } from "@/components/HeroVideo";
 import { ParallaxFrame } from "@/components/ParallaxFrame";
 import { Photo } from "@/components/Photo";
 import { allInclusive, introLead, introRest, location, reviews, spa, villas } from "@/lib/content";
@@ -47,6 +48,7 @@ export default function Home() {
           sizes="100vw"
           className="hero-settle -z-20 object-cover"
         />
+        <HeroVideo videoId={site.heroVideo.youtubeId} />
         <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-gradient-to-t from-ink/95 via-ink/60 to-transparent" />
         <div className="mx-auto w-full max-w-6xl px-4 pb-14 pt-40 md:pb-20">
           <h1 className="hero-rise max-w-[14ch] text-5xl sm:text-7xl md:text-8xl md:font-normal" style={delay(0.3)}>

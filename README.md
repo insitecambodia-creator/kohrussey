@@ -57,6 +57,19 @@ To add a photo: drop the file in that folder, add an entry to `images.ts`, and u
 `<Image src={images.x.src} alt={images.x.alt} />`. `map-resort.webp` was cropped to remove the
 map viewer's controls and resized to 2400px wide.
 
+## Hero video
+
+The homepage hero plays a muted, looping YouTube video behind the headline (`src/components/HeroVideo.tsx`).
+The video ID is `site.heroVideo.youtubeId` in `src/lib/site.ts`; change it there.
+
+- It loads only after the page has finished loading, so the hero photo is still the first thing painted.
+- The photo stays visible until YouTube reports that playback started. If the video is private, removed or
+  not embeddable, visitors just keep seeing the photo.
+- It is skipped for visitors who prefer reduced motion or have Save-Data on, and it pauses when the hero
+  scrolls out of view.
+- It uses `youtube-nocookie.com`, so YouTube sets no cookies until a visitor interacts with the player.
+- A self-hosted MP4/WebM would load faster and avoid YouTube's player script, if you have the original file.
+
 ## Indexing
 
 The site is `noindex` with `Disallow: /` until `NEXT_PUBLIC_ALLOW_INDEXING=true`, so the redesign
