@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
     return [
       { source: "/private-beachfront-residence", destination: "/villas", permanent: true },
       { source: "/restaurants-on-the-island", destination: "/restaurants", permanent: true },
+      { source: "/restaurants-on-the-island/menu-horizon-2024", destination: "/restaurants#horizon", permanent: true },
+      {
+        source: "/restaurants-on-the-island/beach-shack-by-the-sea",
+        destination: "/restaurants#beach-shack",
+        permanent: true,
+      },
       { source: "/activities-on-the-island", destination: "/activities", permanent: true },
       {
         source: "/activities-on-the-island/healthy-spa-koh-russey-a-journey-from-within",

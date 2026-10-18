@@ -42,6 +42,14 @@ search). Make sure it points at `/booking` on the live domain.
 Copy, contact details, shuttle times and reviews come from the current homepage and live in
 `src/lib/site.ts` and `src/lib/content.ts`.
 
+Pages built from the saved pages in `content-resource/` (wording copied as written; `src/lib/menus.ts` was
+generated from the saved file and checked line by line against it):
+
+- Restaurants, with the Horizon and Beach Shack menus
+
+Spelling on the current site is kept as is. Likely typos worth a look: "Fettucine", "raddish", "baracuda",
+"shitake", "coco", "tastes buds", "dine and served", "Nicoise", "Sauteed".
+
 Still to add (the homepage only had a short summary of each):
 
 - Full copy for Villas (per villa type), Restaurants, Activities, Spa, Weddings and Offers
