@@ -15,7 +15,7 @@ export function Footer() {
     <footer className="mt-24 bg-ink text-salt">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.2fr_1fr_1.2fr]">
         <div>
-          <p className="font-display text-2xl">{site.name}</p>
+          <p className="font-display text-2xl font-medium">{site.name}</p>
           <p className="mt-2 text-salt/80">{site.tagline}</p>
           <ul className="mt-5 flex gap-5 text-sm">
             {social.map((s) => (

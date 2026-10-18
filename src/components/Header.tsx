@@ -6,7 +6,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-ink/15 bg-salt/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3">
-        <Link href="/" className="font-display text-xl">
+        <Link href="/" className="font-display text-xl font-medium">
           {site.name}
         </Link>
 

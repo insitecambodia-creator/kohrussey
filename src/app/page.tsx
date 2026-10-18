@@ -47,9 +47,9 @@ export default function Home() {
           sizes="100vw"
           className="hero-settle -z-20 object-cover"
         />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-gradient-to-t from-ink/90 to-transparent" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-gradient-to-t from-ink/95 via-ink/60 to-transparent" />
         <div className="mx-auto w-full max-w-6xl px-4 pb-14 pt-40 md:pb-20">
-          <h1 className="hero-rise max-w-[14ch] text-5xl sm:text-7xl md:text-8xl" style={delay(0.3)}>
+          <h1 className="hero-rise max-w-[14ch] text-5xl sm:text-7xl md:text-8xl md:font-normal" style={delay(0.3)}>
             {site.tagline}
           </h1>
           <p className="hero-rise mt-6 max-w-[46ch] text-lg text-salt/90" style={delay(0.7)}>
@@ -74,7 +74,7 @@ export default function Home() {
 
       <section aria-labelledby="availability" className="border-b border-ink/15 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-8">
-          <h2 id="availability" className="text-xl">
+          <h2 id="availability" className="text-xl font-medium">
             Check availability
           </h2>
           <ExelyWidget widget="search-form" containerId="be-search-form" className="mt-4" />

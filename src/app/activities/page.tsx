@@ -18,7 +18,7 @@ export default function ActivitiesPage() {
       <div className="mx-auto max-w-6xl space-y-20 px-4 py-14">
         <ul data-reveal-group className="grid border-t border-ink/15 sm:grid-cols-2 lg:grid-cols-4">
           {activities.items.map((item) => (
-            <li key={item} className="border-b border-ink/15 py-5 font-display text-2xl lg:border-b-0 lg:pr-6">
+            <li key={item} className="border-b border-ink/15 py-5 font-display text-2xl font-medium lg:border-b-0 lg:pr-6">
               {item}
             </li>
           ))}

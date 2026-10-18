@@ -67,7 +67,13 @@ cannot compete with the live site before launch.
 The visual direction follows `SKILL.md` (the frontend-design guidance in the repo root).
 
 - Palette: salt `#F1F5F2`, ink `#0D2623`, pool `#1D5B4D`, lagoon `#2F8F9A`, sand `#E6CB93`. Tokens live in `src/app/globals.css`.
-- Type: Marcellus for headings, Hanken Grotesk for body text, both self-hosted through `@fontsource`.
+- Type: Wulkan Display (corporate font) for headings and pull quotes, Hanken Grotesk for body text.
+  - Originals are in `brand/fonts/Wulkan Display/`. The site uses Light, Regular and Medium, subset to Latin
+    (with French accents) and converted to woff2 in `src/assets/fonts/`, loaded by `src/lib/fonts.ts`.
+  - Light is used only for large headings on a plain background; Regular on photos and phones; Medium for the
+    smallest uses (wordmark, table captions). The hairlines are too fine below about 20px.
+  - It has no Khmer or Chinese glyphs, so those headings fall back to the system serif.
+  - To regenerate a file: `pyftsubset "Wulkan Display Regular.otf" --unicodes="U+0020-007E,U+00A0-017F,U+2010-2027,U+2030-203A,U+20AC,U+2122,U+2190-2193" --layout-features='*' --flavor=woff2 --output-file=wulkan-display-regular.woff2` (from the `fonttools` and `brotli` Python packages).
 - Square corners, ruled rows and a real table for the shuttle times. No card grids.
 - Motion: the hero photo settles and its text arrives in sequence on load, then content reveals as you scroll.
   `src/components/ScrollReveal.tsx` (mounted once in the layout) drives it and the rules are in `globals.css`:

@@ -36,7 +36,7 @@ export default function GettingHerePage() {
           <div className="space-y-12 md:col-span-8">
             {shuttles.seasons.map((season) => (
               <table key={season.name} data-reveal="rise" className="w-full table-fixed text-sm sm:text-base">
-                <caption className="pb-3 text-left font-display text-2xl">
+                <caption className="pb-3 text-left font-display text-2xl font-medium">
                   {season.name}
                   <span className="ml-3 font-sans text-base text-ink/70">{season.dates}</span>
                 </caption>

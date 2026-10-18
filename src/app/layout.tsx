@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/marcellus";
 import "@fontsource-variable/hanken-grotesk";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { wulkan } from "@/lib/fonts";
 import { images } from "@/lib/images";
 import { site } from "@/lib/site";
 
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`${wulkan.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <a
           href="#main"
