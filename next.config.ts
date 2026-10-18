@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
       },
       { source: "/activities-on-the-island", destination: "/activities", permanent: true },
       {
+        source: "/activities-on-the-island/khmer-cooking-class",
+        destination: "/activities#khmer-cooking-class",
+        permanent: true,
+      },
+      { source: "/activities-on-the-island/kayaking", destination: "/activities#resort-activities", permanent: true },
+      { source: "/activities-on-the-island/snorkeling", destination: "/activities#resort-activities", permanent: true },
+      {
         source: "/activities-on-the-island/healthy-spa-koh-russey-a-journey-from-within",
         destination: "/spa",
         permanent: true,

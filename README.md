@@ -46,10 +46,13 @@ Pages built from the saved pages in `content-resource/` (wording copied as writt
 generated from the saved file and checked line by line against it):
 
 - Restaurants, with the Horizon and Beach Shack menus
+- Activities: the five activity sections and the 16 most sought-after experiences (`src/lib/activities.ts`). Left out on
+  purpose: the "Download the catalog" form (needs a backend and the PDF) and the Cooking Class, Kayaking and Snorkeling
+  buttons (their pages are not built yet; the old addresses redirect to the matching section).
 - Villas & Pavilions: the three pavilions and five pool villas (`src/lib/accommodations.ts`, text only until the villa photos arrive)
 
 Spelling on the current site is kept as is. Likely typos worth a look: "Fettucine", "raddish", "baracuda",
-"shitake", "coco", "tastes buds", "dine and served", "Nicoise", "Sauteed", and the villa name "1- Bedroom Garden Pool Villa" (stray space).
+"shitake", "coco", "tastes buds", "dine and served", "Nicoise", "Sauteed", the villa name "1- Bedroom Garden Pool Villa" (stray space), and missing spaces in the activity descriptions ("inthe", "andwatch", "toenjoy", "ofthe").
 
 Still to add (the homepage only had a short summary of each):
 
