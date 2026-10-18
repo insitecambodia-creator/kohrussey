@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { PageHeading } from "@/components/PageHeading";
+import Image from "next/image";
+import { images } from "@/lib/images";
 import { restaurants, restaurantsIntro, type MenuSection } from "@/lib/menus";
 import { prose } from "@/lib/ui";
 
@@ -34,10 +35,31 @@ function MenuBlock({ section }: { section: MenuSection }) {
   );
 }
 
+/** Hero text arrives in sequence; `--d` is each element's start delay. */
+const delay = (seconds: number) => ({ "--d": `${seconds}s` }) as React.CSSProperties;
+
 export default function RestaurantsPage() {
   return (
     <>
-      <PageHeading title={restaurantsIntro.title} intro={restaurantsIntro.tagline} />
+      <section className="relative isolate flex min-h-[58svh] items-end overflow-hidden bg-ink text-salt">
+        <Image
+          src={images.horizonRestaurant.src}
+          alt={images.horizonRestaurant.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="hero-settle -z-20 object-cover object-[50%_62%]"
+        />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-gradient-to-t from-ink/90 via-ink/50 to-transparent" />
+        <div className="mx-auto w-full max-w-6xl px-4 pb-12 pt-32 md:pb-16">
+          <h1 className="hero-rise max-w-[14ch] text-5xl sm:text-7xl md:font-normal" style={delay(0.3)}>
+            {restaurantsIntro.title}
+          </h1>
+          <p className="hero-rise mt-5 max-w-[46ch] text-lg text-salt/90" style={delay(0.7)}>
+            {restaurantsIntro.tagline}
+          </p>
+        </div>
+      </section>
       <div className="mx-auto max-w-6xl px-4">
         {restaurants.map((r) => (
           <article key={r.id} id={r.id} className="scroll-mt-24 border-b border-ink/15 py-16">

@@ -10,6 +10,7 @@ import snorkelingGuide from "@/assets/images/snorkeling-guide.webp";
 import corporateBeach from "@/assets/images/corporate-beach-activity.webp";
 import retreatLawn from "@/assets/images/retreat-lawn.webp";
 import mapResort from "@/assets/images/map-resort.webp";
+import horizonRestaurant from "@/assets/images/horizon-restaurant.jpg";
 
 export const images = {
   poolMorning: {
@@ -56,6 +57,10 @@ export const images = {
     src: retreatLawn,
     alt: "Aerial view of a group gathered on the lawn beside the pool during a retreat",
   },
+  horizonRestaurant: {
+    src: horizonRestaurant,
+    alt: "The Horizon Restaurant at dusk: long wooden tables, a row of black pendant lights and open sides looking out to the trees and the sea",
+  },
   mapResort: {
     src: mapResort,
     alt: "Aerial view of the island and the bay where the resort sits",
@@ -67,6 +72,7 @@ export const gallery = [
   images.poolMorning,
   images.oceanfrontDreams,
   images.massageBeach1,
+  images.horizonRestaurant,
   images.snorkelingAerial,
   images.girlPool,
   images.massageBeach2,
