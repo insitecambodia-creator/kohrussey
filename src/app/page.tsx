@@ -163,7 +163,7 @@ export default function Home() {
               {allInclusive.body}
             </p>
             <div data-reveal="rise" data-delay="2">
-              <Link href="/offers" className="mt-8 inline-flex bg-sand px-6 py-3 text-sm font-medium text-ink hover:bg-white">
+              <Link href="/offers" className="mt-8 inline-flex bg-accent px-6 py-3 text-sm font-medium text-ink hover:bg-white">
                 Go for our all-inclusive package
               </Link>
             </div>

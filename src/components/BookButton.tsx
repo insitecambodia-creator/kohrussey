@@ -12,7 +12,7 @@ type Props = {
 /** Sends guests to the booking page, which embeds the Exely booking engine. */
 export function BookButton({ children = "Book now", on = "light", className = "" }: Props) {
   return (
-    <Link href={bookingUrl()} className={`${on === "dark" ? button.sand : button.dark} ${className}`}>
+    <Link href={bookingUrl()} className={`${on === "dark" ? button.accent : button.dark} ${className}`}>
       {children}
     </Link>
   );

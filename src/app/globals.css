@@ -5,7 +5,7 @@
   --ink: #0d2623;
   --pool: #1d5b4d;
   --lagoon: #2f8f9a;
-  --sand: #e6cb93;
+  --accent: #c99151;
 }
 
 @theme inline {
@@ -13,7 +13,7 @@
   --color-ink: var(--ink);
   --color-pool: var(--pool);
   --color-lagoon: var(--lagoon);
-  --color-sand: var(--sand);
+  --color-accent: var(--accent);
   --font-display: var(--font-wulkan), Georgia, "Times New Roman", "Noto Serif Khmer", "Noto Serif SC", serif;
   --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, "Noto Sans", "Noto Sans Khmer", sans-serif;
 }

@@ -79,7 +79,7 @@ cannot compete with the live site before launch.
 
 The visual direction follows `SKILL.md` (the frontend-design guidance in the repo root).
 
-- Palette: salt `#F1F5F2`, ink `#0D2623`, pool `#1D5B4D`, lagoon `#2F8F9A`, sand `#E6CB93`. Tokens live in `src/app/globals.css`.
+- Palette: salt `#F1F5F2`, ink `#0D2623`, pool `#1D5B4D`, lagoon `#2F8F9A` (focus rings only), accent `#C99151` (booking buttons on dark areas; always with dark text, since white on it fails contrast). Tokens live in `src/app/globals.css`.
 - Type: Wulkan Display (corporate font) for headings and pull quotes, Hanken Grotesk for body text.
   - Originals are in `brand/fonts/Wulkan Display/`. The site uses Light, Regular and Medium, subset to Latin
     (with French accents) and converted to woff2 in `src/assets/fonts/`, loaded by `src/lib/fonts.ts`.
