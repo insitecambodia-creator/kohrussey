@@ -1,8 +1,9 @@
 ---
 // A muted, looping YouTube video behind the hero text.
 //
-// - It only loads once the page has finished loading, so the hero photo stays the first thing
-//   painted, and never for visitors who prefer reduced motion or have Save-Data on.
+// - It only loads once the page has finished loading and the visitor has moved the mouse, scrolled,
+//   tapped or pressed a key, so the hero photo stays the first thing painted and YouTube's player
+//   (heavy) never competes with the page. Never for visitors who prefer reduced motion or have Save-Data on.
 // - The photo underneath stays visible until YouTube reports that playback has started, so a
 //   blocked, private or non-embeddable video never shows YouTube's error screen.
 // - It pauses while the hero is scrolled out of view.
@@ -84,7 +85,31 @@ const { videoId } = Astro.props;
       root.appendChild(frame);
     };
 
-    if (document.readyState === "complete") window.setTimeout(start, 0);
-    else window.addEventListener("load", start, { once: true });
+    // Start once the page has loaded AND a visitor has shown up.
+    let loaded = document.readyState === "complete";
+    let visited = false;
+    let started = false;
+    const triggers = ["pointerdown", "pointermove", "keydown", "scroll", "touchstart"] as const;
+    const tryStart = () => {
+      if (started || !loaded || !visited) return;
+      started = true;
+      window.setTimeout(start, 0);
+    };
+    const onVisit = () => {
+      triggers.forEach((name) => window.removeEventListener(name, onVisit));
+      visited = true;
+      tryStart();
+    };
+    triggers.forEach((name) => window.addEventListener(name, onVisit, { passive: true }));
+    if (!loaded) {
+      window.addEventListener(
+        "load",
+        () => {
+          loaded = true;
+          tryStart();
+        },
+        { once: true },
+      );
+    }
   }
 </script>

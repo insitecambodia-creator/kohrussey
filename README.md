@@ -52,7 +52,9 @@ Booking runs on the Exely booking engine, embedded the same way as on the curren
 
 - `src/components/ExelyWidget.astro` loads Exely's `integration/loader.js` and mounts a widget into
   a container: the `booking-form` on `/booking/` and the `search-form` availability bar on the
-  homepage. It tries each loader host in turn until one loads.
+  homepage. It tries each loader host in turn until one loads. On the homepage the widget has `defer`, so
+  Exely's (heavy) loader only runs after the visitor's first mouse move, scroll, tap or key press; the
+  booking page loads it straight away.
 - The property's context ID and loader hosts are in `src/lib/site.ts` (`site.exely`).
 - Every "Book now" / "Check availability" button links to `/booking/`.
 - `/booking/` is `noindex` and left out of the sitemap, as on the current site.
@@ -99,7 +101,9 @@ and resized to 2400px wide.
 The homepage hero plays a muted, looping YouTube video behind the headline (`src/components/HeroVideo.astro`).
 The video ID is `site.heroVideo.youtubeId` in `src/lib/site.ts`; change it there.
 
-- It loads only after the page has finished loading, so the hero photo is still the first thing painted.
+- It loads only after the page has finished loading and the visitor has moved the mouse, scrolled, tapped or
+  pressed a key, so the hero photo is still the first thing painted and YouTube's player does not compete
+  with the page.
 - The photo stays visible until YouTube reports that playback started. If the video is private, removed or
   not embeddable, visitors just keep seeing the photo.
 - It is skipped for visitors who prefer reduced motion or have Save-Data on, and it pauses when the hero

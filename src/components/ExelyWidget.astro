@@ -7,8 +7,8 @@ interface Props {
   containerId: string;
   class?: string;
   /**
-   * Wait for the visitor's first scroll, tap or key press (or a few seconds) before loading Exely, so
-   * the page's own content gets the browser first. Exely's loader is heavy and blocks the main thread.
+   * Wait for the visitor's first mouse move, scroll, tap or key press before loading Exely, so the
+   * page's own content gets the browser first. Exely's loader is heavy and blocks the main thread.
    */
   defer?: boolean;
 }
@@ -72,16 +72,13 @@ const { widget, containerId, class: className, defer = false } = Astro.props;
     if (!Array.from(containers).every((el) => el.hasAttribute("data-exely-defer"))) {
       start();
     } else {
-      // Deferred: load on the first sign of a visitor, or after a few seconds if there is none.
+      // Deferred: load on the first sign of a visitor (a mouse move, scroll, tap or key press).
       const triggers = ["pointerdown", "pointermove", "keydown", "scroll", "touchstart"] as const;
-      let timer = 0;
       const go = () => {
         triggers.forEach((name) => window.removeEventListener(name, go));
-        window.clearTimeout(timer);
         start();
       };
-      triggers.forEach((name) => window.addEventListener(name, go, { passive: true, once: true }));
-      timer = window.setTimeout(go, 8000);
+      triggers.forEach((name) => window.addEventListener(name, go, { passive: true }));
     }
   }
 </script>
