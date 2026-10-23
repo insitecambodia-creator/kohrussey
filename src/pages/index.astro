@@ -42,6 +42,8 @@ const [featuredReview, ...otherReviews] = reviews;
       alt={images.poolMorning.alt}
       sizes="100vw"
       priority
+      avif
+      quality={55}
       class="hero-settle absolute inset-0 -z-20 h-full w-full object-cover"
     />
     <HeroVideo videoId={site.heroVideo.youtubeId} />
@@ -69,7 +71,7 @@ const [featuredReview, ...otherReviews] = reviews;
   <section aria-labelledby="availability" class="border-b border-ink/15 bg-white">
     <div class="mx-auto max-w-6xl px-4 py-8">
       <h2 id="availability" class="text-xl font-medium">Check availability</h2>
-      <ExelyWidget widget="search-form" containerId="be-search-form" class="mt-4" />
+      <ExelyWidget widget="search-form" containerId="be-search-form" class="mt-4 min-h-24" defer />
     </div>
   </section>
 

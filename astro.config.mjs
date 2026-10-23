@@ -13,6 +13,8 @@ export default defineConfig({
   // Every page is a folder with an index.html (/villas/), which any static host serves as is.
   trailingSlash: "always",
   redirects,
+  // The stylesheet is small, so it goes inside each page instead of being a separate file that holds up the first paint.
+  build: { inlineStylesheets: "always" },
   integrations: [
     // The booking page stays out of the sitemap, as on the current site.
     sitemap({ filter: (page) => !new URL(page).pathname.startsWith("/booking/") }),

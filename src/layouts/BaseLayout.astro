@@ -48,7 +48,11 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <Font cssVariable="--font-wulkan" preload />
+    {/* No favicon yet: an empty one stops the browser asking for /favicon.ico and logging a 404. */}
+    <link rel="icon" href="data:," />
+
+    {/* Preload only Regular and Medium: Light is for headings on inner pages. Preloading more slowed the first paint. */}
+    <Font cssVariable="--font-wulkan" preload={[{ weight: 400, style: "normal" }, { weight: 500, style: "normal" }]} />
   </head>
   <body class="flex min-h-full flex-col">
     <a

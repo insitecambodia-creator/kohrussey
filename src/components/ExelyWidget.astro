@@ -6,12 +6,23 @@ interface Props {
   widget: "booking-form" | "search-form";
   containerId: string;
   class?: string;
+  /**
+   * Wait for the visitor's first scroll, tap or key press (or a few seconds) before loading Exely, so
+   * the page's own content gets the browser first. Exely's loader is heavy and blocks the main thread.
+   */
+  defer?: boolean;
 }
 
-const { widget, containerId, class: className } = Astro.props;
+const { widget, containerId, class: className, defer = false } = Astro.props;
 ---
 
-<div id={containerId} class={className} data-exely-widget={widget}></div>
+<div
+  id={containerId}
+  class={className}
+  data-exely-widget={widget}
+  data-exely-defer={defer ? "" : undefined}
+>
+</div>
 
 <script>
   import { site } from "../lib/site";
@@ -26,7 +37,7 @@ const { widget, containerId, class: className } = Astro.props;
   const w = window as ExelyWindow;
   const containers = document.querySelectorAll<HTMLElement>("[data-exely-widget]");
 
-  if (containers.length) {
+  const start = () => {
     const { contextId, hosts, language } = site.exely;
 
     // The loader reads this command queue when it starts.
@@ -55,5 +66,22 @@ const { widget, containerId, class: className } = Astro.props;
       document.head.appendChild(script);
     };
     tryHost(0);
+  };
+
+  if (containers.length) {
+    if (!Array.from(containers).every((el) => el.hasAttribute("data-exely-defer"))) {
+      start();
+    } else {
+      // Deferred: load on the first sign of a visitor, or after a few seconds if there is none.
+      const triggers = ["pointerdown", "pointermove", "keydown", "scroll", "touchstart"] as const;
+      let timer = 0;
+      const go = () => {
+        triggers.forEach((name) => window.removeEventListener(name, go));
+        window.clearTimeout(timer);
+        start();
+      };
+      triggers.forEach((name) => window.addEventListener(name, go, { passive: true, once: true }));
+      timer = window.setTimeout(go, 8000);
+    }
   }
 </script>

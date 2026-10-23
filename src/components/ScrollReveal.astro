@@ -9,13 +9,16 @@
 <script>
   const SELECTOR = "[data-reveal], [data-reveal-group]";
 
-  if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches && "IntersectionObserver" in window) {
+  const setup = () => {
+    // Measure everything first, then change classes: mixing the two makes the browser re-layout the page for every element.
+    const all = Array.from(document.querySelectorAll<HTMLElement>(SELECTOR));
+    const rects = all.map((el) => el.getBoundingClientRect());
     const pending: HTMLElement[] = [];
-    for (const el of document.querySelectorAll<HTMLElement>(SELECTOR)) {
-      const { top, bottom } = el.getBoundingClientRect();
+    all.forEach((el, i) => {
+      const { top, bottom } = rects[i];
       if (top < window.innerHeight * 0.92 && bottom > 0) el.classList.add("is-in");
       else pending.push(el);
-    }
+    });
     document.documentElement.classList.add("reveal-live");
 
     const observer = new IntersectionObserver(
@@ -29,5 +32,11 @@
       { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
     );
     pending.forEach((el) => observer.observe(el));
+  };
+
+  if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches && "IntersectionObserver" in window) {
+    // After the first paint, so reading the layout is free and the page is never held up. Everything on screen
+    // is marked as revealed in the same step that hides the rest, so nothing flashes.
+    requestAnimationFrame(() => setTimeout(setup));
   }
 </script>
