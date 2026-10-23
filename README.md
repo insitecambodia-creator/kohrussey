@@ -27,6 +27,9 @@ npm run dev        # http://localhost:4321
 Vercel, GitHub Pages or an ordinary web server. On a platform that builds from the repo, use build
 command `npm run build`, output directory `dist`, and Node 22.
 
+On Cloudflare's Workers & Pages (Workers Builds), leave **Root directory** as `/` and use deploy command
+`npx wrangler deploy`; `wrangler.jsonc` tells it to serve `dist/` as static files.
+
 | Variable                | Purpose                                                                                          |
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
 | `PUBLIC_SITE_URL`       | The public address (canonical links, social previews, sitemap). Defaults to the live site's.     |

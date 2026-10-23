@@ -21,3 +21,6 @@ pnpm-debug.log*
 # hosting platforms
 .vercel
 .netlify
+
+# Cloudflare local files
+.wrangler
