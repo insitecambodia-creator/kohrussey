@@ -6,7 +6,6 @@ export const site = {
   title: "Private Island Resort in Cambodia",
   description:
     "Discover Koh Russey, a secluded private island resort in Cambodia near Sihanoukville. Enjoy beachfront villas, pristine beaches and peaceful island stays.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kohrusseyresort.com",
   contact: {
     email: "reservations@kohrusseyresort.com",
     phone: "+855 81 222 921",
@@ -31,30 +30,31 @@ export const site = {
   },
   // Muted looping video behind the homepage hero (a YouTube video ID).
   heroVideo: { youtubeId: "QvwDAsy68P4" },
-  allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
+  // Search engines stay out until the redesign is ready to go live (PUBLIC_ALLOW_INDEXING=true).
+  allowIndexing: import.meta.env.PUBLIC_ALLOW_INDEXING === "true",
 } as const;
 
 export const nav = [
-  { href: "/villas", label: "Villas" },
-  { href: "/restaurants", label: "Restaurants" },
-  { href: "/activities", label: "Activities" },
-  { href: "/weddings", label: "Weddings" },
-  { href: "/offers", label: "Offers" },
-  { href: "/getting-here", label: "Getting here" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
+  { href: "/villas/", label: "Villas" },
+  { href: "/restaurants/", label: "Restaurants" },
+  { href: "/activities/", label: "Activities" },
+  { href: "/weddings/", label: "Weddings" },
+  { href: "/offers/", label: "Offers" },
+  { href: "/getting-here/", label: "Getting here" },
+  { href: "/gallery/", label: "Gallery" },
+  { href: "/contact/", label: "Contact" },
 ] as const;
 
 /** Pages that are linked from the footer only. */
 export const secondaryNav = [
-  { href: "/about", label: "About us" },
-  { href: "/spa", label: "Island Spa & Wellness" },
-  { href: "/corporate-retreat", label: "Corporate retreat" },
+  { href: "/about/", label: "About us" },
+  { href: "/spa/", label: "Island Spa & Wellness" },
+  { href: "/corporate-retreat/", label: "Corporate retreat" },
 ] as const;
 
 /** Booking is handled by the Exely booking engine, embedded on this page. */
 export function bookingUrl(): string {
-  return "/booking";
+  return "/booking/";
 }
 
 export function whatsappLink(message = "Hello! I'd like to ask about staying at Koh Russey Resort."): string {

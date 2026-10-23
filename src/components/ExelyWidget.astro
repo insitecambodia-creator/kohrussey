@@ -1,0 +1,59 @@
+---
+// Mounts an Exely booking-engine widget into a container, using the same loader the current
+// WordPress site uses: https://<host>/integration/loader.js, tried against each host in turn
+// until one loads. The script below runs once per page and mounts every widget on it.
+interface Props {
+  widget: "booking-form" | "search-form";
+  containerId: string;
+  class?: string;
+}
+
+const { widget, containerId, class: className } = Astro.props;
+---
+
+<div id={containerId} class={className} data-exely-widget={widget}></div>
+
+<script>
+  import { site } from "../lib/site";
+
+  type ExelyCommand = [string, ...unknown[]];
+  type ExelyWindow = Window & {
+    bookingengine?: {
+      integration?: { __cq?: ExelyCommand[]; __loader?: boolean; loaded?: boolean };
+    };
+  };
+
+  const w = window as ExelyWindow;
+  const containers = document.querySelectorAll<HTMLElement>("[data-exely-widget]");
+
+  if (containers.length) {
+    const { contextId, hosts, language } = site.exely;
+
+    // The loader reads this command queue when it starts.
+    w.bookingengine = {
+      integration: {
+        __cq: [
+          ["setContext", contextId, language],
+          ...Array.from(containers, (el): ExelyCommand => ["embed", el.dataset.exelyWidget, { container: el.id }]),
+        ],
+        __loader: true,
+      },
+    };
+
+    const tryHost = (index: number) => {
+      if (index >= hosts.length) return;
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://${hosts[index]}/integration/loader.js`;
+      const next = () => {
+        if (w.bookingengine?.integration?.loaded) return;
+        script.remove();
+        tryHost(index + 1);
+      };
+      script.onload = next;
+      script.onerror = next;
+      document.head.appendChild(script);
+    };
+    tryHost(0);
+  }
+</script>

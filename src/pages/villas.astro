@@ -1,0 +1,55 @@
+---
+import BookButton from "../components/BookButton.astro";
+import PageHeading from "../components/PageHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { accommodations, accommodationsClosing, accommodationsIntro } from "../lib/accommodations";
+import { prose } from "../lib/ui";
+---
+
+<BaseLayout title={accommodationsIntro.metaTitle} description={accommodationsIntro.description}>
+  <PageHeading title={accommodationsIntro.title} intro={accommodationsIntro.kicker} />
+  <div class="mx-auto max-w-6xl px-4">
+    {
+      accommodations.map((a) => (
+        <>
+          {/* Anchor for the homepage's "Beachfront Villas" link; outside the row so it takes no grid cell. */}
+          {a.slug === "1-bedroom-beach-pool-villa" ? <span id="beachfront-villas" class="block scroll-mt-24" /> : null}
+          <article
+            id={a.slug}
+            class="grid scroll-mt-24 gap-6 border-b border-ink/15 py-12 md:grid-cols-12 md:gap-10"
+          >
+            <div class="md:col-span-4">
+              <h2 data-reveal="rise" class="text-3xl">{a.name}</h2>
+              {a.spec ? (
+                <p data-reveal="rise" data-delay="1" class="mt-3 text-ink/80">
+                  {a.spec}
+                </p>
+              ) : null}
+            </div>
+            <div class="md:col-span-8">
+              <div data-reveal="rise" class:list={["space-y-4 text-ink/85", prose]}>
+                {a.paragraphs.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </div>
+              {a.price ? (
+                <p data-reveal="rise" data-delay="1" class="mt-5 font-display text-2xl font-medium">
+                  {a.price}
+                </p>
+              ) : null}
+              <div data-reveal="rise" data-delay="1" class="mt-6">
+                <BookButton>Book now</BookButton>
+              </div>
+            </div>
+          </article>
+        </>
+      ))
+    }
+
+    <section class="grid gap-6 py-16 md:grid-cols-12 md:gap-10">
+      <div data-reveal="rise" class:list={["space-y-4 text-ink/85 md:col-span-8 md:col-start-5", prose]}>
+        {accommodationsClosing.map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

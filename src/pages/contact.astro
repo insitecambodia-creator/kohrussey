@@ -1,0 +1,52 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, telLink, whatsappLink } from "../lib/site";
+import { link } from "../lib/ui";
+
+const c = site.contact;
+const row = "grid grid-cols-[6rem_minmax(0,1fr)] py-3";
+---
+
+<BaseLayout title="Contact us" description="Contact Koh Russey Resort to book or ask a question.">
+  <PageHeading title="Contact us" intro="Questions before you book? Message us and we will help." />
+  <div class="mx-auto grid max-w-6xl gap-12 px-4 py-14 md:grid-cols-2">
+    <section>
+      <h2 class="text-3xl">Direct booking</h2>
+      <dl data-reveal-group class="mt-6 divide-y divide-ink/15 border-y border-ink/15 [&_dd]:break-words">
+        <div class={row}>
+          <dt class="text-ink/70">Phone</dt>
+          <dd><a href={telLink()} class={link}>{c.phone}</a></dd>
+        </div>
+        <div class={row}>
+          <dt class="text-ink/70">WhatsApp</dt>
+          <dd><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class={link}>Send a message</a></dd>
+        </div>
+        <div class={row}>
+          <dt class="text-ink/70">Telegram</dt>
+          <dd><a href={c.telegram} target="_blank" rel="noopener noreferrer" class={link}>Send a message</a></dd>
+        </div>
+        <div class={row}>
+          <dt class="text-ink/70">Email</dt>
+          <dd><a href={`mailto:${c.email}`} class={link}>{c.email}</a></dd>
+        </div>
+      </dl>
+    </section>
+    <section>
+      <h2 data-reveal="rise" class="text-3xl">Find us</h2>
+      <address data-reveal="rise" data-delay="1" class="mt-6 space-y-4 not-italic text-ink/85">
+        <p>
+          <strong class="font-medium">{c.loungeName}</strong>
+          <br />
+          {c.loungeAddress}
+        </p>
+        <p>
+          <strong class="font-medium">{site.name}</strong>
+          <br />
+          {c.resortAddress}
+        </p>
+        <p><a href={c.mapUrl} target="_blank" rel="noopener noreferrer" class={link}>Open in Google Maps</a></p>
+      </address>
+    </section>
+  </div>
+</BaseLayout>

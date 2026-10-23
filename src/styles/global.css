@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+:root {
+  --salt: #f1f5f2;
+  --ink: #0d2623;
+  --pool: #1d5b4d;
+  --lagoon: #2f8f9a;
+  --accent: #c99151;
+}
+
+@theme inline {
+  --color-salt: var(--salt);
+  --color-ink: var(--ink);
+  --color-pool: var(--pool);
+  --color-lagoon: var(--lagoon);
+  --color-accent: var(--accent);
+  /* --font-wulkan (from astro.config.mjs) already ends with the Georgia / Times / serif fallbacks. */
+  --font-display: var(--font-wulkan), "Noto Serif Khmer", "Noto Serif SC";
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, "Noto Sans", "Noto Sans Khmer", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--salt);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* In the base layer so utility classes (font-medium, md:font-normal) can override these. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  /* Wulkan Display has very fine hairlines: Light only where the type is large and on a plain ground. */
+  @media (min-width: 768px) {
+    h1 {
+      font-weight: 300;
+    }
+  }
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid var(--lagoon);
+  outline-offset: 3px;
+}
+
+/* The one moment of motion: the hero photo settles into place on load. */
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-settle {
+  animation: settle 2.4s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+
+/*
+ * Sizes the hero video like object-fit: cover. container-type: size makes the (absolutely
+ * positioned, so content-independent) wrapper a size container whose cqw/cqh units the 16:9
+ * iframe can scale against.
+ */
+.hero-video {
+  container-type: size;
+}
+
+.hero-video iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 177.78cqh);
+  height: max(100cqh, 56.25cqw);
+  transform: translate(-50%, -50%);
+}
+
+/* Hero text arrives in sequence on page load (pure CSS, so it works before scripts run). */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: rise-in 1s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+/*
+ * Scroll reveals. <ScrollReveal /> adds `reveal-live` to <html> once scripts are running and
+ * marks anything already on screen as `is-in`, so without scripts (or with reduced motion)
+ * everything simply stays visible.
+ *   data-reveal="rise"   fade and lift (text)
+ *   data-reveal="slide"  fade and slide in from the left
+ *   data-reveal="mask"   a curtain lifts off a photo (use <Photo> or <ParallaxFrame>)
+ *   data-reveal-group    children arrive one after another (lists, columns)
+ *   data-delay="1|2|3"   hold a reveal back a beat so it follows its heading
+ */
+[data-delay="1"] {
+  --rd: 0.12s;
+}
+[data-delay="2"] {
+  --rd: 0.24s;
+}
+[data-delay="3"] {
+  --rd: 0.36s;
+}
+[data-reveal-group] > :nth-child(2) {
+  --rd: 0.12s;
+}
+[data-reveal-group] > :nth-child(3) {
+  --rd: 0.24s;
+}
+[data-reveal-group] > :nth-child(4) {
+  --rd: 0.36s;
+}
+[data-reveal-group] > :nth-child(n + 5) {
+  --rd: 0.48s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.reveal-live [data-reveal],
+  html.reveal-live [data-reveal-group] > * {
+    transition:
+      opacity 0.9s cubic-bezier(0.2, 0.7, 0.1, 1),
+      transform 0.9s cubic-bezier(0.2, 0.7, 0.1, 1);
+    transition-delay: var(--rd, 0s);
+  }
+
+  html.reveal-live [data-reveal="rise"]:not(.is-in) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+
+  html.reveal-live [data-reveal="slide"]:not(.is-in) {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+
+  html.reveal-live [data-reveal-group]:not(.is-in) > * {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  /* Photos: a curtain in the page colour lifts away while the photo settles in. */
+  html.reveal-live [data-reveal="mask"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--salt);
+    pointer-events: none;
+    transform-origin: bottom;
+    transition: transform 1.2s cubic-bezier(0.7, 0, 0.2, 1);
+    transition-delay: var(--rd, 0s);
+  }
+
+  html.reveal-live [data-reveal="mask"].is-in::after {
+    transform: scaleY(0);
+  }
+
+  html.reveal-live [data-reveal="mask"]:not(.parallax) > img {
+    transform: scale(1.08);
+    transition: transform 1.8s cubic-bezier(0.2, 0.7, 0.1, 1);
+    transition-delay: var(--rd, 0s);
+  }
+
+  html.reveal-live [data-reveal="mask"].is-in:not(.parallax) > img {
+    transform: none;
+  }
+}
+
+/* Wide photos drift slightly as they pass through the viewport, where the browser supports it. */
+@keyframes drift {
+  from {
+    transform: scale(1.18) translateY(-6%);
+  }
+  to {
+    transform: scale(1.18) translateY(6%);
+  }
+}
+
+/*
+ * The frame clips its photo with overflow: hidden, which makes it a scroll container, so a plain
+ * view() on the photo would track that (it never scrolls). The frame defines the timeline itself
+ * and the photo follows it.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax {
+      view-timeline: --parallax block;
+    }
+
+    .parallax > img {
+      animation: drift linear both;
+      animation-timeline: --parallax;
+      animation-range: cover;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-settle,
+  .hero-rise {
+    animation: none;
+  }
+}

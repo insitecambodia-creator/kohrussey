@@ -1,0 +1,17 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import Photo from "../components/Photo.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { spa } from "../lib/content";
+import { images } from "../lib/images";
+
+const sizes = "(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw";
+---
+
+<BaseLayout title="Island Spa & Wellness" description="Couples' massages, healing therapies and yoga at Koh Russey Resort.">
+  <PageHeading title={spa.title} intro={spa.body} />
+  <div class="mx-auto grid max-w-6xl gap-4 px-4 py-14 sm:grid-cols-2">
+    <Photo image={images.massageBeach1} sizes={sizes} class="aspect-[4/5]" />
+    <Photo image={images.massageBeach2} sizes={sizes} delay={2} class="aspect-[4/5]" />
+  </div>
+</BaseLayout>

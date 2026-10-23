@@ -1,0 +1,21 @@
+---
+import ExelyWidget from "../components/ExelyWidget.astro";
+import PageHeading from "../components/PageHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, telLink, whatsappLink } from "../lib/site";
+import { link } from "../lib/ui";
+---
+
+{/* noindex, same as the current site: the booking page is not for search results. */}
+<BaseLayout title="Book your stay" description="Check availability and book your stay at Koh Russey Resort." noindex>
+  <PageHeading title="Book your stay" intro="Check live availability and book directly with the resort." />
+  <div class="mx-auto max-w-5xl px-4 py-12">
+    <ExelyWidget widget="booking-form" containerId="be-booking-form" class="min-h-96" />
+    <noscript>
+      <p class="mt-4 text-ink/80">Online booking needs JavaScript. Please contact us directly instead.</p>
+    </noscript>
+    <p class="mt-10 max-w-[62ch] text-ink/80">
+      Prefer to book by message? Call <a href={telLink()} class={link}>{site.contact.phone}</a>, message us on <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class={link}>WhatsApp</a> or email <a href={`mailto:${site.contact.email}`} class={link}>{site.contact.email}</a>.
+    </p>
+  </div>
+</BaseLayout>

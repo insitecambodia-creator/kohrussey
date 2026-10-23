@@ -1,0 +1,27 @@
+---
+// A photo whose curtain lifts as it scrolls into view (see `data-reveal="mask"` in global.css).
+import type { ImageMetadata } from "astro";
+import Img from "./Img.astro";
+
+interface Props {
+  image: { src: ImageMetadata; alt: string };
+  sizes: string;
+  /** Layout classes for the frame, for example `aspect-[4/5] md:col-span-6`. */
+  class?: string;
+  /** Hold the reveal back by 1 to 3 beats so it follows a heading. */
+  delay?: 1 | 2 | 3;
+  /** Keep the photo's own proportions instead of filling a fixed frame. */
+  natural?: boolean;
+}
+
+const { image, sizes, class: className = "", delay, natural = false } = Astro.props;
+---
+
+<div data-reveal="mask" data-delay={delay} class:list={["relative overflow-hidden", className]}>
+  <Img
+    src={image.src}
+    alt={image.alt}
+    sizes={sizes}
+    class={natural ? "h-auto w-full" : "h-full w-full object-cover"}
+  />
+</div>

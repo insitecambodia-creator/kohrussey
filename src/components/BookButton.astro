@@ -1,0 +1,15 @@
+---
+// Sends guests to the booking page, which embeds the Exely booking engine.
+import { bookingUrl } from "../lib/site";
+import { button } from "../lib/ui";
+
+interface Props {
+  /** `light` sits on a light background, `dark` on a dark one. */
+  on?: "light" | "dark";
+  class?: string;
+}
+
+const { on = "light", class: className = "" } = Astro.props;
+---
+
+<a href={bookingUrl()} class:list={[on === "dark" ? button.accent : button.dark, className]}><slot>Book now</slot></a>

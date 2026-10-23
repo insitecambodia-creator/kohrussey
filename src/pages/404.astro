@@ -1,0 +1,12 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { link } from "../lib/ui";
+---
+
+<BaseLayout title="Page not found" noindex>
+  <PageHeading title="Page not found" intro="The page you are looking for may have moved." />
+  <div class="mx-auto max-w-6xl px-4 py-14">
+    <a href="/" class={link}>Back to the homepage</a>
+  </div>
+</BaseLayout>

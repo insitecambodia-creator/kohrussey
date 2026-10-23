@@ -44,7 +44,7 @@ export const activityBlocks: ActivityBlock[] = [
     body: "The spa is a blissful sanctuary with five double treatment rooms dedicated to your holistic well-being. Pamper yourself with your friends from head to toe with an array of relaxing treatments that include massages, revitalizing facials and rejuvenating body scrubs.",
     link: {
       label: "Read More",
-      href: "/spa",
+      href: "/spa/",
     },
   },
   {

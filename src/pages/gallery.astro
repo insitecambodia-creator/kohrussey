@@ -1,0 +1,17 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import Photo from "../components/Photo.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { gallery } from "../lib/images";
+---
+
+<BaseLayout title="Gallery" description="Photos of Koh Russey Resort, its pool, beach, spa and island activities.">
+  <PageHeading title="Gallery" />
+  <div class="mx-auto max-w-6xl columns-1 gap-4 px-4 py-14 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+    {
+      gallery.map((img) => (
+        <Photo image={img} sizes="(min-width: 1152px) 370px, (min-width: 640px) 50vw, 100vw" natural class="break-inside-avoid" />
+      ))
+    }
+  </div>
+</BaseLayout>

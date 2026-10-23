@@ -1,0 +1,53 @@
+---
+import Img from "../components/Img.astro";
+import MenuBlock from "../components/MenuBlock.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { images } from "../lib/images";
+import { restaurants, restaurantsIntro } from "../lib/menus";
+import { prose } from "../lib/ui";
+---
+
+<BaseLayout title={restaurantsIntro.title} description={restaurantsIntro.description}>
+  <section class="relative isolate flex min-h-[58svh] items-end overflow-hidden bg-ink text-salt">
+    <Img
+      src={images.horizonRestaurant.src}
+      alt={images.horizonRestaurant.alt}
+      sizes="100vw"
+      priority
+      class="hero-settle absolute inset-0 -z-20 h-full w-full object-cover object-[50%_62%]"
+    />
+    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-gradient-to-t from-ink/90 via-ink/50 to-transparent"></div>
+    <div class="mx-auto w-full max-w-6xl px-4 pb-12 pt-32 md:pb-16">
+      <h1 class="hero-rise max-w-[14ch] text-5xl sm:text-7xl md:font-normal" style="--d: 0.3s">
+        {restaurantsIntro.title}
+      </h1>
+      <p class="hero-rise mt-5 max-w-[46ch] text-lg text-salt/90" style="--d: 0.7s">
+        {restaurantsIntro.tagline}
+      </p>
+    </div>
+  </section>
+  <div class="mx-auto max-w-6xl px-4">
+    {
+      restaurants.map((r) => (
+        <article id={r.id} class="scroll-mt-24 border-b border-ink/15 py-16">
+          <div class="grid gap-8 md:grid-cols-12">
+            <div class="md:col-span-4">
+              <h2 data-reveal="rise" class="text-3xl md:text-4xl">{r.name}</h2>
+              <p data-reveal="rise" data-delay="1" class:list={["mt-5 text-ink/85", prose]}>
+                {r.description}
+              </p>
+            </div>
+            <div class="md:col-span-8">
+              <h3 data-reveal="rise" class="mb-6 text-xl font-medium">{r.name} menu</h3>
+              <div class="lg:columns-2 lg:gap-x-12">
+                {r.menu.map((section) => (
+                  <MenuBlock section={section} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</BaseLayout>

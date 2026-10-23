@@ -1,0 +1,22 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { weddings } from "../lib/content";
+import { site, whatsappLink } from "../lib/site";
+import { button } from "../lib/ui";
+---
+
+<BaseLayout title="Wedding Packages" description="Hold your wedding on a private island in Cambodia at Koh Russey Resort.">
+  <PageHeading title={weddings.title} intro={weddings.body} />
+  <div class="mx-auto max-w-6xl px-4 py-14">
+    <div data-reveal="rise" class="flex flex-wrap gap-3">
+      <a
+        href={whatsappLink("Hello! I'd like to ask about wedding packages at Koh Russey Resort.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={button.dark}
+      >Ask about weddings on WhatsApp</a>
+      <a href={`mailto:${site.contact.email}`} class={button.outline}>Email reservations</a>
+    </div>
+  </div>
+</BaseLayout>

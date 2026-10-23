@@ -1,0 +1,41 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import Photo from "../components/Photo.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { images } from "../lib/images";
+import { site, whatsappLink } from "../lib/site";
+import { button } from "../lib/ui";
+---
+
+<BaseLayout
+  title="Corporate retreat"
+  description="Corporate retreats and team activities on a private island in Cambodia."
+>
+  <PageHeading title="Corporate retreat" intro="A private island setting for team retreats and group activities." />
+  <div class="mx-auto max-w-6xl px-4 py-14">
+    <div class="grid items-start gap-4 md:grid-cols-5">
+      <Photo
+        image={images.corporateBeach}
+        sizes="(min-width: 1152px) 670px, (min-width: 768px) 60vw, 100vw"
+        natural
+        class="md:col-span-3"
+      />
+      <Photo
+        image={images.retreatLawn}
+        sizes="(min-width: 1152px) 450px, (min-width: 768px) 40vw, 100vw"
+        natural
+        delay={2}
+        class="md:col-span-2"
+      />
+    </div>
+    <div data-reveal="rise" class="mt-10 flex flex-wrap gap-3">
+      <a
+        href={whatsappLink("Hello! I'd like to ask about a corporate retreat at Koh Russey Resort.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={button.dark}
+      >Ask about a retreat on WhatsApp</a>
+      <a href={`mailto:${site.contact.email}`} class={button.outline}>Email reservations</a>
+    </div>
+  </div>
+</BaseLayout>

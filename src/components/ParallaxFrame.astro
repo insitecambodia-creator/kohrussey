@@ -1,0 +1,13 @@
+---
+// Frames a wide photo so it wipes in on scroll and drifts slightly as it passes through the
+// viewport. Put a single `<Img class="h-full w-full object-cover" />` inside.
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div data-reveal="mask" class:list={["parallax relative overflow-hidden", className]}>
+  <slot />
+</div>

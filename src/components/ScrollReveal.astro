@@ -1,0 +1,33 @@
+---
+// Drives the scroll reveals defined in global.css. Mounted once in the layout.
+//
+// Content is fully visible until this runs. On each page it first marks whatever is already on
+// screen as revealed (so nothing flashes), then switches the hidden state on for the rest and
+// reveals each element the first time it scrolls into view.
+---
+
+<script>
+  const SELECTOR = "[data-reveal], [data-reveal-group]";
+
+  if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches && "IntersectionObserver" in window) {
+    const pending: HTMLElement[] = [];
+    for (const el of document.querySelectorAll<HTMLElement>(SELECTOR)) {
+      const { top, bottom } = el.getBoundingClientRect();
+      if (top < window.innerHeight * 0.92 && bottom > 0) el.classList.add("is-in");
+      else pending.push(el);
+    }
+    document.documentElement.classList.add("reveal-live");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+    );
+    pending.forEach((el) => observer.observe(el));
+  }
+</script>
