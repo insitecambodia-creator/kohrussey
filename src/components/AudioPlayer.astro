@@ -1,0 +1,143 @@
+---
+// A small audio player: play and pause, a progress bar and the time. The sound file is only downloaded when someone
+// presses play. Without JavaScript the browser's own player is shown. The spoken words go under "Read the transcript".
+import Icon from "./Icon.astro";
+
+interface Props {
+  src: string;
+  title: string;
+  /** Length as shown before playing, for example "0:27". */
+  duration: string;
+  /** Length in seconds, for the progress bar before the file has loaded. */
+  seconds: number;
+  /** The spoken words: one list of lines for each verse. */
+  transcript?: string[][];
+  class?: string;
+}
+
+const { src, title, duration, seconds, transcript = [], class: className = "" } = Astro.props;
+---
+
+<div data-audio data-title={title} data-duration={duration} data-seconds={seconds} class={className}>
+  <audio controls preload="none" src={src} aria-label={title} class="w-full"></audio>
+
+  <div data-ui hidden class="flex items-center gap-4">
+    <button
+      type="button"
+      data-toggle
+      aria-label={`Play: ${title}`}
+      class="grid size-12 shrink-0 place-items-center rounded-full bg-ink text-salt transition-colors hover:bg-pool"
+    >
+      <span data-icon-play><Icon name="play" class="size-5 fill-current" /></span>
+      <span data-icon-pause hidden><Icon name="pause" class="size-5 fill-current" /></span>
+    </button>
+    <div class="min-w-0 flex-1">
+      <p class="font-display text-xl leading-tight">{title}</p>
+      <div class="mt-2 flex items-center gap-3 text-sm text-ink/70">
+        <input
+          type="range"
+          data-seek
+          min="0"
+          max="1000"
+          value="0"
+          aria-label={`Position in ${title}`}
+          aria-valuetext={`0:00 of ${duration}`}
+          class="h-1 min-w-0 flex-1 cursor-pointer accent-pool"
+        />
+        <span data-time class="whitespace-nowrap tabular-nums">0:00 / {duration}</span>
+      </div>
+    </div>
+  </div>
+  <p data-status role="status" class="mt-2 text-sm text-ink/80"></p>
+
+  {
+    transcript.length > 0 ? (
+      <details class="mt-4">
+        <summary class="cursor-pointer text-sm text-pool underline underline-offset-4 decoration-pool/40 hover:decoration-pool">
+          Read the transcript
+        </summary>
+        <div class="mt-4 max-w-[48ch] space-y-4 text-ink/85">
+          {transcript.map((verse) => (
+            <p>
+              {verse.map((line, i) => (
+                <>
+                  {line}
+                  {i < verse.length - 1 ? <br /> : null}
+                </>
+              ))}
+            </p>
+          ))}
+        </div>
+      </details>
+    ) : null
+  }
+</div>
+
+<script>
+  const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+
+  for (const root of document.querySelectorAll<HTMLElement>("[data-audio]")) {
+    const audio = root.querySelector("audio");
+    const ui = root.querySelector<HTMLElement>("[data-ui]");
+    const toggle = root.querySelector<HTMLButtonElement>("[data-toggle]");
+    const seek = root.querySelector<HTMLInputElement>("[data-seek]");
+    const time = root.querySelector<HTMLElement>("[data-time]");
+    const status = root.querySelector<HTMLElement>("[data-status]");
+    const iconPlay = root.querySelector<HTMLElement>("[data-icon-play]");
+    const iconPause = root.querySelector<HTMLElement>("[data-icon-pause]");
+    if (!audio || !ui || !toggle || !seek || !time || !iconPlay || !iconPause) continue;
+
+    const title = root.dataset.title ?? "audio";
+    const label = root.dataset.duration ?? "";
+    const fallback = Number(root.dataset.seconds) || 0;
+    const total = () => (Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration : fallback);
+
+    // Script is running: swap the browser's own player for this one.
+    audio.controls = false;
+    audio.hidden = true;
+    ui.hidden = false;
+
+    const draw = () => {
+      const now = audio.currentTime;
+      seek.value = String(total() ? Math.round((now / total()) * 1000) : 0);
+      time.textContent = `${clock(now)} / ${label}`;
+      seek.setAttribute("aria-valuetext", `${clock(now)} of ${label}`);
+    };
+    const showState = (playing: boolean) => {
+      iconPlay.hidden = playing;
+      iconPause.hidden = !playing;
+      toggle.setAttribute("aria-label", `${playing ? "Pause" : "Play"}: ${title}`);
+    };
+
+    toggle.addEventListener("click", () => {
+      if (status) status.textContent = "";
+      if (audio.paused) {
+        audio.play().catch(() => {
+          if (status) status.textContent = "Sorry, the audio could not be played.";
+        });
+      } else {
+        audio.pause();
+      }
+    });
+    audio.addEventListener("play", () => {
+      showState(true);
+      // One clip at a time.
+      for (const other of document.querySelectorAll("audio")) if (other !== audio) other.pause();
+    });
+    audio.addEventListener("pause", () => showState(false));
+    audio.addEventListener("ended", () => {
+      showState(false);
+      audio.currentTime = 0;
+      draw();
+    });
+    audio.addEventListener("timeupdate", draw);
+    audio.addEventListener("error", () => {
+      showState(false);
+      if (status) status.textContent = "Sorry, the audio could not be played.";
+    });
+    seek.addEventListener("input", () => {
+      audio.currentTime = (Number(seek.value) / 1000) * total();
+      draw();
+    });
+  }
+</script>

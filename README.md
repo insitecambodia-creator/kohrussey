@@ -167,6 +167,14 @@ A few small line icons sit beside the room facts on the Villas page and the cont
 (`<Icon name="phone" class="size-5" />`). To add an icon, copy its shapes from Lucide into `icons.ts`. Icons are decoration only (hidden from
 screen readers), so the meaning is always in the text beside them.
 
+## Audio
+
+A clip is a Markdown-free, plain mp3 in `public/audio/` (served as `/audio/<name>.mp3`) with its details in `src/lib/audio.ts`: title, length and
+the spoken words. `src/components/AudioPlayer.astro` plays it: a play/pause button, a progress bar and the time, with the words under "Read the
+transcript". The file is only downloaded when someone presses play, nothing starts by itself, and without JavaScript the browser's own player is
+shown. The homepage has the welcome clip under the introduction (`welcomeAudio`). To add another, put the file in `public/audio/`, add an entry to
+`audio.ts` and use `<AudioPlayer {...theClip} />` on a page. Keep mp3s small (speech at 64 to 96 kbps is about 0.5 MB a minute).
+
 ## Hero video
 
 The homepage hero plays a muted, looping YouTube video behind the headline (`src/components/HeroVideo.astro`).
