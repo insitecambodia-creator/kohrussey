@@ -78,18 +78,18 @@ generated from the saved file and checked line by line against it):
   buttons (their pages are not built yet; the old addresses redirect to the matching section).
 - Villas & Pavilions: the three pavilions and four pool villas (`src/lib/accommodations.ts`), each with its photos. Which photos go with which villa is set in `src/lib/stay-photos.ts` (the first photo is the large one, the rest fill the grid beside the text), and each room's layout is `src/components/RoomSection.astro`. The icon row under each room's name is `facts` in `accommodations.ts`. The page opens with an overview of the pavilions and villas that works as a sub-menu (`src/lib/stay-overview.ts`: which photo and link each tile has).
 
-- Weddings, Corporate retreat, Contact, FAQ, Reviews & Media Mentions and Promotions (Offers): the wording comes from the saved pages
-  and lives in `src/lib/wedding.ts`, `corporate.ts`, `faq.ts`, `reviews.ts` and `content.ts`. The FAQ is a set of `<details>` accordions
+- Weddings, Corporate retreat, Contact, FAQ, Reviews & Media Mentions, Promotions (Offers), About us and Getting here: the wording comes
+  from the saved pages and lives in `src/lib/wedding.ts`, `corporate.ts`, `faq.ts`, `reviews.ts`, `about.ts`, `getting-here.ts` and `content.ts`. The FAQ is a set of `<details>` accordions
   (no JavaScript). Links inside the text are written as `[label](address)` and drawn by `src/components/RichText.astro`.
 
 Typos in the original text were corrected (and nothing else was reworded). Every change is listed in
 `docs/content-fixes.md`, with the few judgement calls at the bottom.
 
-Still to add (the homepage only had a short summary of each):
+Still to add:
 
-- Full copy for the About us and Getting here pages (only a short summary so far)
 - The logo and favicon
-- Photos for the meeting room (Corporate retreat) and the two pre-wedding couples (Weddings)
+- Photos for the meeting room (Corporate retreat), the two pre-wedding couples (Weddings), the staff photo (About us) and the helicopter
+  (Getting here); the pages use stand-in photos until these are added
 - The six blog articles
 - Chinese and French versions (the current site has both)
 

@@ -49,27 +49,6 @@ export const location = {
   body: "Koh Russey is part of the stunning Koh Rong archipelago in Cambodia’s Gulf of Thailand. Just a short boat ride from the mainland, our island sits in a turquoise stretch of water surrounded by pristine beaches and lush tropical landscapes. Its peaceful setting offers the perfect balance: close enough to explore the beauty and culture of the Koh Rong islands, yet secluded enough to feel like your own private paradise.",
 };
 
-export const shuttles = {
-  note: "For flexibility, we offer transfers at your preferred time for an additional $80 per way.",
-  seasons: [
-    {
-      name: "Green Season",
-      dates: "1st May to 31st October",
-      groups: [
-        { label: "Weekdays (Monday to Thursday)", fromRream: ["14h00"], fromResort: ["11h00"] },
-        { label: "Weekends (Friday to Sunday)", fromRream: ["13h30", "14h30"], fromResort: ["10h00", "11h30"] },
-      ],
-    },
-    {
-      name: "High Season",
-      dates: "1st November to 30th April",
-      groups: [
-        { label: "Every day", fromRream: ["13h30", "14h30"], fromResort: ["10h00", "11h30"] },
-      ],
-    },
-  ],
-};
-
 // Short excerpts from guest reviews shown on the current site.
 export const reviews = [
   {

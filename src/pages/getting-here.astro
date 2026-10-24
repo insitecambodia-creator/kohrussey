@@ -1,85 +1,77 @@
 ---
+import Icon from "../components/Icon.astro";
 import Img from "../components/Img.astro";
 import PageHeading from "../components/PageHeading.astro";
 import ParallaxFrame from "../components/ParallaxFrame.astro";
+import Photo from "../components/Photo.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { location, shuttles } from "../lib/content";
+import { gettingHerePage as page } from "../lib/getting-here";
 import { images } from "../lib/images";
-import { site } from "../lib/site";
-import { link } from "../lib/ui";
-
-const cell = "border-b border-ink/15 py-3 pr-4 text-left align-top";
+import { photos } from "../lib/stay-photos";
+import { button, prose } from "../lib/ui";
 ---
 
-<BaseLayout
-  title="Getting here"
-  description="Shuttle schedules from Ream to Koh Russey Resort on Bamboo Island, Cambodia."
->
-  <PageHeading title="Getting here" intro={location.body} />
-  <div class="mx-auto max-w-6xl space-y-20 px-4 py-14">
-    <ParallaxFrame class="aspect-[16/9] md:aspect-[21/8]">
-      <Img
-        src={images.mapResort.src}
-        alt={images.mapResort.alt}
-        sizes="(min-width: 1152px) 1120px, 100vw"
-        class="h-full w-full object-cover"
-      />
-    </ParallaxFrame>
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <PageHeading title={page.title} intro={page.intro} />
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="mt-12">
+      <ParallaxFrame class="aspect-[16/9] md:aspect-[21/8]">
+        <Img
+          src={images.mapResort.src}
+          alt={images.mapResort.alt}
+          sizes="(min-width: 1152px) 1120px, 100vw"
+          class="h-full w-full object-cover"
+        />
+      </ParallaxFrame>
+    </div>
 
-    <section class="grid gap-8 md:grid-cols-12">
-      <div class="md:col-span-4">
-        <h2 data-reveal="rise" class="text-3xl">Shuttle schedules</h2>
-        <p data-reveal="rise" data-delay="1" class="mt-4 max-w-[32ch] text-ink/80">{shuttles.note}</p>
-      </div>
-      <div class="space-y-12 md:col-span-8">
-        {
-          shuttles.seasons.map((season) => (
-            <table data-reveal="rise" class="w-full table-fixed text-sm sm:text-base">
-              <caption class="pb-3 text-left font-display text-2xl font-medium">
-                {season.name}
-                <span class="ml-3 font-sans text-base text-ink/70">{season.dates}</span>
-              </caption>
-              <colgroup>
-                <col class="w-[44%]" />
-                <col class="w-[28%]" />
-                <col class="w-[28%]" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th scope="col" class:list={[cell, "border-t border-ink/15 font-medium"]}>Days</th>
-                  <th scope="col" class:list={[cell, "border-t border-ink/15 font-medium"]}>From Ream</th>
-                  <th scope="col" class:list={[cell, "border-t border-ink/15 font-medium"]}>From the resort</th>
-                </tr>
-              </thead>
-              <tbody>
-                {season.groups.map((g) => (
-                  <tr>
-                    <th scope="row" class:list={[cell, "font-normal"]}>{g.label}</th>
-                    <td class={cell}>{g.fromRream.join(", ")}</td>
-                    <td class={cell}>{g.fromResort.join(", ")}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ))
-        }
+    <section class="grid gap-8 py-16 md:grid-cols-12 md:py-20">
+      <h2 data-reveal="rise" class="text-3xl md:col-span-5 md:text-4xl">{page.lounge.title}</h2>
+      <div class="md:col-span-7">
+        <p data-reveal="rise" data-delay="1" class="font-display text-2xl leading-snug">{page.lounge.lead}</p>
+        <p data-reveal="rise" data-delay="2" class:list={["mt-5 text-ink/85", prose]}>{page.lounge.body}</p>
+        <div data-reveal="rise" data-delay="2" class="mt-8">
+          <a href={page.lounge.mapUrl} target="_blank" rel="noopener noreferrer" class={button.dark}>{page.lounge.mapLabel}</a>
+        </div>
       </div>
     </section>
 
-    <section class="grid gap-8 md:grid-cols-12">
-      <h2 data-reveal="rise" class="text-3xl md:col-span-4">Where to find us</h2>
-      <div data-reveal="rise" data-delay="1" class="space-y-4 md:col-span-8">
-        <p>
-          <strong class="font-medium">{site.contact.loungeName}</strong>
-          <br />
-          {site.contact.loungeAddress}
+    <section class="grid gap-8 border-t border-ink/15 py-16 md:grid-cols-12 md:py-20">
+      <h2 data-reveal="rise" class="text-3xl md:col-span-5 md:text-4xl">{page.schedules.title}</h2>
+      <div class="md:col-span-7">
+        <p data-reveal="rise" data-delay="1" class="flex items-center gap-3 text-lg">
+          <Icon name="ship" class="size-6 text-pool" />
+          {page.schedules.lead}
         </p>
-        <p>
-          <strong class="font-medium">{site.name}</strong>
-          <br />
-          {site.contact.resortAddress}
+        <ul data-reveal-group class="mt-6 flex flex-wrap gap-x-10 gap-y-4">
+          {
+            page.schedules.times.map((t) => (
+              <li class="flex items-center gap-3">
+                <Icon name="clock" class="size-6 text-pool" />
+                <span class="font-display text-4xl md:text-5xl">{t}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p data-reveal="rise" class:list={["mt-8 text-ink/85", prose]}>{page.schedules.note}</p>
+        <p data-reveal="rise" class:list={["mt-4 text-ink/85", prose]}>
+          {page.schedules.notice.before}<strong class="font-medium">{page.schedules.notice.strong}</strong>{page.schedules.notice.after}
         </p>
-        <p><a href={site.contact.mapUrl} target="_blank" rel="noopener noreferrer" class={link}>Open in Google Maps</a></p>
+      </div>
+    </section>
+
+    <section class="grid items-center gap-10 border-t border-ink/15 py-16 md:grid-cols-12 md:gap-12 md:py-24">
+      <Photo
+        image={photos.aerialDusk}
+        sizes="(min-width: 1152px) 480px, (min-width: 768px) 40vw, 100vw"
+        class="aspect-[4/3] md:col-span-5"
+      />
+      <div class="md:col-span-7">
+        <h2 data-reveal="rise" class="text-3xl md:text-4xl">{page.helicopter.title}</h2>
+        <p data-reveal="rise" data-delay="1" class:list={["mt-5 text-ink/85", prose]}>{page.helicopter.body}</p>
+        <div data-reveal="rise" data-delay="2" class="mt-8">
+          <a href={page.helicopter.href} target="_blank" rel="noopener noreferrer" class={button.dark}>{page.helicopter.label}</a>
+        </div>
       </div>
     </section>
   </div>

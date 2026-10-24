@@ -1,19 +1,107 @@
 ---
-import PageHeading from "../components/PageHeading.astro";
+import Icon from "../components/Icon.astro";
+import Img from "../components/Img.astro";
+import Photo from "../components/Photo.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { introLead, introRest, location } from "../lib/content";
-import { prose } from "../lib/ui";
+import { aboutPage as page } from "../lib/about";
+import { contactPage } from "../lib/content";
+import { images } from "../lib/images";
+import { site, telLink } from "../lib/site";
+import { photos } from "../lib/stay-photos";
+import { button, link, prose } from "../lib/ui";
+
+const c = site.contact;
+const row = "flex gap-4 py-4";
 ---
 
-<BaseLayout title="About us" description="Koh Russey Resort is a luxury private island resort in Cambodia.">
-  <PageHeading title="About us" intro={introLead} />
-  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-12">
-    <div data-reveal="rise" class:list={["space-y-6 text-ink/85 md:col-span-7", prose]}>
-      <p>{introRest}</p>
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <section class="relative isolate flex min-h-[72svh] items-end overflow-hidden bg-ink text-salt">
+    <Img
+      src={images.beachAerialSunset.src}
+      alt={images.beachAerialSunset.alt}
+      sizes="100vw"
+      priority
+      avif
+      quality={55}
+      class="hero-settle absolute inset-0 -z-20 h-full w-full object-cover"
+    />
+    <div aria-hidden="true" class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/95 via-ink/60 to-ink/35"></div>
+    <div class="mx-auto w-full max-w-6xl px-4 pb-12 pt-32 md:pb-16">
+      <p class="hero-rise text-sm font-medium uppercase tracking-[0.18em] text-salt" style="--d: 0.3s">{page.eyebrow}</p>
+      <h1 class="hero-rise mt-4 max-w-[16ch] text-4xl sm:text-6xl md:text-7xl md:font-normal" style="--d: 0.6s">{page.title}</h1>
+      <p class="hero-rise mt-5 max-w-[58ch] text-lg text-salt/90" style="--d: 0.9s">{page.intro}</p>
+      <div class="hero-rise mt-8" style="--d: 1.2s">
+        <a href="/villas/" class={button.accent}>{page.villasLabel}</a>
+      </div>
     </div>
-    <div data-reveal="rise" data-delay="1" class="md:col-span-5">
-      <h2 class="text-2xl">{location.title}</h2>
-      <p class="mt-3 text-ink/85">{location.body}</p>
-    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4">
+    <section class="grid items-center gap-10 py-16 md:grid-cols-12 md:gap-12 md:py-24">
+      <div class="md:col-span-5">
+        <h2 data-reveal="rise" class="text-3xl md:text-5xl">{page.concept.title}</h2>
+        <p data-reveal="rise" data-delay="1" class:list={["mt-5 text-ink/85", prose]}>{page.concept.body}</p>
+      </div>
+      <Photo
+        image={photos.arrivalPavilion}
+        sizes="(min-width: 1152px) 640px, (min-width: 768px) 56vw, 100vw"
+        class="aspect-[3/2] md:col-span-7"
+      />
+    </section>
+
+    <section class="grid items-center gap-10 border-t border-ink/15 py-16 md:grid-cols-12 md:gap-12 md:py-24">
+      <Photo
+        image={photos.pavilionsAmongTrees}
+        sizes="(min-width: 1152px) 480px, (min-width: 768px) 40vw, 100vw"
+        class="aspect-[4/5] md:col-span-5"
+      />
+      <div class="md:col-span-7">
+        <h2 data-reveal="rise" class="text-3xl md:text-5xl">{page.nature.title}</h2>
+        <p data-reveal="rise" data-delay="1" class:list={["mt-5 text-ink/85", prose]}>{page.nature.body}</p>
+      </div>
+    </section>
+
+    <section class="grid items-start gap-10 border-t border-ink/15 py-16 md:grid-cols-12 md:gap-12 md:py-20">
+      <div class="min-w-0 md:col-span-6">
+        <h2 class="sr-only">Contact details</h2>
+        <ul data-reveal-group class="divide-y divide-ink/15 border-y border-ink/15">
+          <li class={row}>
+            <Icon name="phone" class="mt-1 size-5 text-pool" />
+            <a href={telLink(page.phone)} class="font-display text-2xl">{page.phone}</a>
+          </li>
+          <li class={row}>
+            <Icon name="map-pin" class="mt-1 size-5 text-pool" />
+            <address class="not-italic text-ink/85">
+              {contactPage.address}
+              <span class="mt-2 block text-sm">
+                <a href={c.mapUrl} target="_blank" rel="noopener noreferrer" class={link}>Open in Google Maps</a>
+              </span>
+            </address>
+          </li>
+          <li class={row}>
+            <Icon name="mail" class="mt-1 size-5 text-pool" />
+            <div class="min-w-0">
+              <a href={`mailto:${c.email}`} class="break-words font-display text-xl sm:text-2xl">{c.email}</a>
+              <div class="mt-3">
+                <a href={`mailto:${c.email}`} class={button.dark}>{page.writeLabel}</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <a
+        href={c.mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open the resort's location in Google Maps"
+        class="block md:col-span-6"
+      >
+        <Photo
+          image={images.mapResort}
+          sizes="(min-width: 1152px) 540px, (min-width: 768px) 48vw, 100vw"
+          class="aspect-[4/3]"
+        />
+      </a>
+    </section>
   </div>
 </BaseLayout>
