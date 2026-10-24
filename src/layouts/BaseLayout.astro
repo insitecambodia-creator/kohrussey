@@ -6,6 +6,7 @@ import { Font, getImage } from "astro:assets";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
+import { locales, ui, type Locale } from "../lib/i18n";
 import { images } from "../lib/images";
 import { site } from "../lib/site";
 
@@ -27,6 +28,10 @@ interface Props {
   canonicalUrl?: string;
   /** Structured data (schema.org) for search engines, one object or a list. */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** The language of the page; English unless said otherwise. */
+  lang?: Locale;
+  /** The same page in other languages (addresses), so search engines can link them together. */
+  alternates?: Partial<Record<Locale, string>>;
 }
 
 const {
@@ -40,6 +45,8 @@ const {
   modifiedTime,
   canonicalUrl,
   jsonLd,
+  lang = "en",
+  alternates,
 } = Astro.props;
 
 const fullTitle =
@@ -57,7 +64,7 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
 ---
 
 <!doctype html>
-<html lang="en" class="h-full antialiased">
+<html lang={locales[lang].htmlLang} class="h-full antialiased">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,8 +73,17 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
+    {
+      alternates && [
+        ...(Object.entries(alternates) as [Locale, string][]).map(([code, path]) => (
+          <link rel="alternate" hreflang={locales[code].hreflang} href={new URL(path, Astro.site)} />
+        )),
+        alternates.en && <link rel="alternate" hreflang="x-default" href={new URL(alternates.en, Astro.site)} />,
+      ]
+    }
 
     <meta property="og:type" content={type} />
+    <meta property="og:locale" content={locales[lang].ogLocale} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={exactTitle ?? title ?? site.name} />
     <meta property="og:description" content={description} />
@@ -96,13 +112,13 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-salt focus:px-3 focus:py-2"
     >
-      Skip to content
+      {ui[lang].skip}
     </a>
-    <Header />
+    <Header lang={lang} />
     <main id="main" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
     <ScrollReveal />
   </body>
 </html>

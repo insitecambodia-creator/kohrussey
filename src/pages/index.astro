@@ -8,6 +8,7 @@ import ParallaxFrame from "../components/ParallaxFrame.astro";
 import Photo from "../components/Photo.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { welcomeAudio } from "../lib/audio";
+import { homeAlternates } from "../lib/i18n";
 import { allInclusive, introLead, introRest, location, reviews, spa, villas } from "../lib/content";
 import { images } from "../lib/images";
 import { site, telLink, whatsappLink } from "../lib/site";
@@ -37,7 +38,7 @@ const pillars = [
 const [featuredReview, ...otherReviews] = reviews;
 ---
 
-<BaseLayout>
+<BaseLayout alternates={homeAlternates}>
   <section class="relative isolate flex min-h-[86svh] items-end overflow-hidden bg-ink text-salt">
     <Img
       src={images.poolMorning.src}

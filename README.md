@@ -167,6 +167,19 @@ A few small line icons sit beside the room facts on the Villas page and the cont
 (`<Icon name="phone" class="size-5" />`). To add an icon, copy its shapes from Lucide into `icons.ts`. Icons are decoration only (hidden from
 screen readers), so the meaning is always in the text beside them.
 
+## Languages
+
+English is the main language. French and Chinese have a home page each, at the old addresses: `/fr/` (`src/pages/fr/index.astro`, text in
+`src/lib/home-fr.ts`) and `/zh-hans/` (`src/pages/zh-hans/index.astro`, `src/lib/home-zh.ts`). The other pages are English only.
+
+- `src/lib/i18n.ts` lists the languages and the few fixed words (menu, booking button, footer) for each. The header and footer, the skip
+  link, the `<html lang>` and the social media locale follow the page's language (`<BaseLayout lang="fr">`).
+- The header has a language switcher that goes to each language's home page. The three home pages point at each other with `hreflang`
+  links, and the sitemap does too.
+- Chinese text uses the system's Chinese fonts (the site fonts have no Chinese characters); see `:lang(zh)` in `src/styles/global.css`.
+- To translate another page, add `src/pages/fr/<page>.astro` (or `zh-hans`), pass `lang` to `BaseLayout`, and list the page in
+  `homeAlternates`-style `alternates` so the pages are linked.
+
 ## Audio
 
 A clip is a Markdown-free, plain mp3 in `public/audio/` (served as `/audio/<name>.mp3`) with its details in `src/lib/audio.ts`: title, length and

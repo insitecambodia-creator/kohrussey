@@ -1,11 +1,21 @@
 ---
-import { nav, site } from "../lib/site";
+import { locales, ui, type Locale } from "../lib/i18n";
+import { nav as englishNav, site } from "../lib/site";
 import BookButton from "./BookButton.astro";
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = "en" } = Astro.props;
+const t = ui[lang];
+const nav = t.nav ?? englishNav;
+const others = (Object.keys(locales) as Locale[]).map((code) => ({ code, ...locales[code] }));
 ---
 
 <header class="sticky top-0 z-40 border-b border-ink/15 bg-salt/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3">
-    <a href="/" class="font-display text-xl font-medium">{site.name}</a>
+    <a href={locales[lang].home} class="font-display text-xl font-medium">{site.name}</a>
 
     <nav aria-label="Main" class="hidden items-center gap-6 text-sm lg:flex">
       {
@@ -15,12 +25,28 @@ import BookButton from "./BookButton.astro";
           </a>
         ))
       }
-      <BookButton class="py-2!">Book now</BookButton>
+      <ul aria-label={t.language} class="flex items-center gap-3 border-l border-ink/15 pl-6">
+        {
+          others.map((l) => (
+            <li>
+              <a
+                href={l.home}
+                lang={l.htmlLang}
+                hreflang={l.hreflang}
+                aria-current={l.code === lang ? "true" : undefined}
+                class:list={["hover:underline underline-offset-4", l.code === lang ? "font-medium text-ink" : "text-ink/70"]}
+                >{l.label}</a
+              >
+            </li>
+          ))
+        }
+      </ul>
+      <BookButton class="py-2!">{t.book}</BookButton>
     </nav>
 
     {/* Mobile menu: works without JavaScript */}
     <details class="relative lg:hidden">
-      <summary class="cursor-pointer list-none border border-ink/30 px-4 py-2 text-sm font-medium">Menu</summary>
+      <summary class="cursor-pointer list-none border border-ink/30 px-4 py-2 text-sm font-medium">{t.menu}</summary>
       <nav
         aria-label="Mobile"
         class="absolute right-0 mt-2 flex w-60 flex-col border border-ink/15 bg-salt p-2 shadow-sm"
@@ -32,7 +58,22 @@ import BookButton from "./BookButton.astro";
             </a>
           ))
         }
-        <BookButton class="mt-2">Book now</BookButton>
+        <ul aria-label={t.language} class="mt-1 flex gap-4 border-t border-ink/15 px-3 py-3 text-sm">
+          {
+            others.map((l) => (
+              <li>
+                <a
+                  href={l.home}
+                  lang={l.htmlLang}
+                  hreflang={l.hreflang}
+                  aria-current={l.code === lang ? "true" : undefined}
+                  class:list={[l.code === lang ? "font-medium" : "text-ink/70"]}>{l.label}</a
+                >
+              </li>
+            ))
+          }
+        </ul>
+        <BookButton class="mt-2">{t.book}</BookButton>
       </nav>
     </details>
   </div>

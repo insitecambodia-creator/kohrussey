@@ -1,6 +1,14 @@
 ---
 import { getPosts } from "../lib/blog";
+import { ui, type Locale } from "../lib/i18n";
 import { nav, secondaryNav, site, telLink, whatsappLink } from "../lib/site";
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = "en" } = Astro.props;
+const t = ui[lang];
 
 const social = [
   { label: "Facebook", href: site.social.facebook },
@@ -10,7 +18,7 @@ const social = [
 
 // The Blog link appears once there is a published post.
 const blogLinks = (await getPosts()).length > 0 ? [{ label: "Blog", href: "/blog/" }] : [];
-const footerLinks = [...secondaryNav, ...blogLinks, ...nav];
+const footerLinks = t.nav ?? [...secondaryNav, ...blogLinks, ...nav];
 
 const item = "text-salt/80 hover:text-salt hover:underline underline-offset-4";
 const c = site.contact;
@@ -20,7 +28,7 @@ const c = site.contact;
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.2fr_1fr_1.2fr]">
     <div>
       <p class="font-display text-2xl font-medium">{site.name}</p>
-      <p class="mt-2 text-salt/80">{site.tagline}</p>
+      <p class="mt-2 text-salt/80">{t.tagline}</p>
       <ul class="mt-5 flex gap-5 text-sm">
         {
           social.map((s) => (
@@ -46,10 +54,10 @@ const c = site.contact;
       <p>{c.resortAddress}</p>
       <p><a href={`mailto:${c.email}`} class={item}>{c.email}</a></p>
       <p><a href={telLink()} class={item}>{c.phone}</a></p>
-      <p><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class={item}>Message us on WhatsApp</a></p>
+      <p><a href={whatsappLink(t.whatsappMessage)} target="_blank" rel="noopener noreferrer" class={item}>{t.whatsapp}</a></p>
     </address>
   </div>
   <div class="border-t border-salt/15 py-5 text-center text-xs text-salt/60">
-    &copy; {site.name}. All rights reserved.
+    {t.copyright}
   </div>
 </footer>

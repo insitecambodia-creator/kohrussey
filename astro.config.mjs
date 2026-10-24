@@ -33,6 +33,8 @@ export default defineConfig({
   integrations: [
     // The booking page stays out of the sitemap, as on the current site; so do the editor and posts marked noindex.
     sitemap({
+      // The French and Chinese home pages are the same page as the English one in another language.
+      i18n: { defaultLocale: "en", locales: { en: "en", fr: "fr", "zh-hans": "zh-Hans" } },
       filter: (page) => {
         const path = new URL(page).pathname;
         return !path.startsWith("/booking/") && !path.startsWith("/admin/") && !blog.get(path)?.noindex;

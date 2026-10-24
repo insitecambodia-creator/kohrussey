@@ -58,6 +58,20 @@ p {
   text-wrap: pretty;
 }
 
+/*
+ * Chinese pages. Wulkan Display and Hanken Grotesk have no Chinese characters, so name the system fonts that do:
+ * a sans for the text and a serif (Song) for the headings, with Wulkan first so the Latin words in them still use it.
+ */
+:lang(zh) body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", var(--font-sans);
+  line-height: 1.85;
+}
+:lang(zh) :is(h1, h2, h3, h4, .font-display) {
+  font-family: "Wulkan Display", "Songti SC", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
 :focus-visible {
   outline: 2px solid var(--lagoon);
   outline-offset: 3px;

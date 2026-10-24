@@ -23,6 +23,8 @@ export const redirects = {
   "/koh-russey-resort-reviews-media-mentions": "/reviews/",
   "/faq-frequently-asked-questions-about-koh-russey-resorts": "/faq/",
   "/map-of-the-resort": "/getting-here/",
+  // The old French restaurants page (not rebuilt yet) goes to the English one.
+  "/fr/nos-restaurants": "/restaurants/",
   // The six blog articles: they were at the top level of the old site and now live under /blog/.
   "/cambodia-wedding-destination-koh-russey-private-island": "/blog/cambodia-wedding-destination-koh-russey-private-island/",
   "/cambodia-welcomes-the-francophone-world-extend-your-journey-with-an-island-escape": "/blog/cambodia-welcomes-the-francophone-world-extend-your-journey-with-an-island-escape/",

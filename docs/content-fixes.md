@@ -142,6 +142,20 @@ File: `src/lib/activity-pages.ts`
 | ...showing the French-Khmer influence on the cuisine. (the only dish with a full stop) | ...on the cuisine (no full stop, like the other three) | 1 |
 | ...available products from the market (no full stop) | ...available products from the market. | 1 |
 
+## French home page
+File: `src/lib/home-fr.ts`
+
+| Before | After | Times |
+| --- | --- | --- |
+| Les Pavilions / les Pavilions offrent | Les Pavillons / les Pavillons offrent | 2 |
+| ...profiter de la mer.Une belle manière... | ...profiter de la mer. Une belle manière... | 1 |
+| Chat on Whatsapp / Chat on Telegram (English in the French page) | Discuter sur WhatsApp / Discuter sur Telegram | 2 |
+
+## Chinese home page
+File: `src/lib/home-zh.ts`
+
+No spelling mistakes were found, and every Chinese sentence is exactly as on the old page. What was changed is listed under "Judgement calls".
+
 ## Judgement calls
 
 - "coco" in the ice cream flavours became "coconut" (chocolate is already listed, so it was not cocoa). Change it back if "coco" was intended.
@@ -183,3 +197,10 @@ Everything above is wording copied from the old site. These texts are new, writt
 - Activity pages: left out: the four captions under the dishes on the cooking class page ("Fish Amok", "Lok Lak", "Khmer Red Curry", "Nom Banh Chok"), which label parts of the `cooking-guide.jpg` picture that is not in the repository (the names are in the list above them anyway). Please add `cooking-guide.jpg`, and the hero photos `kayaking.jpg`, `cooking-class.webp` and `snorkeling-in-the-tropical-water-kohrussey-copy.webp`.
 - Activity pages: until then the page photos are stand-ins: the cooking class photo from the Activities page, the beach at sunset for kayaking, and the resort aerial for snorkeling. The snorkeling page\u2019s three square photos are the aerial, mask-and-fins and swimmers photos already in the repository, which look like the old page\u2019s three.
 - Activity pages: the kayaking form (just a Name box and Send) was not marked as required on the old page; the name is required now, so an empty message cannot be sent. It goes to the same places as the other forms, with the subject "Kayak preparation".
+- French and Chinese home pages (`/fr/`, `/zh-hans/`): the old addresses are kept, so no redirects are needed; every page has links telling search engines the three home pages are the same page in different languages. Only the home pages exist in French and Chinese; every other page is English, and the buttons on these pages lead to the English pages. The menu on the French and Chinese pages is only "Galerie" / "图库" (the one language-neutral page), plus the language switcher (EN, FR, 中文) and the booking button. The old French menu also had "Nos Restaurants"; that page has not been rebuilt, so `/fr/nos-restaurants/` redirects to the English restaurants page.
+- French page: two links in the old text were never filled in ("URL_DU_SOMMET" and "URL_OIF"). The summit is plain text now, and the Organisation internationale de la Francophonie links to its own site, francophonie.org. Give me the summit address if it should be linked.
+- Chinese page: the old page also had an English section at the top ("A Private Island Resort in Cambodia ... Chat on Whatsapp"), set to show on phones only, and the English heading "Four reasons to choose Koh Russey" above the Chinese one. The English section was removed, and the heading became "选择 Koh Russey 的四个理由" (my translation).
+- Chinese page: six button labels were typed into the text in square brackets, such as "[预订住宿]" and "[查看客房]", and were not buttons. They are real buttons now, without the brackets: 预订住宿 goes to the booking page, 探索 Koh Russey to the "why" section, 查看客房 and 探索私人泳池别墅 to the Villas page, 探索餐饮体验 to Restaurants and 探索 Spa & Wellness to the Spa page.
+- French and Chinese pages: words that were in English on the old pages and are now translated by me, so please have a native speaker read them: the header and footer ("Menu", "Réserver", "Galerie", "Langue", "Un resort sur une île privée au Cambodge", "Écrivez-nous sur WhatsApp", the copyright line, and the Chinese "菜单", "立即预订", "图库", "语言", "柬埔寨私人海岛度假村", "通过 WhatsApp 联系我们"), the availability headings ("Vérifier la disponibilité", "查询空房"), the French buttons "Voir les pavillons" and "Voir les villas", and the Chinese gallery link "图库". The old page had "direct booking", "Gallery", "Contact us", "Email us" in English.
+- French and Chinese pages: photos. The old pages used photos that are not in the repository (`koh-rong-1.jpg`, `francophonie.png`, `postcard_Horizon-exterior`, `Untitled-1.jpg`, the six gallery photos, and the pavilion and villa photos in their old sizes), so the pages use the resort photos already on the site. The old Chinese activities list showed the same snorkeling photo five times, so it is text only here. The "Special offer 2026" picture that floats on both old pages (a link to the promotions page) was not copied.
+- French and Chinese pages: the booking search on the old pages was in English, and it still is. Exely can show other languages, if it is set up for them in the Exely account.
