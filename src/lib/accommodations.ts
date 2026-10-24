@@ -76,10 +76,20 @@ export const accommodations: Accommodation[] = [
   }
 ];
 
+/**
+ * Short texts under "Pavilions" and "Villas" in the overview at the top of the page. They are the first two
+ * paragraphs of the original closing text, moved up here so nothing is repeated; replace them with copy
+ * written for each group when it is ready.
+ */
+export const accommodationsOverviewText = {
+  pavilions:
+    "Escape to the breathtaking island paradise of Koh Russey Resort, where powder-soft beaches meet crystal-clear turquoise waters. Whether you’re up for a peaceful retreat or an adventurous getaway, our lush tropical landscapes invite you to explore, relax, and recharge at your own pace.",
+  villas:
+    "Stay in our beautifully designed pavilions and villas, each offering panoramic ocean views, private pools, and all the comforts you need for an unforgettable stay. Savor mouthwatering dishes crafted from the freshest local ingredients, enjoy soothing spa treatments, or dive into fun activities like snorkeling, kayaking, and sunset cruises.",
+};
+
 /** Closing text at the bottom of the page. */
 export const accommodationsClosing: string[] = [
-  "Escape to the breathtaking island paradise of Koh Russey Resort, where powder-soft beaches meet crystal-clear turquoise waters. Whether you’re up for a peaceful retreat or an adventurous getaway, our lush tropical landscapes invite you to explore, relax, and recharge at your own pace.",
-  "Stay in our beautifully designed pavilions and villas, each offering panoramic ocean views, private pools, and all the comforts you need for an unforgettable stay. Savor mouthwatering dishes crafted from the freshest local ingredients, enjoy soothing spa treatments, or dive into fun activities like snorkeling, kayaking, and sunset cruises.",
   "Our friendly team is here to make every moment special, offering personalized service that ensures your stay is seamless and stress-free. Whether you’re traveling as a couple, with family, or on a solo adventure, Koh Russey Resort promises a perfect mix of relaxation, adventure, and lasting memories.",
   "Come experience island life at its finest—we can’t wait to welcome you!"
 ];

@@ -1,6 +1,7 @@
 ---
 import BookButton from "../components/BookButton.astro";
 import PageHeading from "../components/PageHeading.astro";
+import StayOverview from "../components/StayOverview.astro";
 import VillaGallery from "../components/VillaGallery.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { accommodations, accommodationsClosing, accommodationsIntro } from "../lib/accommodations";
@@ -11,6 +12,7 @@ import { prose } from "../lib/ui";
 <BaseLayout title={accommodationsIntro.metaTitle} description={accommodationsIntro.description}>
   <PageHeading title={accommodationsIntro.title} intro={accommodationsIntro.kicker} />
   <div class="mx-auto max-w-6xl px-4">
+    <StayOverview />
     {
       accommodations.map((a) => (
         <>
