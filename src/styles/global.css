@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --salt: #f1f5f2;
-  --ink: #0d2623;
-  --pool: #1d5b4d;
-  --lagoon: #2f8f9a;
-  --accent: #c99151;
+  /* The logo's navy (ink) and gold (accent), with a warm off-white ground and a mid sea blue (pool). */
+  --salt: #f6f3ee;
+  --ink: #132136;
+  --pool: #1f4e79;
+  --lagoon: #2f7fc0;
+  --accent: #d3984c;
 }
 
 @theme inline {

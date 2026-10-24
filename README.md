@@ -193,7 +193,7 @@ redesign cannot compete with the live site before launch. With it on, `robots.tx
 
 The visual direction follows `SKILL.md` (the frontend-design guidance in the repo root).
 
-- Palette: salt `#F1F5F2`, ink `#0D2623`, pool `#1D5B4D`, lagoon `#2F8F9A` (focus rings only), accent `#C99151` (booking buttons on dark areas; always with dark text, since white on it fails contrast). Tokens live in `src/styles/global.css`.
+- Palette, from the logo's navy and gold: ink `#132136` (text, footer, dark buttons), accent `#D3984C` (booking buttons on dark areas; always with dark text, since white on it fails contrast, and never as text on a light background), pool `#1F4E79` (links, icons, the blue band), lagoon `#2F7FC0` (focus rings only) and salt `#F6F3EE` (the warm off-white page background). Tokens live in `src/styles/global.css`; the browser's theme colour is in `src/layouts/BaseLayout.astro`.
 - Type: Wulkan Display (corporate font) for headings and pull quotes, Hanken Grotesk for body text.
   - Originals are in `brand/fonts/Wulkan Display/`. The site uses Light, Regular and Medium, subset to Latin
     (with French accents) and converted to woff2 in `src/assets/fonts/`. Astro's font setup in
