@@ -78,7 +78,11 @@ export const photos = {
   beachVilla2Master: { src: beachVilla2Master, alt: "Master bedroom with a king-size bed and a view over the lawn to the beach" },
   beachVilla2MasterFront: { src: beachVilla2MasterFront, alt: "The master bedroom seen through floor-to-ceiling glass, with the beach on both sides" },
   beachVilla4Pool: { src: beachVilla4Pool, alt: "The 4-Bedroom Beach Pool Villa at dusk, its glass pavilions lit beside the private pool and loungers" },
-  beachVilla4Garden: { src: beachVilla4Garden, alt: "The wings of the 4-Bedroom Beach Pool Villa glowing at dusk across the lawn" },
+  beachVilla4Garden: {
+    src: beachVilla4Garden,
+    alt: "The wings of the 4-Bedroom Beach Pool Villa glowing at dusk across the lawn",
+    focus: "object-[50%_78%]",
+  },
   horizonPond: { src: horizonPond, alt: "The Horizon Restaurant behind its reflecting pool in the afternoon light" },
   horizonInterior: { src: horizonInterior, alt: "Inside the Horizon Restaurant: long timber tables, a brick wall and a view out to the garden" },
   horizonTableView: { src: horizonTableView, alt: "A table laid with wine and a fruit platter beside the pool, with the sea behind" },
@@ -96,7 +100,8 @@ export const photos = {
 
 /**
  * Photos shown with each pavilion or villa on the Villas page, keyed by the slug in accommodations.ts.
- * The first photo leads; the others follow in a small grid.
+ * The first photo is the large one; the others go in the grid beside it, in this order (a wide last photo
+ * becomes a banner, so end with a landscape photo rather than a portrait one).
  * The Ocean Pavilion also has the two "OF" photos from the upload (taken to mean ocean front).
  */
 export const villaPhotos: Record<string, Photo[]> = {
@@ -104,7 +109,7 @@ export const villaPhotos: Record<string, Photo[]> = {
   "ocean-pavilion": [photos.oceanPavilionRoom, photos.oceanPavilionBalcony, photos.oceanPavilionEntrance, photos.oceanPavilionRoom2, photos.oceanPavilionTerrace],
   "beach-pavilion": [photos.beachPavilionExterior, photos.beachPavilionRoom, photos.beachPavilionTerrace],
   "1-bedroom-garden-pool-villa": [photos.gardenVillaPool, photos.gardenVillaBedroom, photos.gardenVillaLiving, photos.gardenVillaBathroom, photos.gardenVillaBathtub],
-  "1-bedroom-beach-pool-villa": [photos.beachVilla1Cabana, photos.beachVilla1Dusk, photos.beachVilla1Bedroom, photos.beachVilla1Bedroom2, photos.beachVilla1Bathtub],
+  "1-bedroom-beach-pool-villa": [photos.beachVilla1Cabana, photos.beachVilla1Dusk, photos.beachVilla1Bedroom, photos.beachVilla1Bathtub, photos.beachVilla1Bedroom2],
   "2-bedroom-beach-pool-villa": [photos.beachVilla2Pool, photos.beachVilla2Night, photos.beachVilla2Master, photos.beachVilla2MasterFront],
   "4-bedroom-beach-pool-villa": [photos.beachVilla4Pool, photos.beachVilla4Garden],
 };

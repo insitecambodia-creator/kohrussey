@@ -1,0 +1,81 @@
+---
+// One pavilion or villa. On desktop: the name and a large photo on the left; the Book now button, the text
+// and a grid of smaller photos on the right. On a phone everything stacks in that order.
+import type { Accommodation } from "../lib/accommodations";
+import type { Photo as PhotoData } from "../lib/stay-photos";
+import { prose } from "../lib/ui";
+import BookButton from "./BookButton.astro";
+import Img from "./Img.astro";
+import Photo from "./Photo.astro";
+
+interface Props {
+  room: Accommodation;
+  /** The first photo is the large one; the rest go in the grid. */
+  photos: PhotoData[];
+}
+
+const { room, photos } = Astro.props;
+const [lead, ...thumbs] = photos;
+
+// The small photos always fill whole rows: rows of three, and a last row of two or of one that is widened
+// to fill the row. The grid has six columns so a photo can take two (of three), three (of two) or all six.
+const leftOver = thumbs.length % 3;
+const firstOfLastRow = thumbs.length - leftOver;
+const delays = [undefined, 1, 2] as const;
+const thumbLayout = thumbs.map((_, i) => {
+  if (leftOver === 0 || i < firstOfLastRow) {
+    return { cell: "col-span-2 aspect-[219/211]", sizes: "(min-width: 1152px) 290px, (min-width: 768px) 24vw, 32vw" };
+  }
+  return leftOver === 2
+    ? { cell: "col-span-3 aspect-[8/5]", sizes: "(min-width: 1152px) 300px, (min-width: 768px) 36vw, 48vw" }
+    : { cell: "col-span-6 aspect-[10/3]", sizes: "(min-width: 1152px) 620px, (min-width: 768px) 55vw, 100vw" };
+});
+---
+
+<article
+  id={room.slug}
+  class="grid scroll-mt-24 gap-x-8 gap-y-6 border-b border-ink/15 py-12 md:grid-cols-[43fr_55fr] lg:gap-x-10"
+>
+  <div class="flex flex-col">
+    <h2 data-reveal="rise" class="text-3xl">{room.name}</h2>
+    {
+      room.spec ? (
+        <p data-reveal="rise" data-delay="1" class="mt-3 text-ink/80">
+          {room.spec}
+        </p>
+      ) : null
+    }
+    {
+      lead ? (
+        <div data-reveal="mask" class="relative mt-5 flex-1 overflow-hidden">
+          {/* Sets the shape (a little under square on desktop) and lets the photo grow if the right side is taller. */}
+          <div class="pb-[75%] md:pb-[96%]" aria-hidden="true" />
+          <Img
+            src={lead.src}
+            alt={lead.alt}
+            sizes="(min-width: 1152px) 760px, (min-width: 768px) 70vw, 100vw"
+            class:list={["absolute inset-0 h-full w-full object-cover", lead.focus]}
+          />
+        </div>
+      ) : null
+    }
+  </div>
+
+  <div class="flex flex-col">
+    <div data-reveal="rise" data-delay="1">
+      <BookButton>Book now</BookButton>
+    </div>
+    <div data-reveal="rise" data-delay="2" class:list={["mt-6 space-y-4 text-ink/85", prose]}>
+      {room.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+    {
+      thumbs.length > 0 ? (
+        <div class="mt-8 grid grid-cols-6 gap-3 md:mt-auto md:pt-8 md:gap-4">
+          {thumbs.map((p, i) => (
+            <Photo image={p} sizes={thumbLayout[i].sizes} delay={delays[i % 3]} class={thumbLayout[i].cell} />
+          ))}
+        </div>
+      ) : null
+    }
+  </div>
+</article>
