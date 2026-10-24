@@ -70,7 +70,7 @@ const rowPhotos: Record<string, (typeof images)[keyof typeof images]> = {
             title={b.title}
             meta={b.meta}
             body={b.body}
-            link={b.link}
+            links={b.links}
             photo={rowPhotos[b.id]}
             morePhotos={b.id === "resort-activities" ? [images.snorkelingBay, images.snorkelingGear] : []}
             flip={i % 2 === 1}

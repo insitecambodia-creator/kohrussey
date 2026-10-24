@@ -2,8 +2,7 @@
 // "activities-on-the-island" page. Typos in the original (missing spaces and
 // the like) were corrected; see docs/content-fixes.md.
 //
-// Left out on purpose: the "Download the catalog" form (needs a backend and the PDF) and the
-// Cooking Class, Kayaking and Snorkeling buttons (their pages are not built yet).
+// Left out on purpose: the "Download the catalog" form (needs a backend and the PDF).
 
 export type ActivityBlock = {
   /** Anchor, for example /activities#khmer-cooking-class. */
@@ -12,7 +11,8 @@ export type ActivityBlock = {
   /** Opening hours, duration and minimum guests, where the page gave them. */
   meta?: string[];
   body: string;
-  link?: { label: string; href: string };
+  /** Buttons to the activity's own page. */
+  links?: { label: string; href: string }[];
 };
 
 export type FeaturedActivity = {
@@ -42,10 +42,7 @@ export const activityBlocks: ActivityBlock[] = [
     title: "Spa",
     meta: ["Opens daily from 9:00 am to 9:00 pm"],
     body: "The spa is a blissful sanctuary with five double treatment rooms dedicated to your holistic well-being. Pamper yourself with your friends from head to toe with an array of relaxing treatments that include massages, revitalizing facials and rejuvenating body scrubs.",
-    link: {
-      label: "Read More",
-      href: "/spa/",
-    },
+    links: [{ label: "Read More", href: "/spa/" }],
   },
   {
     id: "wellness",
@@ -57,11 +54,13 @@ export const activityBlocks: ActivityBlock[] = [
     title: "Khmer Cooking Class",
     meta: ["2 hours | Minimum 2 guests"],
     body: "Uncover the secrets of authentic Khmer cuisine in a cooking class that will introduce you to local ingredients, basic recipes and traditional dishes. Head into our main restaurant where our Executive Chef will be your guide, sharing details of the spices, flavors and cooking techniques as you learn how to cook some local dishes. Then comes the most gratifying part – enjoying the food you have just prepared in the location of your choice.",
+    links: [{ label: "Cooking Class", href: "/activities/khmer-cooking-class/" }],
   },
   {
     id: "resort-activities",
     title: "Resort activities",
     body: "The breathtaking 1.2 km copper sand beach and our location let you enjoy any of our island activities: Kayaking, stand-up paddle boarding, snorkeling, fishing, island hopping, beach picnic, badminton, beach tennis, beach volley, pétanque, mountain biking, sunset cruise, cinema under the stars and so much more…",
+    links: [{ label: "Kayaking", href: "/activities/kayaking/" }, { label: "Snorkeling", href: "/activities/snorkeling/" }],
   },
   {
     id: "pepper-delights",

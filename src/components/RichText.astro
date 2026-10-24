@@ -1,5 +1,5 @@
 ---
-// Text that may contain links written as [label](address) (see lib/text.ts).
+// Text that may contain links written as [label](address) and bold words written as **words** (see lib/text.ts).
 import { splitLinks } from "../lib/text";
 import { link } from "../lib/ui";
 
@@ -20,6 +20,8 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
         target={isExternal(part.href) ? "_blank" : undefined}
         rel={isExternal(part.href) ? "noopener noreferrer" : undefined}
       >{part.text}</a>
+    ) : part.strong ? (
+      <strong class="font-medium">{part.text}</strong>
     ) : (
       part.text
     ),

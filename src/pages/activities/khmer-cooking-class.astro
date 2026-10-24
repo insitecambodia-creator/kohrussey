@@ -1,0 +1,36 @@
+---
+import ActivityHero from "../../components/ActivityHero.astro";
+import MoreActivities from "../../components/MoreActivities.astro";
+import RichText from "../../components/RichText.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { cookingClassPage as page } from "../../lib/activity-pages";
+import { images } from "../../lib/images";
+import { prose } from "../../lib/ui";
+---
+
+<BaseLayout title={page.metaTitle} description={page.description} image={images.cookingClass.src}>
+  <ActivityHero title={page.title} lines={[page.subtitle]} photo={images.cookingClass} focus="object-[50%_40%]" />
+  <div class="mx-auto max-w-6xl px-4">
+    <section class="grid gap-8 py-16 md:grid-cols-12 md:py-20">
+      <p data-reveal="rise" class="font-display text-2xl leading-snug md:col-span-5 md:text-3xl">{page.intro}</p>
+      <ul data-reveal-group class="border-t border-ink/15 md:col-span-7">
+        {
+          page.dishes.map((d) => (
+            <li class="border-b border-ink/15 py-4">
+              <span class="font-display text-xl font-medium">{d.name}</span><span class="text-ink/85">{d.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="grid gap-8 border-t border-ink/15 py-16 md:grid-cols-12 md:py-20">
+      <div class:list={["space-y-5 text-ink/85 md:col-span-7 md:col-start-6", prose]}>
+        {page.body.map((p) => <p data-reveal="rise"><RichText text={p} /></p>)}
+        <p data-reveal="rise" class="pt-4 text-sm text-ink/70">{page.footnote}</p>
+      </div>
+    </section>
+
+    <MoreActivities current="/activities/khmer-cooking-class/" />
+  </div>
+</BaseLayout>

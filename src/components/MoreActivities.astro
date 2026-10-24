@@ -1,0 +1,23 @@
+---
+// Links from an activity page to the other activities and back to the whole list.
+import { link } from "../lib/ui";
+
+interface Props {
+  /** The page's own address, left out of the list. */
+  current: string;
+}
+
+const all = [
+  { label: "Khmer Cooking Class", href: "/activities/khmer-cooking-class/" },
+  { label: "Kayaking", href: "/activities/kayaking/" },
+  { label: "Snorkeling", href: "/activities/snorkeling/" },
+];
+const others = all.filter((a) => a.href !== Astro.props.current);
+---
+
+<nav aria-label="More activities" class="border-t border-ink/15 py-10">
+  <ul class="flex flex-wrap items-center gap-x-8 gap-y-3">
+    <li><a href="/activities/" class={link}>All activities</a></li>
+    {others.map((a) => <li><a href={a.href} class={link}>{a.label}</a></li>)}
+  </ul>
+</nav>

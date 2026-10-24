@@ -22,7 +22,7 @@ export const corporatePage = {
       id: "beach-activities",
       eyebrow: "move",
       title: "Beach Activities",
-      body: "Structured team-building works better with real stakes and real terrain. Groups can run beach volleyball tournaments, guided [kayaking](/activities/#resort-activities) sessions, or a [Khmer cooking class](/activities/#khmer-cooking-class) as a shared team activity, informal enough to build rapport, structured enough to still count as “the retreat” rather than just downtime.",
+      body: "Structured team-building works better with real stakes and real terrain. Groups can run beach volleyball tournaments, guided [kayaking](/activities/kayaking/) sessions, or a [Khmer cooking class](/activities/khmer-cooking-class/) as a shared team activity, informal enough to build rapport, structured enough to still count as “the retreat” rather than just downtime.",
     },
     {
       id: "accommodations",

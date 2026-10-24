@@ -134,6 +134,14 @@ No spelling mistakes were found in the text. What was changed:
 | --- | --- | --- |
 | Straight quotes and apostrophes ("off the grid", haven't; Cambodia's in the search title and description) | Curly ones (“off the grid”, haven’t, Cambodia’s), as in the rest of the site | 1 post |
 
+## Activity pages (Khmer Cooking Class, Kayaking, Snorkeling)
+File: `src/lib/activity-pages.ts`
+
+| Before | After | Times |
+| --- | --- | --- |
+| ...showing the French-Khmer influence on the cuisine. (the only dish with a full stop) | ...on the cuisine (no full stop, like the other three) | 1 |
+| ...available products from the market (no full stop) | ...available products from the market. | 1 |
+
 ## Judgement calls
 
 - "coco" in the ice cream flavours became "coconut" (chocolate is already listed, so it was not cocoa). Change it back if "coco" was intended.
@@ -169,3 +177,9 @@ Everything above is wording copied from the old site. These texts are new, writt
 - Blog posts: left out: the "*3-minute read*" line (every post shows its reading time now), the "Tagged Snorkeling" line (the tag is in the post's settings), and the share buttons and dividers from the old page template. The checklist in the wedding post is shown as lines, as it was meant to be (on the old page it ran together on one line).
 - Blog posts: images. The "Cambodia\u2019s Islands" post used six photos linked from other websites (TripAdvisor, voyagecambodge.com, webbeds.com, movetocambodia.com, madmonkeyhostels.com). They were not copied: the images belong to those sites, and linking to them is unreliable. Please add the resort\u2019s own photos. The snorkeling post\u2019s butterflyfish photo (from Wikimedia Commons, which needs a credit) was left out too; its snorkeling guide poster was kept. None of the six posts had a cover photo, so the previews on social media use the homepage photo until covers are added.
 - Blog posts: the "Read more" links in "Cambodia\u2019s Islands" are as on the old page: Koh Rong and Koh Rong Samloem both go to visitkohrong.com/samloem, and the other four go to the resort\u2019s homepage. They look like placeholders.
+
+- Activity pages: the three pages are at `/activities/khmer-cooking-class/`, `/activities/kayaking/` and `/activities/snorkeling/`; the old addresses (`/activities-on-the-island/...`) redirect to them, and the "Cooking Class", "Kayaking" and "Snorkeling" buttons that the old Activities page had are back on the Activities page. Links to them from other pages (the Corporate retreat page) go straight to the new addresses.
+- Activity pages: the Khmer Cooking Class meta description on the old page was the start of the text cut off with a colon and an asterisk ("...signature flavors*, guided step-by-step by our Executive Chef:"). The asterisk and the colon were removed and a full stop added.
+- Activity pages: left out: the four captions under the dishes on the cooking class page ("Fish Amok", "Lok Lak", "Khmer Red Curry", "Nom Banh Chok"), which label parts of the `cooking-guide.jpg` picture that is not in the repository (the names are in the list above them anyway). Please add `cooking-guide.jpg`, and the hero photos `kayaking.jpg`, `cooking-class.webp` and `snorkeling-in-the-tropical-water-kohrussey-copy.webp`.
+- Activity pages: until then the page photos are stand-ins: the cooking class photo from the Activities page, the beach at sunset for kayaking, and the resort aerial for snorkeling. The snorkeling page\u2019s three square photos are the aerial, mask-and-fins and swimmers photos already in the repository, which look like the old page\u2019s three.
+- Activity pages: the kayaking form (just a Name box and Send) was not marked as required on the old page; the name is required now, so an empty message cannot be sent. It goes to the same places as the other forms, with the subject "Kayak preparation".
