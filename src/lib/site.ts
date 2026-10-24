@@ -30,9 +30,13 @@ export const site = {
   },
   // Muted looping video behind the homepage hero (a YouTube video ID).
   heroVideo: { youtubeId: "QvwDAsy68P4" },
-  // Enquiry forms (contact, weddings, corporate retreat). With a Web3Forms access key (free, from web3forms.com)
-  // they send the message straight to the resort's email; without one they open the visitor's email app instead.
-  forms: { accessKey: (import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined) ?? "" },
+  // Enquiry forms (contact, weddings, corporate retreat). A webhook address (an n8n Webhook node that adds a row to a
+  // Google Sheet) and/or a Web3Forms access key (emails the resort) receive each message; with neither, the forms open
+  // the visitor's email app instead.
+  forms: {
+    webhookUrl: (import.meta.env.PUBLIC_LEADS_WEBHOOK_URL as string | undefined) ?? "",
+    accessKey: (import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined) ?? "",
+  },
   // Search engines stay out until the redesign is ready to go live (PUBLIC_ALLOW_INDEXING=true).
   allowIndexing: import.meta.env.PUBLIC_ALLOW_INDEXING === "true",
 } as const;

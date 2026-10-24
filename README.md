@@ -34,7 +34,8 @@ On Cloudflare's Workers & Pages (Workers Builds), leave **Root directory** as `/
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
 | `PUBLIC_SITE_URL`       | The public address (canonical links, social previews, sitemap). Defaults to the live site's.     |
 | `PUBLIC_ALLOW_INDEXING` | `true` to let search engines in. Leave it unset until launch (see Indexing below).               |
-| `PUBLIC_WEB3FORMS_KEY`  | Access key for the enquiry forms (see Forms below). Without it the forms open the visitor's email app. |
+| `PUBLIC_LEADS_WEBHOOK_URL` | Production URL of the n8n Webhook node that adds each enquiry to the Google Sheet (see Forms below). |
+| `PUBLIC_WEB3FORMS_KEY`  | Optional access key that also emails each enquiry to the resort (see Forms below). With neither this nor the webhook, the forms open the visitor's email app. |
 
 Every page is a folder with an `index.html` and links end in a slash (`/villas/`), which all static
 hosts serve as is. The old WordPress addresses are listed in `redirects.mjs`. The build turns each
@@ -107,10 +108,20 @@ and resized to 2400px wide.
 The Contact, Weddings and Corporate retreat pages share one form, `src/components/EnquiryForm.astro`. Each page says
 what to ask (the fields) and the subject line the team will see.
 
+- With `PUBLIC_LEADS_WEBHOOK_URL` set, each enquiry is posted to that address, which is meant to be an n8n **Webhook** node (method POST)
+  feeding a **Google Sheets** node (Append row). It is sent as a plain form post, so n8n shows the fields under `body`
+  (`{{ $json.body.email }}`). The fields are:
+  `form` (which form: "Contact enquiry", "Wedding enquiry" or "Corporate retreat enquiry"), `submitted_at` (ISO time), `name`, `first_name`,
+  `last_name`, `phone`, `email`, then the form's own fields (`comments`; `occasion` (ticked options joined by commas), `date`, `heard_from`;
+  `company`, `heard_from`), `message` (all the answers as readable text) and `page` (the address it was sent from). One Sheet with a column
+  for each works for all three forms; a field a form does not ask for is simply missing from that post. In the Webhook node, add the site's
+  address (and the `*.workers.dev` preview address, if used) under **Options → Allowed Origins (CORS)**, and activate the workflow, since
+  only the Production URL of an active workflow takes posts.
 - With `PUBLIC_WEB3FORMS_KEY` set (a free access key from [web3forms.com](https://web3forms.com), made for the resort's email address), the
-  form posts to Web3Forms, which emails the message to the resort, and shows a thank-you or an error line. The key is meant to be
-  public, so it is fine in the page.
-- Without a key, the form opens the visitor's email app with the message already written to `site.contact.email`.
+  same message is also posted to Web3Forms, which emails it to the resort. The key is meant to be public, so it is fine in the page.
+- With both set, a message counts as sent when either one receives it, so an enquiry is not lost if n8n or Google is down (the email still arrives).
+  If both fail, the visitor is asked to write to the resort's email address.
+- With neither set, the form opens the visitor's email app with the message already written to `site.contact.email`.
 - A hidden tick box catches most spam bots. Groups marked required (the Weddings occasions) need at least one option ticked.
 
 ## Icons

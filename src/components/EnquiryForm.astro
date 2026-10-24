@@ -1,6 +1,7 @@
 ---
-// An enquiry form (contact, weddings, corporate retreat). With a Web3Forms access key (PUBLIC_WEB3FORMS_KEY) it
-// sends the message to the resort's email; without one it opens the visitor's email app with the message ready.
+// An enquiry form (contact, weddings, corporate retreat). Each message goes to a webhook (PUBLIC_LEADS_WEBHOOK_URL: an
+// n8n workflow that adds it to a Google Sheet) and/or to Web3Forms (PUBLIC_WEB3FORMS_KEY: emails the resort). With neither
+// set it opens the visitor's email app with the message ready.
 import { site } from "../lib/site";
 import { button } from "../lib/ui";
 
@@ -31,6 +32,7 @@ const legend = "mb-2 block text-sm font-medium";
   data-enquiry
   data-subject={subject}
   data-key={site.forms.accessKey || undefined}
+  data-webhook={site.forms.webhookUrl || undefined}
   data-email={site.contact.email}
   method="post"
   class:list={["space-y-6", className]}
@@ -140,28 +142,61 @@ const legend = "mb-2 block text-sm font-medium";
       const subject = form.dataset.subject ?? "Enquiry";
       const lines = summary(form);
       const key = form.dataset.key;
+      const webhook = form.dataset.webhook;
 
-      if (key) {
-        const body = new FormData();
-        body.set("access_key", key);
-        body.set("subject", subject);
-        body.set("from_name", `${data.get("first_name") ?? ""} ${data.get("last_name") ?? ""}`.trim());
-        body.set("message", lines.join("\n"));
+      if (key || webhook) {
+        // Everything the visitor entered, one value per field (ticked boxes joined with commas).
+        const fields: Record<string, string> = {};
         for (const [name, value] of data) {
-          if (!["botcheck", "first_name", "last_name"].includes(name) && typeof value === "string") body.append(name, value);
+          if (name === "botcheck" || typeof value !== "string" || !value) continue;
+          fields[name] = fields[name] ? `${fields[name]}, ${value}` : value;
         }
+        const fullName = `${fields.first_name ?? ""} ${fields.last_name ?? ""}`.trim();
+        const sends: Promise<Response>[] = [];
+
+        if (webhook) {
+          // A plain form post, so the browser sends no preflight request. In n8n the fields arrive under `body`.
+          const record = {
+            form: subject,
+            submitted_at: new Date().toISOString(),
+            name: fullName,
+            ...fields,
+            message: lines.join("\n"),
+            page: window.location.href,
+          };
+          sends.push(fetch(webhook, { method: "POST", body: new URLSearchParams(record), signal: AbortSignal.timeout(15000) }));
+        }
+
+        if (key) {
+          const body = new FormData();
+          body.set("access_key", key);
+          body.set("subject", subject);
+          body.set("from_name", fullName);
+          body.set("message", lines.join("\n"));
+          for (const [name, value] of Object.entries(fields)) {
+            if (!["first_name", "last_name"].includes(name)) body.append(name, value);
+          }
+          sends.push(
+            fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body,
+              signal: AbortSignal.timeout(15000),
+            }).then(async (response) => {
+              const result = await response.json();
+              if (!result.success) throw new Error(result.message);
+              return response;
+            }),
+          );
+        }
+
         say("Sending…");
-        try {
-          const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: { Accept: "application/json" },
-            body,
-          });
-          const result = await response.json();
-          if (!result.success) throw new Error(result.message);
+        // It counts as sent when at least one place received it.
+        const results = await Promise.allSettled(sends.map((send) => send.then((r) => (r.ok ? r : Promise.reject(new Error(String(r.status)))))));
+        if (results.some((r) => r.status === "fulfilled")) {
           form.reset();
           say("Thank you. Your message has been sent and our team will be in touch.");
-        } catch {
+        } else {
           say(`Sorry, that did not send. Please write to us at ${form.dataset.email}.`);
         }
         return;
