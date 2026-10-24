@@ -4,6 +4,7 @@ import Photo from "../components/Photo.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { activitiesPage, activityBlocks, activityRates, featuredActivities } from "../lib/activities";
 import { images } from "../lib/images";
+import { photos } from "../lib/stay-photos";
 import { link, prose } from "../lib/ui";
 
 const { intro } = activitiesPage;
@@ -129,6 +130,19 @@ const photoSizes = "(min-width: 1152px) 740px, (min-width: 768px) 66vw, 100vw";
       <p data-reveal="rise" data-delay="1" class:list={["mt-5 text-ink/85", prose]}>
         {featuredActivities.intro}
       </p>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2">
+        <Photo
+          image={photos.beachDinnerCanopy}
+          sizes="(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw"
+          class="aspect-[3/2]"
+        />
+        <Photo
+          image={photos.beachDinnerTorches}
+          sizes="(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw"
+          delay={2}
+          class="aspect-[3/2]"
+        />
+      </div>
       <ul class="mt-10 grid gap-x-12 border-t border-ink/15 md:grid-cols-2">
         {
           featuredActivities.items.map((a) => (

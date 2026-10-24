@@ -1,0 +1,39 @@
+---
+// The photos of one pavilion or villa: the first photo leads, the rest follow in a small grid.
+import type { Photo as PhotoData } from "../lib/stay-photos";
+import Photo from "./Photo.astro";
+
+interface Props {
+  photos: PhotoData[];
+}
+
+const { photos } = Astro.props;
+// Two photos sit side by side; with more, the first is wide and the others share a grid below it.
+const [first, ...others] = photos;
+const sideBySide = photos.length === 2;
+const lead = sideBySide ? [] : [first];
+const rest = sideBySide ? photos : others;
+const threeAcross = rest.length % 3 === 0;
+const columns = threeAcross ? 3 : 2;
+const sizes = threeAcross
+  ? "(min-width: 1152px) 240px, (min-width: 768px) 22vw, 31vw"
+  : "(min-width: 1152px) 360px, (min-width: 768px) 33vw, 48vw";
+const delays = [undefined, 1, 2, 3] as const;
+---
+
+<div class="mt-8 space-y-4">
+  {
+    lead.map((p) => (
+      <Photo image={p} sizes="(min-width: 1152px) 740px, (min-width: 768px) 66vw, 100vw" class="aspect-[3/2]" />
+    ))
+  }
+  {
+    rest.length > 0 ? (
+      <div class:list={["grid gap-4", threeAcross ? "grid-cols-3" : "grid-cols-2"]}>
+        {rest.map((p, i) => (
+          <Photo image={p} sizes={sizes} delay={delays[i % columns]} class="aspect-[4/3]" />
+        ))}
+      </div>
+    ) : null
+  }
+</div>

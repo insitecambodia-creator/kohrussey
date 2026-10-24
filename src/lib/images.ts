@@ -16,6 +16,7 @@ import wellnessGym from "@/assets/images/activity-wellness.webp";
 import cookingClass from "@/assets/images/activity-cooking-class.webp";
 import pepperTour from "@/assets/images/activity-pepper-tour.webp";
 import beachAerialSunset from "@/assets/images/beach-aerial-sunset.jpg";
+import { photos } from "./stay-photos";
 
 export const images = {
   poolMorning: {
@@ -92,20 +93,42 @@ export const images = {
   },
 } as const;
 
-/** Photos shown in the gallery, in display order. */
+/** Photos shown in the gallery, in display order (the gallery fills its columns top to bottom). */
 export const gallery = [
   images.poolMorning,
+  photos.arrivalPavilion,
   images.oceanfrontDreams,
+  photos.beachVilla1Cabana,
   images.massageBeach1,
+  photos.beachDinnerCanopy,
   images.horizonRestaurant,
+  photos.beachVilla2Pool,
   images.beachAerialSunset,
+  photos.oceanPavilionRoom,
   images.snorkelingAerial,
+  photos.gardenVillaPool,
   images.girlPool,
+  photos.horizonPond,
   images.massageBeach2,
+  photos.beachVilla1Dusk,
   images.retreatLawn,
+  photos.aerialDusk,
   images.spaRoom,
+  photos.beachPavilionTerrace,
   images.snorkelingBay,
+  photos.beachDinnerTorches,
   images.corporateBeach,
+  photos.beachShackDusk,
   images.cookingClass,
+  photos.oceanPavilionBalcony,
   images.snorkelingGear,
+  photos.beachVilla4Pool,
+  photos.gardenPavilionTerrace,
+  photos.horizonTableView,
+  photos.beachVilla2Master,
+  photos.gardenVillaBedroom,
+  photos.pavilionsAmongTrees,
+  photos.gardenPath,
+  photos.beachVilla2Night,
+  photos.beachShackDay,
 ];

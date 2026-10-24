@@ -1,9 +1,11 @@
 ---
 import Img from "../components/Img.astro";
 import MenuBlock from "../components/MenuBlock.astro";
+import Photo from "../components/Photo.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { images } from "../lib/images";
 import { restaurants, restaurantsIntro } from "../lib/menus";
+import { diningPhotos } from "../lib/stay-photos";
 import { prose } from "../lib/ui";
 ---
 
@@ -38,6 +40,11 @@ import { prose } from "../lib/ui";
               <p data-reveal="rise" data-delay="1" class:list={["mt-5 text-ink/85", prose]}>
                 {r.description}
               </p>
+              <div class="mt-8 space-y-4">
+                {diningPhotos[r.id].map((p) => (
+                  <Photo image={p} sizes="(min-width: 1152px) 360px, (min-width: 768px) 33vw, 100vw" natural />
+                ))}
+              </div>
             </div>
             <div class="md:col-span-8">
               <h3 data-reveal="rise" class="mb-6 text-xl font-medium">{r.name} menu</h3>
