@@ -90,8 +90,45 @@ Still to add:
 - The logo and favicon
 - Photos for the meeting room (Corporate retreat), the two pre-wedding couples (Weddings), the staff photo (About us) and the helicopter
   (Getting here); the pages use stand-in photos until these are added
-- The six blog articles
+- The six existing blog articles (from the old site; see Blog)
 - Chinese and French versions (the current site has both)
+
+## Blog
+
+Posts are Markdown files in `src/content/blog/`, one per post. The file name is the web address:
+`best-time-to-visit.md` becomes `/blog/best-time-to-visit/`. The list is at `/blog/`, the feed at `/rss.xml`, and the footer shows a
+Blog link once there is a published post. The posts' own settings are at the top of each file (the "front matter"):
+
+| Field         | Purpose                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| `title`       | The headline (H1), and the title in Google unless `seoTitle` is set.                                         |
+| `seoTitle`    | Optional. The exact `<title>` for Google and browser tabs (otherwise: title + " \| Koh Russey Resort").      |
+| `description` | The meta description, 50 to 200 characters (aim for 120 to 160).                                             |
+| `date`        | Publication date (`2026-10-24`).                                                                             |
+| `updated`     | Optional. Last meaningful change; shown on the post and used as `lastmod` in the sitemap.                    |
+| `cover`       | Optional. A photo in `src/assets/blog/`, as `../../assets/blog/name.jpg`. Also the social media preview.     |
+| `coverAlt`    | Alt text for the cover. Required when there is a cover.                                                      |
+| `tags`        | Optional list. Shown on the post and in the feed.                                                            |
+| `draft`       | `true` leaves the post out of the site completely (pages, feed, sitemap).                                    |
+| `noindex`     | `true` keeps the post out of Google and the sitemap (it stays on the site and in the feed).                  |
+| `canonical`   | Optional. The full address of the original, for a post first published on another site.                      |
+
+Each post page has the canonical link, Open Graph and `article:` tags, `BlogPosting` and `BreadcrumbList` structured data, a reading
+time, related posts (shared tags) and a booking prompt. Images in the text are resized by the build like all the others: put a photo in
+`src/assets/blog/` and write `![A description](../../assets/blog/name.jpg)`.
+
+### Writing posts in the editor
+
+`/admin/` is a form-based editor ([Sveltia CMS](https://sveltiacms.app), installed with the site, settings in `public/admin/config.yml`). It saves
+straight to GitHub, so a saved post goes live when Cloudflare has built the site (about a minute). New posts start as drafts.
+
+1. On GitHub, create a **fine-grained personal access token** (Settings, Developer settings, Personal access tokens). Give it access to
+   the `kohrussey` repository only, with the permission **Contents: Read and write**. Treat it like a password.
+2. Open `/admin/` on the site, choose **Sign In Using Access Token** and paste it. The token stays in that browser.
+3. Choose **Blog posts**, **New Blog post**, fill in the fields and write the text. Switch **Draft** off and save to publish.
+
+The editor saves to the repository's default branch (currently `claude/exciting-thompson-5huum3`, which Cloudflare builds). If that
+branch is renamed (for example to `main`), nothing needs changing here, but Cloudflare's production branch must match.
 
 ## Images
 

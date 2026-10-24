@@ -1,4 +1,5 @@
 ---
+import { getPosts } from "../lib/blog";
 import { nav, secondaryNav, site, telLink, whatsappLink } from "../lib/site";
 
 const social = [
@@ -6,6 +7,10 @@ const social = [
   { label: "Instagram", href: site.social.instagram },
   { label: "TikTok", href: site.social.tiktok },
 ];
+
+// The Blog link appears once there is a published post.
+const blogLinks = (await getPosts()).length > 0 ? [{ label: "Blog", href: "/blog/" }] : [];
+const footerLinks = [...secondaryNav, ...blogLinks, ...nav];
 
 const item = "text-salt/80 hover:text-salt hover:underline underline-offset-4";
 const c = site.contact;
@@ -30,7 +35,7 @@ const c = site.contact;
     </div>
     <nav aria-label="Footer" class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm md:grid-cols-1">
       {
-        [...secondaryNav, ...nav].map((n) => (
+        footerLinks.map((n) => (
           <a href={n.href} class={item}>
             {n.label}
           </a>

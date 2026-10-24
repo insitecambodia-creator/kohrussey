@@ -1,0 +1,22 @@
+---
+// The blog editor at /admin/ (Sveltia CMS). It reads and writes the Markdown files in src/content/blog through GitHub,
+// using the settings in public/admin/config.yml. It is not part of the public site: no layout, no indexing.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Content Manager</title>
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <script>
+      // Start the editor from the copy installed with the site, not one loaded from another server: it handles the GitHub login.
+      (window as unknown as { CMS_MANUAL_INIT: boolean }).CMS_MANUAL_INIT = true;
+      import("@sveltia/cms").then(({ init }) => init());
+    </script>
+  </body>
+</html>

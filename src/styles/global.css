@@ -229,3 +229,93 @@ p {
     animation: none;
   }
 }
+
+/* The text of a blog post (Markdown turned into HTML). */
+.post-body {
+  max-width: 68ch;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: color-mix(in oklab, var(--ink) 88%, transparent);
+}
+.post-body > * + * {
+  margin-top: 1.4em;
+}
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  color: var(--ink);
+  scroll-margin-top: 6rem;
+}
+.post-body h2 {
+  margin-top: 2.4em;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.15;
+}
+.post-body h3 {
+  margin-top: 2em;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.post-body h4 {
+  margin-top: 1.8em;
+  font-weight: 500;
+}
+.post-body a {
+  color: var(--pool);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--pool) 40%, transparent);
+  text-underline-offset: 4px;
+}
+.post-body a:hover {
+  text-decoration-color: var(--pool);
+}
+.post-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.post-body ul,
+.post-body ol {
+  padding-left: 1.4em;
+}
+.post-body ul {
+  list-style: disc;
+}
+.post-body ol {
+  list-style: decimal;
+}
+.post-body li + li {
+  margin-top: 0.5em;
+}
+.post-body blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.25em;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.post-body img,
+.post-body video {
+  width: 100%;
+  height: auto;
+}
+.post-body hr {
+  border: 0;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+  margin-block: 2.4em;
+}
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.post-body th,
+.post-body td {
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+  padding: 0.6em 0.75em 0.6em 0;
+  text-align: left;
+  vertical-align: top;
+}
+.post-body th {
+  font-weight: 500;
+}

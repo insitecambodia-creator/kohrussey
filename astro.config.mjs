@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync } from "node:fs";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
@@ -8,6 +9,20 @@ import { redirects, redirectsFile } from "./redirects.mjs";
 const env = { ...loadEnv(process.env.NODE_ENV ?? "production", process.cwd(), "PUBLIC_"), ...process.env };
 const site = env.PUBLIC_SITE_URL || "https://www.kohrusseyresort.com";
 
+// Blog posts: when each was last changed (for the sitemap), and which ask to stay out of search results.
+// Read straight from the Markdown files' front matter, since this file runs before the site's content is loaded.
+const blogDir = new URL("./src/content/blog/", import.meta.url);
+const blog = new Map();
+for (const file of readdirSync(blogDir).filter((f) => f.endsWith(".md"))) {
+  const front = readFileSync(new URL(file, blogDir), "utf8").match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? "";
+  const field = (name) => front.match(new RegExp(`^${name}:\\s*["']?([^"'\\r\\n]+)`, "m"))?.[1]?.trim();
+  const lastmod = new Date(field("updated") ?? field("date") ?? "");
+  blog.set(`/blog/${file.replace(/\.md$/, "")}/`, {
+    lastmod: Number.isNaN(lastmod.getTime()) ? undefined : lastmod,
+    noindex: field("noindex") === "true",
+  });
+}
+
 export default defineConfig({
   site,
   // Every page is a folder with an index.html (/villas/), which any static host serves as is.
@@ -16,8 +31,17 @@ export default defineConfig({
   // The stylesheet is small, so it goes inside each page instead of being a separate file that holds up the first paint.
   build: { inlineStylesheets: "always" },
   integrations: [
-    // The booking page stays out of the sitemap, as on the current site.
-    sitemap({ filter: (page) => !new URL(page).pathname.startsWith("/booking/") }),
+    // The booking page stays out of the sitemap, as on the current site; so do the editor and posts marked noindex.
+    sitemap({
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        return !path.startsWith("/booking/") && !path.startsWith("/admin/") && !blog.get(path)?.noindex;
+      },
+      serialize: (item) => {
+        const lastmod = blog.get(new URL(item.url).pathname)?.lastmod;
+        return lastmod ? { ...item, lastmod: lastmod.toISOString() } : item;
+      },
+    }),
     redirectsFile(),
   ],
   // Wulkan Display, the corporate display face. The files are subsets (Latin, with the French
