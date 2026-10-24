@@ -1,6 +1,8 @@
 // Pavilions and villas, copied word for word from the current kohrusseyresort.com
 // "Villas & Pavilions" page (private-beachfront-residence). Typos in the original were corrected;
 // see docs/content-fixes.md.
+// The old 3-bedroom "Beach Pool Villa" (500 sqm, from $1,230 a night) was left out on purpose: it is a hidden
+// entry on the old site.
 
 export type Accommodation = {
   /** Anchor for links such as /villas#garden-pavilion. */
@@ -64,17 +66,6 @@ export const accommodations: Accommodation[] = [
     "paragraphs": [
       "Discover spacious luxury in our 2-Bedroom Beach Pool Villa, spanning 180sqm and accommodating up to 4 guests. This villa features two separate bedrooms, a living room, dining area, kitchenette, and a private pool, offering the perfect setting for families to relax, bond, and enjoy outdoor activities together. Ideal for those seeking comfort and privacy."
     ]
-  },
-  {
-    "slug": "beach-pool-villa",
-    "name": "Beach Pool Villa",
-    "spec": "500 sqm | 3 bedrooms | 6 guests",
-    "paragraphs": [
-      "It has 3 bedrooms separated by a dining area and a kitchen with butler pantry. The open concept design gives the guests a view of the private pool, the lush garden and the beach. It has a beach-front dining deck where guests can dine together making the place a perfect hideaway.",
-      "Spend time with your family and friends at the poolside lounge.",
-      "After spending quality time with your loved ones in the spacious living and dining area, relax in the comfort of your bedroom with a stunning beach view."
-    ],
-    "price": "from $1,230 per night"
   },
   {
     "slug": "4-bedroom-beach-pool-villa",

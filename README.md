@@ -74,7 +74,7 @@ generated from the saved file and checked line by line against it):
 - Activities: the five activity sections, each with its photo, and the 16 most sought-after experiences (`src/lib/activities.ts`). Left out on
   purpose: the "Download the catalog" form (needs a backend and the PDF) and the Cooking Class, Kayaking and Snorkeling
   buttons (their pages are not built yet; the old addresses redirect to the matching section).
-- Villas & Pavilions: the three pavilions and five pool villas (`src/lib/accommodations.ts`), each with its photos. Which photos go with which villa is set in `src/lib/stay-photos.ts`; the 3-bedroom Beach Pool Villa has none yet.
+- Villas & Pavilions: the three pavilions and four pool villas (`src/lib/accommodations.ts`), each with its photos. Which photos go with which villa is set in `src/lib/stay-photos.ts`.
 
 Typos in the original text were corrected (and nothing else was reworded). Every change is listed in
 `docs/content-fixes.md`, with the few judgement calls at the bottom.
@@ -82,7 +82,7 @@ Typos in the original text were corrected (and nothing else was reworded). Every
 Still to add (the homepage only had a short summary of each):
 
 - Full copy for Weddings, Offers and the other pages that only have a short summary
-- Photos of the 3-bedroom Beach Pool Villa, and the logo
+- The logo
 - The six blog articles
 - Chinese and French versions (the current site has both)
 

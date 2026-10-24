@@ -96,7 +96,7 @@ export const photos = {
 
 /**
  * Photos shown with each pavilion or villa on the Villas page, keyed by the slug in accommodations.ts.
- * The first photo leads; the others follow in a small grid. The 3-bedroom Beach Pool Villa has none yet.
+ * The first photo leads; the others follow in a small grid.
  * The Ocean Pavilion also has the two "OF" photos from the upload (taken to mean ocean front).
  */
 export const villaPhotos: Record<string, Photo[]> = {
