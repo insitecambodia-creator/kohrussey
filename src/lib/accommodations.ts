@@ -77,19 +77,21 @@ export const accommodations: Accommodation[] = [
 ];
 
 /**
- * Short texts under "Pavilions" and "Villas" in the overview at the top of the page. They are the first two
- * paragraphs of the original closing text, moved up here so nothing is repeated; replace them with copy
- * written for each group when it is ready.
+ * The two texts under "Pavilions" and "Villas" in the overview at the top of the page: what sets a pavilion
+ * apart from a villa. Written for the new site (not on the old one) from the facts in the entries above;
+ * see docs/content-fixes.md.
  */
 export const accommodationsOverviewText = {
   pavilions:
-    "Escape to the breathtaking island paradise of Koh Russey Resort, where powder-soft beaches meet crystal-clear turquoise waters. Whether you’re up for a peaceful retreat or an adventurous getaway, our lush tropical landscapes invite you to explore, relax, and recharge at your own pace.",
+    "Our pavilions are 50sqm rooms, each with a king-size bed, a private terrace or balcony and a bathroom with a rainfall shower. They differ mainly in their setting: a view of the garden, the ocean or the beach. If you would like more space and a pool of your own, choose a villa.",
   villas:
-    "Stay in our beautifully designed pavilions and villas, each offering panoramic ocean views, private pools, and all the comforts you need for an unforgettable stay. Savor mouthwatering dishes crafted from the freshest local ingredients, enjoy soothing spa treatments, or dive into fun activities like snorkeling, kayaking, and sunset cruises.",
+    "Our villas are the bigger choice, from 110sqm with one bedroom to 560sqm with four. Each has its own private pool and more space to relax, with a cabana or a living and dining area and, in the larger villas, a kitchen. They suit everyone from couples and small families in the 1-bedroom villas to groups of up to eight in the 4-bedroom villa.",
 };
 
 /** Closing text at the bottom of the page. */
 export const accommodationsClosing: string[] = [
+  "Escape to the breathtaking island paradise of Koh Russey Resort, where powder-soft beaches meet crystal-clear turquoise waters. Whether you’re up for a peaceful retreat or an adventurous getaway, our lush tropical landscapes invite you to explore, relax, and recharge at your own pace.",
+  "Stay in our beautifully designed pavilions and villas, each offering panoramic ocean views, private pools, and all the comforts you need for an unforgettable stay. Savor mouthwatering dishes crafted from the freshest local ingredients, enjoy soothing spa treatments, or dive into fun activities like snorkeling, kayaking, and sunset cruises.",
   "Our friendly team is here to make every moment special, offering personalized service that ensures your stay is seamless and stress-free. Whether you’re traveling as a couple, with family, or on a solo adventure, Koh Russey Resort promises a perfect mix of relaxation, adventure, and lasting memories.",
   "Come experience island life at its finest—we can’t wait to welcome you!"
 ];

@@ -76,3 +76,10 @@ File: `src/lib/activities.ts`
 - "flavours" became "flavors" to match the American spelling used everywhere else on the site.
 - Hyphens were added to compound adjectives ("slow-cooked", "pan-fried", "wok-fried") to match "Deep-fried" and "Flour-coated" elsewhere in the menus.
 - The list of resort activities was set in one consistent lower-case style.
+
+## Text written for the new site
+
+Everything above is wording copied from the old site. These texts are new, written from facts already in the copied text:
+
+- Villas page overview, under "Pavilions" and "Villas" (`accommodationsOverviewText` in `src/lib/accommodations.ts`): what sets a pavilion apart from a villa. It uses only the sizes, bed, terrace/balcony, private pool, cabana, living and dining area, kitchen and guest numbers already given for each entry. It also implies pavilions have no private pool of their own (none is mentioned for them), so confirm that.
+- The "Page not found" page (`src/pages/404.astro`).
