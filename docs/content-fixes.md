@@ -125,6 +125,15 @@ File: `src/lib/getting-here.ts`
 | scheduled shared round trip speed boat transfers is directly operated | scheduled shared round-trip speedboat transfers are directly operated | 1 |
 | an international destination. Elevate your journey | an international destination, elevate your journey | 1 |
 
+## Blog posts
+Files: `src/content/blog/*.md` (six articles, moved over from the old site's posts)
+
+No spelling mistakes were found in the text. What was changed:
+
+| Before | After | Times |
+| --- | --- | --- |
+| Straight quotes and apostrophes ("off the grid", haven't; Cambodia's in the search title and description) | Curly ones (“off the grid”, haven’t, Cambodia’s), as in the rest of the site | 1 post |
+
 ## Judgement calls
 
 - "coco" in the ice cream flavours became "coconut" (chocolate is already listed, so it was not cocoa). Change it back if "coco" was intended.
@@ -153,3 +162,10 @@ Everything above is wording copied from the old site. These texts are new, writt
 - Reviews page meta description (`src/lib/reviews.ts`).
 - About us: the small heading above the title is shown as plain small capitals rather than as a heading, and "Contact details" is a hidden heading for screen readers.
 - Photos standing in until the originals are added: About us uses the beach-at-sunset aerial in place of the staff photo (`staff02.webp`) and the pavilions among the trees in place of `Koh-Russey-Resort_room_footer01`; Getting here uses the resort aerial in place of the helicopter photo (`helistar`) and the island map in place of `GET-TO-THE-ISLAND`.
+- Blog posts: the address of each post is now `/blog/<name>/` and the old address (`/<name>/`) redirects to it (`redirects.mjs`). Links inside the posts to other pages of the old site were pointed straight at the new addresses.
+- Blog posts: the search title (`<title>`) of every post is exactly the old one (ending "- Koh Russey Resort"), kept in `seoTitle`. The headline on the page is the old headline. For "Creating Memorable Island Experiences" the old page had the headline and "Activities for Every Guest" as two headings; they are one title now, which matches the old search title.
+- Blog posts: the old meta descriptions were the first characters of the article cut off in the middle of a sentence (for example "...Samloem is what happens when you slip out early and find a quiet corner. It\u2019s calmer, greener, and noticeably more"). They were trimmed to the last complete sentence. The snorkeling post's old description was only "3-minute read", so its description was taken from the first two sentences of the article. Please rewrite these in the editor.
+- Blog posts: heading levels were tidied without changing the words: the sub-headings under each island in "Cambodia\u2019s Islands" (h4) became h3, and in "Creating Memorable Island Experiences" "Water Sports" and "A Blend of Adventure and Serenity" swapped levels and the bold line "Cooking Classes: A Taste of Cambodian Culture" became a heading like the sections after it.
+- Blog posts: left out: the "*3-minute read*" line (every post shows its reading time now), the "Tagged Snorkeling" line (the tag is in the post's settings), and the share buttons and dividers from the old page template. The checklist in the wedding post is shown as lines, as it was meant to be (on the old page it ran together on one line).
+- Blog posts: images. The "Cambodia\u2019s Islands" post used six photos linked from other websites (TripAdvisor, voyagecambodge.com, webbeds.com, movetocambodia.com, madmonkeyhostels.com). They were not copied: the images belong to those sites, and linking to them is unreliable. Please add the resort\u2019s own photos. The snorkeling post\u2019s butterflyfish photo (from Wikimedia Commons, which needs a credit) was left out too; its snorkeling guide poster was kept. None of the six posts had a cover photo, so the previews on social media use the homepage photo until covers are added.
+- Blog posts: the "Read more" links in "Cambodia\u2019s Islands" are as on the old page: Koh Rong and Koh Rong Samloem both go to visitkohrong.com/samloem, and the other four go to the resort\u2019s homepage. They look like placeholders.

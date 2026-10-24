@@ -23,6 +23,13 @@ export const redirects = {
   "/koh-russey-resort-reviews-media-mentions": "/reviews/",
   "/faq-frequently-asked-questions-about-koh-russey-resorts": "/faq/",
   "/map-of-the-resort": "/getting-here/",
+  // The six blog articles: they were at the top level of the old site and now live under /blog/.
+  "/cambodia-wedding-destination-koh-russey-private-island": "/blog/cambodia-wedding-destination-koh-russey-private-island/",
+  "/cambodia-welcomes-the-francophone-world-extend-your-journey-with-an-island-escape": "/blog/cambodia-welcomes-the-francophone-world-extend-your-journey-with-an-island-escape/",
+  "/cambodias-islands-beyond-koh-rong-koh-rong-samloem": "/blog/cambodias-islands-beyond-koh-rong-koh-rong-samloem/",
+  "/creating-memorable-island-experiences-activities-for-every-guest": "/blog/creating-memorable-island-experiences-activities-for-every-guest/",
+  "/snorkeling-in-cambodia-discover-an-underwater-world-beyond-the-beaches": "/blog/snorkeling-in-cambodia-discover-an-underwater-world-beyond-the-beaches/",
+  "/why-cambodias-green-season-might-be-the-best-time-to-travel": "/blog/why-cambodias-green-season-might-be-the-best-time-to-travel/",
 };
 
 /** Astro integration: writes `dist/_redirects` (Netlify / Cloudflare Pages format) after the build. */

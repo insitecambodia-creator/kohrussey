@@ -90,14 +90,13 @@ Still to add:
 - The logo and favicon
 - Photos for the meeting room (Corporate retreat), the two pre-wedding couples (Weddings), the staff photo (About us) and the helicopter
   (Getting here); the pages use stand-in photos until these are added
-- The six existing blog articles (from the old site; see Blog)
 - Chinese and French versions (the current site has both)
 
 ## Blog
 
 Posts are Markdown files in `src/content/blog/`, one per post. The file name is the web address:
 `best-time-to-visit.md` becomes `/blog/best-time-to-visit/`. The list is at `/blog/`, the feed at `/rss.xml`, and the footer shows a
-Blog link once there is a published post. The posts' own settings are at the top of each file (the "front matter"):
+Blog link once there is a published post. The six articles from the old site are in the folder already; their old addresses redirect. The posts' own settings are at the top of each file (the "front matter"):
 
 | Field         | Purpose                                                                                                     |
 | ------------- | ----------------------------------------------------------------------------------------------------------- |
