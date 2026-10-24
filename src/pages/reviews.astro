@@ -1,0 +1,30 @@
+---
+import Icon from "../components/Icon.astro";
+import PageHeading from "../components/PageHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { mediaMentions, reviewsPage as page } from "../lib/reviews";
+---
+
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <PageHeading title={page.title} />
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <ul class="border-t border-ink/15">
+      {
+        mediaMentions.map((m) => (
+          <li data-reveal="rise" class="grid gap-2 border-b border-ink/15 py-6 md:grid-cols-12 md:items-baseline md:gap-8">
+            <h3 class="text-sm text-ink/70 md:col-span-3">{m.source}</h3>
+            <h2 class="font-display text-2xl leading-snug md:col-span-6">{m.headline}</h2>
+            <p class="md:col-span-3 md:text-right">
+              <a
+                href={m.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-pool underline underline-offset-4 decoration-pool/40 hover:decoration-pool"
+              >{m.label}<Icon name="arrow-up-right" class="size-4" /></a>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

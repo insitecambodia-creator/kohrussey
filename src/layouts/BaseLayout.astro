@@ -9,7 +9,7 @@ import { images } from "../lib/images";
 import { site } from "../lib/site";
 
 interface Props {
-  /** The page's own title; the site name is added after it. Leave out on the homepage. */
+  /** The page's own title; the site name is added after it unless the title already names the resort. Leave out on the homepage. */
   title?: string;
   description?: string;
   /** Keep this page out of search results even after launch (the booking page). */
@@ -18,7 +18,9 @@ interface Props {
 
 const { title, description = site.description, noindex = false } = Astro.props;
 
-const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
+const fullTitle = title
+  ? title.includes("Koh Russey") ? title : `${title} | ${site.name}`
+  : `${site.name} | ${site.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const preview = await getImage({ src: images.poolMorning.src, width: 1200, height: 630, format: "jpeg" });
 const previewUrl = new URL(preview.src, Astro.site);

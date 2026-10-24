@@ -30,6 +30,9 @@ export const site = {
   },
   // Muted looping video behind the homepage hero (a YouTube video ID).
   heroVideo: { youtubeId: "QvwDAsy68P4" },
+  // Enquiry forms (contact, weddings, corporate retreat). With a Web3Forms access key (free, from web3forms.com)
+  // they send the message straight to the resort's email; without one they open the visitor's email app instead.
+  forms: { accessKey: (import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined) ?? "" },
   // Search engines stay out until the redesign is ready to go live (PUBLIC_ALLOW_INDEXING=true).
   allowIndexing: import.meta.env.PUBLIC_ALLOW_INDEXING === "true",
 } as const;
@@ -50,6 +53,8 @@ export const secondaryNav = [
   { href: "/about/", label: "About us" },
   { href: "/spa/", label: "Island Spa & Wellness" },
   { href: "/corporate-retreat/", label: "Corporate retreat" },
+  { href: "/reviews/", label: "Reviews" },
+  { href: "/faq/", label: "FAQ" },
 ] as const;
 
 /** Booking is handled by the Exely booking engine, embedded on this page. */
@@ -61,6 +66,6 @@ export function whatsappLink(message = "Hello! I'd like to ask about staying at 
   return `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
-export function telLink(): string {
-  return `tel:${site.contact.phone.replace(/\s/g, "")}`;
+export function telLink(phone: string = site.contact.phone): string {
+  return `tel:${phone.replace(/\s/g, "")}`;
 }

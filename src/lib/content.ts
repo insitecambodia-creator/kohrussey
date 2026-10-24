@@ -1,5 +1,5 @@
 // Content taken from the current kohrusseyresort.com homepage. Sections that only had a
-// short summary there (villas, restaurants, activities, weddings, offers) carry just that
+// short summary there (villas, restaurants, activities, offers) carry just that
 // summary until the full page copy is supplied.
 
 export const introLead =
@@ -42,11 +42,6 @@ export const allInclusive = {
   eyebrow: "Best offer",
   title: "All-Inclusive Villa Experience",
   body: "Experience the ultimate finery with our exclusive All-Inclusive Villa Offer at Koh Russey Resort. Book your private villa and enjoy unlimited meals, drinks, and minibar treats, all included. Escape to a worry-free paradise where indulgence meets relaxation, with every gourmet experience covered. Perfect for couples, families, or anyone seeking a premium getaway!",
-};
-
-export const weddings = {
-  title: "Weddings & Private Retreats",
-  body: "A private island with secluded beaches, ideal for romantic getaways, weddings and private retreats.",
 };
 
 export const location = {
@@ -96,3 +91,27 @@ export const reviews = [
       "Gorgeous resort with inspiring architecture throughout. Saw lots of tropical fish, cuttlefish, a nudibranch and multiple octopus when snorkeling!",
   },
 ];
+
+// Copied from the current kohrusseyresort.com Contact Us and Promotions and Special Offers pages.
+// Typos were corrected; see docs/content-fixes.md.
+export const contactPage = {
+  metaTitle: "Contact Us - Koh Russey Resort",
+  description:
+    "Contact Koh Russey Resort today to book your dream vacation. Our friendly staff is here to help you plan your stay and answer any questions you may have. Whether you\u2019re looking for a romantic getaway or a fun family adventure, we have the perfect accommodations and activities for you. Contact us now!",
+  title: "Contact Us",
+  tagline: "Just A Short Ride Off The Southern Coastal Area Of Cambodia",
+  address: "Koh Russey Resort, Bamboo Island, Ong Village, Prey Nup District, Ream Commune, Preah Sihanouk 18108, Cambodia",
+  writeLabel: "Write to us",
+  form: { subject: "Contact enquiry" },
+};
+
+export const promotionsPage = {
+  metaTitle: "Promotions and Special Offers - Koh Russey Resort",
+  description:
+    "There are no active promotions at this time. Nonetheless, we strongly invite you to check with us for any surprise promotions or flash offers.",
+  title: "Promotions and Special Offers",
+  heading: "There are no active promotions at this time",
+  body: "Nonetheless, we strongly invite you to check with us for any surprise promotions or flash offers",
+  telegramLabel: "Chat on Telegram",
+  whatsappLabel: "Chat on WhatsApp",
+};

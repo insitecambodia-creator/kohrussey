@@ -1,52 +1,71 @@
 ---
+import EnquiryForm from "../components/EnquiryForm.astro";
+import Icon from "../components/Icon.astro";
 import PageHeading from "../components/PageHeading.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { contactPage as page, promotionsPage } from "../lib/content";
 import { site, telLink, whatsappLink } from "../lib/site";
-import { link } from "../lib/ui";
+import { button, link } from "../lib/ui";
 
 const c = site.contact;
-const row = "grid grid-cols-[6rem_minmax(0,1fr)] py-3";
+const row = "flex gap-4 py-4";
 ---
 
-<BaseLayout title="Contact us" description="Contact Koh Russey Resort to book or ask a question.">
-  <PageHeading title="Contact us" intro="Questions before you book? Message us and we will help." />
-  <div class="mx-auto grid max-w-6xl gap-12 px-4 py-14 md:grid-cols-2">
-    <section>
-      <h2 class="text-3xl">Direct booking</h2>
-      <dl data-reveal-group class="mt-6 divide-y divide-ink/15 border-y border-ink/15 [&_dd]:break-words">
-        <div class={row}>
-          <dt class="text-ink/70">Phone</dt>
-          <dd><a href={telLink()} class={link}>{c.phone}</a></dd>
-        </div>
-        <div class={row}>
-          <dt class="text-ink/70">WhatsApp</dt>
-          <dd><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class={link}>Send a message</a></dd>
-        </div>
-        <div class={row}>
-          <dt class="text-ink/70">Telegram</dt>
-          <dd><a href={c.telegram} target="_blank" rel="noopener noreferrer" class={link}>Send a message</a></dd>
-        </div>
-        <div class={row}>
-          <dt class="text-ink/70">Email</dt>
-          <dd><a href={`mailto:${c.email}`} class={link}>{c.email}</a></dd>
-        </div>
-      </dl>
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <PageHeading title={page.title} intro={page.tagline} />
+  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 py-14 md:grid-cols-2 md:gap-16">
+    <section class="min-w-0">
+      <ul data-reveal-group class="divide-y divide-ink/15 border-y border-ink/15">
+        <li class={row}>
+          <Icon name="phone" class="mt-1 size-5 text-pool" />
+          <a href={telLink()} class="font-display text-2xl">{c.phone}</a>
+        </li>
+        <li class={row}>
+          <Icon name="map-pin" class="mt-1 size-5 text-pool" />
+          <address class="not-italic text-ink/85">
+            {page.address}
+            <span class="mt-2 block text-sm">
+              <a href={c.mapUrl} target="_blank" rel="noopener noreferrer" class={link}>Open in Google Maps</a>
+            </span>
+          </address>
+        </li>
+        <li class={row}>
+          <Icon name="mail" class="mt-1 size-5 text-pool" />
+          <div class="min-w-0">
+            <a href={`mailto:${c.email}`} class="break-words font-display text-xl sm:text-2xl">{c.email}</a>
+            <div class="mt-3">
+              <a href={`mailto:${c.email}`} class={button.dark}>{page.writeLabel}</a>
+            </div>
+          </div>
+        </li>
+        <li class={row}>
+          <Icon name="message-circle" class="mt-1 size-5 text-pool" />
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class={link}>{promotionsPage.whatsappLabel}</a>
+        </li>
+        <li class={row}>
+          <Icon name="send" class="mt-1 size-5 text-pool" />
+          <a href={c.telegram} target="_blank" rel="noopener noreferrer" class={link}>{promotionsPage.telegramLabel}</a>
+        </li>
+      </ul>
+      <p data-reveal="rise" class="mt-8 text-ink/85">
+        <strong class="font-medium">{c.loungeName}</strong>
+        <br />
+        {c.loungeAddress}
+      </p>
     </section>
-    <section>
-      <h2 data-reveal="rise" class="text-3xl">Find us</h2>
-      <address data-reveal="rise" data-delay="1" class="mt-6 space-y-4 not-italic text-ink/85">
-        <p>
-          <strong class="font-medium">{c.loungeName}</strong>
-          <br />
-          {c.loungeAddress}
-        </p>
-        <p>
-          <strong class="font-medium">{site.name}</strong>
-          <br />
-          {c.resortAddress}
-        </p>
-        <p><a href={c.mapUrl} target="_blank" rel="noopener noreferrer" class={link}>Open in Google Maps</a></p>
-      </address>
+
+    <section class="min-w-0">
+      <h2 class="sr-only">Contact form</h2>
+      <EnquiryForm
+        id="contact-form"
+        subject={page.form.subject}
+        fields={[
+          { type: "name", label: "Name *" },
+          { type: "tel", label: "Phone *", name: "phone", required: true, placeholder: "Phone / Telegram" },
+          { type: "email", label: "Email *", name: "email", required: true },
+          { type: "textarea", label: "Comments", name: "comments", placeholder: "Comments or enquiry" },
+        ]}
+      />
     </section>
   </div>
 </BaseLayout>

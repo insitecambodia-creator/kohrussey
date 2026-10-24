@@ -1,41 +1,83 @@
 ---
+import EnquiryForm from "../components/EnquiryForm.astro";
+import Img from "../components/Img.astro";
 import PageHeading from "../components/PageHeading.astro";
+import ParallaxFrame from "../components/ParallaxFrame.astro";
 import Photo from "../components/Photo.astro";
+import RichText from "../components/RichText.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { corporatePage as page } from "../lib/corporate";
 import { images } from "../lib/images";
-import { site, whatsappLink } from "../lib/site";
-import { button } from "../lib/ui";
+import { photos } from "../lib/stay-photos";
+import { prose } from "../lib/ui";
+
+/** The photo shown with each feature. The meeting room has none until its photo is added. */
+const featurePhotos = {
+  "beach-activities": images.corporateBeach,
+  accommodations: photos.oceanPavilionRoom2,
+} as const;
+const photoSizes = "(min-width: 1152px) 740px, (min-width: 768px) 66vw, 100vw";
 ---
 
-<BaseLayout
-  title="Corporate retreat"
-  description="Corporate retreats and team activities on a private island in Cambodia."
->
-  <PageHeading title="Corporate retreat" intro="A private island setting for team retreats and group activities." />
-  <div class="mx-auto max-w-6xl px-4 py-14">
-    <div class="grid items-start gap-4 md:grid-cols-5">
-      <Photo
-        image={images.corporateBeach}
-        sizes="(min-width: 1152px) 670px, (min-width: 768px) 60vw, 100vw"
-        natural
-        class="md:col-span-3"
-      />
-      <Photo
-        image={images.retreatLawn}
-        sizes="(min-width: 1152px) 450px, (min-width: 768px) 40vw, 100vw"
-        natural
-        delay={2}
-        class="md:col-span-2"
-      />
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <PageHeading title={page.title} intro={page.lead} />
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="mt-12">
+      <ParallaxFrame class="aspect-[16/9] md:aspect-[21/8]">
+        <Img
+          src={photos.aerialDusk.src}
+          alt={photos.aerialDusk.alt}
+          sizes="(min-width: 1152px) 1120px, 100vw"
+          class="h-full w-full object-cover object-[50%_58%]"
+        />
+      </ParallaxFrame>
     </div>
-    <div data-reveal="rise" class="mt-10 flex flex-wrap gap-3">
-      <a
-        href={whatsappLink("Hello! I'd like to ask about a corporate retreat at Koh Russey Resort.")}
-        target="_blank"
-        rel="noopener noreferrer"
-        class={button.dark}
-      >Ask about a retreat on WhatsApp</a>
-      <a href={`mailto:${site.contact.email}`} class={button.outline}>Email reservations</a>
-    </div>
+
+    <section class="grid gap-8 py-16 md:grid-cols-12 md:py-20">
+      <h2 data-reveal="rise" class="text-3xl md:col-span-5 md:text-4xl">{page.why.title}</h2>
+      <p data-reveal="rise" data-delay="1" class:list={["text-ink/85 md:col-span-7", prose]}>{page.why.body}</p>
+    </section>
+
+    {
+      page.features.map((f) => {
+        const photo = featurePhotos[f.id as keyof typeof featurePhotos];
+        return (
+          <article id={f.id} class="grid scroll-mt-24 gap-6 border-t border-ink/15 py-12 md:grid-cols-12 md:gap-10">
+            <div class="md:col-span-4">
+              <p data-reveal="rise" class="text-sm uppercase tracking-[0.16em] text-pool">{f.eyebrow}</p>
+              <h3 data-reveal="rise" data-delay="1" class="mt-2 text-3xl">{f.title}</h3>
+            </div>
+            <div class="md:col-span-8">
+              <p data-reveal="rise" class:list={["text-ink/85", prose]}>
+                <RichText text={f.body} />
+              </p>
+              {photo ? <Photo image={photo} sizes={photoSizes} natural class="mt-8" /> : null}
+            </div>
+          </article>
+        );
+      })
+    }
+
+    <section id="form" class="scroll-mt-24 border-t border-ink/15 py-16">
+      <h2 class="sr-only">Corporate retreat enquiry form</h2>
+      <div class="max-w-2xl">
+        <EnquiryForm
+          id="corporate-form"
+          subject={page.form.subject}
+          fields={[
+            { type: "name", label: "Name *" },
+            { type: "tel", label: "Phone *", name: "phone", required: true, placeholder: "Phone / Telegram" },
+            { type: "email", label: "Email *", name: "email", required: true },
+            { type: "text", label: "Company Name", name: "company", placeholder: "Company Name" },
+            {
+              type: "radios",
+              label: page.form.referral,
+              name: "heard_from",
+              options: ["Google", "Social Media", "Reference (friends or colleagues)", "Others"],
+            },
+          ]}
+        />
+      </div>
+    </section>
   </div>
 </BaseLayout>

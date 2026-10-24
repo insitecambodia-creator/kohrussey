@@ -1,0 +1,50 @@
+---
+import Icon from "../components/Icon.astro";
+import PageHeading from "../components/PageHeading.astro";
+import RichText from "../components/RichText.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { faqGroups, faqPage as page } from "../lib/faq";
+import { button, prose } from "../lib/ui";
+---
+
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <PageHeading title={page.title} intro={page.welcome} />
+  <div class="mx-auto max-w-6xl px-4">
+    {
+      faqGroups.map((group) => (
+        <section class="grid gap-6 border-b border-ink/15 py-12 md:grid-cols-12 md:gap-10">
+          <h2 data-reveal="rise" class="text-3xl md:col-span-4">{group.title}</h2>
+          <div class="md:col-span-8">
+            {group.items.map((item) => (
+              <details class="group border-t border-ink/15 first:border-t-0 md:first:border-t">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-4 [&::-webkit-details-marker]:hidden">
+                  <h3 class="font-display text-xl leading-snug">{item.question}</h3>
+                  <Icon name="chevron-down" class="mt-1 size-5 text-pool transition-transform group-open:rotate-180" />
+                </summary>
+                <div class:list={["space-y-3 pb-6 text-ink/85", prose]}>
+                  {item.answer.map((p) => (
+                    <p>
+                      <RichText text={p} />
+                    </p>
+                  ))}
+                  {item.list ? (
+                    <ul class="list-disc space-y-1 pl-5">
+                      {item.list.map((li) => (
+                        <li>{li}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {item.button ? (
+                    <p class="pt-2">
+                      <a href={item.button.href} class={button.outline}>{item.button.label}</a>
+                    </p>
+                  ) : null}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

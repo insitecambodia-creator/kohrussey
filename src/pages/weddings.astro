@@ -1,22 +1,107 @@
 ---
-import PageHeading from "../components/PageHeading.astro";
+import EnquiryForm from "../components/EnquiryForm.astro";
+import Img from "../components/Img.astro";
+import Photo from "../components/Photo.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { weddings } from "../lib/content";
-import { site, whatsappLink } from "../lib/site";
-import { button } from "../lib/ui";
+import { site, telLink } from "../lib/site";
+import { photos } from "../lib/stay-photos";
+import { button, prose } from "../lib/ui";
+import { weddingForm, weddingPage as page } from "../lib/wedding";
+
+const telegram = site.contact.telegram;
 ---
 
-<BaseLayout title="Wedding Packages" description="Hold your wedding on a private island in Cambodia at Koh Russey Resort.">
-  <PageHeading title={weddings.title} intro={weddings.body} />
-  <div class="mx-auto max-w-6xl px-4 py-14">
-    <div data-reveal="rise" class="flex flex-wrap gap-3">
-      <a
-        href={whatsappLink("Hello! I'd like to ask about wedding packages at Koh Russey Resort.")}
-        target="_blank"
-        rel="noopener noreferrer"
-        class={button.dark}
-      >Ask about weddings on WhatsApp</a>
-      <a href={`mailto:${site.contact.email}`} class={button.outline}>Email reservations</a>
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <section class="relative isolate flex min-h-[72svh] items-end overflow-hidden bg-ink text-salt">
+    <Img
+      src={photos.beachDinnerTorches.src}
+      alt={photos.beachDinnerTorches.alt}
+      sizes="100vw"
+      priority
+      avif
+      quality={55}
+      class="hero-settle absolute inset-0 -z-20 h-full w-full object-cover object-[50%_60%]"
+    />
+    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 -z-10 h-4/5 bg-gradient-to-t from-ink/95 via-ink/60 to-transparent"></div>
+    <div class="mx-auto w-full max-w-6xl px-4 pb-12 pt-32 md:pb-16">
+      <h1 class="hero-rise max-w-[18ch] text-4xl sm:text-6xl md:text-7xl md:font-normal" style="--d: 0.3s">{page.title}</h1>
+      <h2 class="hero-rise mt-5 max-w-[40ch] font-display text-xl text-salt/95 md:text-2xl" style="--d: 0.6s">{page.subtitle}</h2>
+      <p class="hero-rise mt-4 max-w-[56ch] text-lg text-salt/90" style="--d: 0.9s">{page.intro}</p>
+      <div class="hero-rise mt-8 flex flex-wrap gap-3" style="--d: 1.2s">
+        <a href="#form" class={button.accent}>{page.planLabel}</a>
+        <a href={telegram} target="_blank" rel="noopener noreferrer" class={button.outlineOnDark}>{page.telegramLabel}</a>
+      </div>
     </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4">
+    <section class="grid gap-8 py-16 md:grid-cols-12 md:py-24">
+      <h2 data-reveal="rise" class="text-3xl md:col-span-5 md:text-5xl">
+        {page.perfect.title[0]} <br />
+        {page.perfect.title[1]}
+      </h2>
+      <div class="md:col-span-7">
+        <div data-reveal="rise" data-delay="1" class:list={["space-y-4 text-ink/85", prose]}>
+          {page.perfect.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+        <div data-reveal="rise" data-delay="2" class="mt-8">
+          <a href={telegram} target="_blank" rel="noopener noreferrer" class={button.dark}>{page.telegramLabel}</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="form" class="grid scroll-mt-24 gap-10 border-t border-ink/15 py-16 md:grid-cols-12 md:gap-12">
+      <Photo
+        image={photos.beachDinnerCanopy}
+        sizes="(min-width: 1152px) 480px, (min-width: 768px) 40vw, 100vw"
+        class="aspect-[4/5] md:col-span-5"
+      />
+      <div class="md:col-span-7">
+        <h2 class="sr-only">Wedding enquiry form</h2>
+        <EnquiryForm
+          id="wedding-form"
+          subject={weddingForm.subject}
+          fields={[
+            { type: "name", label: "Name *" },
+            { type: "tel", label: "Phone *", name: "phone", required: true, placeholder: "Phone / Telegram" },
+            { type: "email", label: "Email *", name: "email", required: true },
+            {
+              type: "checks",
+              label: "Choose one or more *",
+              name: "occasion",
+              required: true,
+              options: ["Proposal", "Engagement", "Pre-Wedding Photo", "Wedding", "Honeymoon", "Anniversary"],
+            },
+            { type: "date", label: "If you have an approximate date", name: "date" },
+            {
+              type: "radios",
+              label: weddingForm.referral,
+              name: "heard_from",
+              options: ["Google", "Social Media", "Reference (friends or colleagues)", "Others"],
+            },
+          ]}
+        />
+      </div>
+    </section>
+
+    <section class="grid gap-8 border-t border-ink/15 py-16 md:grid-cols-12">
+      <h2 data-reveal="rise" class="text-3xl md:col-span-5">{page.photos.title}</h2>
+      <div data-reveal="rise" data-delay="1" class="flex flex-wrap items-center gap-3 md:col-span-7">
+        {
+          page.photos.links.map((l) => (
+            <a href={l.href} target="_blank" rel="noopener noreferrer" class={button.outline}>{l.label}</a>
+          ))
+        }
+        <a href={telegram} target="_blank" rel="noopener noreferrer" class={button.dark}>{page.telegramLabel}</a>
+        <a href={telLink(page.photos.phone)} class="ml-2 underline underline-offset-4">{page.photos.phone}</a>
+      </div>
+    </section>
+
+    <section class="grid gap-8 border-t border-ink/15 py-16 md:grid-cols-12">
+      <h2 data-reveal="rise" class="text-3xl md:col-span-5 md:text-4xl">{page.story.title}</h2>
+      <div data-reveal="rise" data-delay="1" class:list={["space-y-5 text-ink/85 md:col-span-7", prose]}>
+        {page.story.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </section>
   </div>
 </BaseLayout>

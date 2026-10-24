@@ -1,0 +1,176 @@
+---
+// An enquiry form (contact, weddings, corporate retreat). With a Web3Forms access key (PUBLIC_WEB3FORMS_KEY) it
+// sends the message to the resort's email; without one it opens the visitor's email app with the message ready.
+import { site } from "../lib/site";
+import { button } from "../lib/ui";
+
+export type Field =
+  | { type: "name"; label: string }
+  | { type: "tel" | "email" | "text" | "date"; label: string; name: string; required?: boolean; placeholder?: string }
+  | { type: "textarea"; label: string; name: string; placeholder?: string }
+  | { type: "checks" | "radios"; label: string; name: string; options: string[]; required?: boolean };
+
+interface Props {
+  id: string;
+  /** The email subject, so the team can tell which form a message came from. */
+  subject: string;
+  fields: Field[];
+  submitLabel?: string;
+  class?: string;
+}
+
+const { id, subject, fields, submitLabel = "Submit", class: className = "" } = Astro.props;
+
+const input =
+  "w-full border border-ink/30 bg-white px-3 py-2.5 text-ink placeholder:text-ink/50 focus:border-ink";
+const legend = "mb-2 block text-sm font-medium";
+---
+
+<form
+  id={id}
+  data-enquiry
+  data-subject={subject}
+  data-key={site.forms.accessKey || undefined}
+  data-email={site.contact.email}
+  method="post"
+  class:list={["space-y-6", className]}
+>
+  {
+    fields.map((f) => {
+      if (f.type === "name") {
+        return (
+          <fieldset data-field data-label={f.label}>
+            <legend class={legend}>{f.label}</legend>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <input type="text" name="first_name" required placeholder="First Name" aria-label="First name" class={input} />
+              <input type="text" name="last_name" required placeholder="Last Name" aria-label="Last name" class={input} />
+            </div>
+          </fieldset>
+        );
+      }
+      if (f.type === "checks" || f.type === "radios") {
+        const kind = f.type === "checks" ? "checkbox" : "radio";
+        return (
+          <fieldset data-field data-label={f.label} data-required-group={f.required ? "" : undefined}>
+            <legend class={legend}>{f.label}</legend>
+            <div class="flex flex-wrap gap-x-6 gap-y-2">
+              {f.options.map((o) => (
+                <label class="flex items-center gap-2">
+                  <input type={kind} name={f.name} value={o} class="size-4 accent-pool" />
+                  {o}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        );
+      }
+      if (f.type === "textarea") {
+        return (
+          <div data-field data-label={f.label}>
+            <label for={`${id}-${f.name}`} class={legend}>{f.label}</label>
+            <textarea id={`${id}-${f.name}`} name={f.name} rows="5" placeholder={f.placeholder} class={input} />
+          </div>
+        );
+      }
+      const single = f as Extract<Field, { type: "tel" | "email" | "text" | "date" }>;
+      return (
+        <div data-field data-label={single.label}>
+          <label for={`${id}-${single.name}`} class={legend}>{single.label}</label>
+          <input
+            id={`${id}-${single.name}`}
+            type={single.type}
+            name={single.name}
+            required={single.required}
+            placeholder={single.placeholder}
+            class={input}
+          />
+        </div>
+      );
+    })
+  }
+
+  {/* Spam trap: people never see or tick this; many bots do. */}
+  <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" />
+
+  <div class="flex flex-wrap items-center gap-4">
+    <button type="submit" class={button.dark}>{submitLabel}</button>
+    <p data-status role="status" aria-live="polite" class="text-sm text-ink/80"></p>
+  </div>
+</form>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>("form[data-enquiry]");
+
+  /** The form's answers as "Label: value" lines. */
+  const summary = (form: HTMLFormElement) =>
+    Array.from(form.querySelectorAll<HTMLElement>("[data-field]"))
+      .map((field) => {
+        const label = field.dataset.label ?? "";
+        const first = field.querySelector<HTMLInputElement>('input[name="first_name"]');
+        const last = field.querySelector<HTMLInputElement>('input[name="last_name"]');
+        if (first && last) return `${label.replace(/\s*\*$/, "")}: ${first.value} ${last.value}`.trim();
+        const checked = Array.from(field.querySelectorAll<HTMLInputElement>("input:checked")).map((i) => i.value);
+        const typed = field.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+          'input:not([type="checkbox"]):not([type="radio"]), textarea',
+        );
+        const value = typed ? typed.value : checked.join(", ");
+        return value ? `${label.replace(/\s*\*$/, "")}: ${value}` : "";
+      })
+      .filter(Boolean);
+
+  for (const form of forms) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const status = form.querySelector<HTMLElement>("[data-status]");
+      const say = (text: string) => {
+        if (status) status.textContent = text;
+      };
+      const data = new FormData(form);
+      if (data.get("botcheck")) return;
+
+      // A group of tick boxes marked required needs at least one ticked.
+      for (const group of form.querySelectorAll<HTMLElement>("[data-required-group]")) {
+        if (!group.querySelector("input:checked")) {
+          group.querySelector<HTMLInputElement>("input")?.focus();
+          say("Please choose at least one option.");
+          return;
+        }
+      }
+
+      const subject = form.dataset.subject ?? "Enquiry";
+      const lines = summary(form);
+      const key = form.dataset.key;
+
+      if (key) {
+        const body = new FormData();
+        body.set("access_key", key);
+        body.set("subject", subject);
+        body.set("from_name", `${data.get("first_name") ?? ""} ${data.get("last_name") ?? ""}`.trim());
+        body.set("message", lines.join("\n"));
+        for (const [name, value] of data) {
+          if (!["botcheck", "first_name", "last_name"].includes(name) && typeof value === "string") body.append(name, value);
+        }
+        say("Sending…");
+        try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body,
+          });
+          const result = await response.json();
+          if (!result.success) throw new Error(result.message);
+          form.reset();
+          say("Thank you. Your message has been sent and our team will be in touch.");
+        } catch {
+          say(`Sorry, that did not send. Please write to us at ${form.dataset.email}.`);
+        }
+        return;
+      }
+
+      // No form service set up: open the visitor's email app with the message ready to send.
+      const address = form.dataset.email ?? "";
+      window.location.href = `mailto:${address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+      say(`Your email app should open with your message. If it does not, please write to us at ${address}.`);
+    });
+  }
+</script>

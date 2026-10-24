@@ -34,6 +34,7 @@ On Cloudflare's Workers & Pages (Workers Builds), leave **Root directory** as `/
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
 | `PUBLIC_SITE_URL`       | The public address (canonical links, social previews, sitemap). Defaults to the live site's.     |
 | `PUBLIC_ALLOW_INDEXING` | `true` to let search engines in. Leave it unset until launch (see Indexing below).               |
+| `PUBLIC_WEB3FORMS_KEY`  | Access key for the enquiry forms (see Forms below). Without it the forms open the visitor's email app. |
 
 Every page is a folder with an `index.html` and links end in a slash (`/villas/`), which all static
 hosts serve as is. The old WordPress addresses are listed in `redirects.mjs`. The build turns each
@@ -42,8 +43,8 @@ Cloudflare Pages use for real 301s. On another host, copy the list into its own 
 
 ## Pages
 
-Home, Villas, Restaurants, Activities, Spa, Weddings, Offers, Getting here, Gallery, Contact and About,
-plus the Exely booking page and a 404. They mirror the current site's structure and live in
+Home, Villas, Restaurants, Activities, Spa, Weddings, Offers, Getting here, Gallery, Contact, About, Corporate
+retreat, Reviews & Media Mentions and FAQ, plus the Exely booking page and a 404. They mirror the current site's structure and live in
 `src/pages/`. The header, footer and `<head>` are in `src/layouts/BaseLayout.astro`.
 
 ## Exely booking
@@ -74,15 +75,20 @@ generated from the saved file and checked line by line against it):
 - Activities: the five activity sections, each with its photo, and the 16 most sought-after experiences (`src/lib/activities.ts`). Left out on
   purpose: the "Download the catalog" form (needs a backend and the PDF) and the Cooking Class, Kayaking and Snorkeling
   buttons (their pages are not built yet; the old addresses redirect to the matching section).
-- Villas & Pavilions: the three pavilions and four pool villas (`src/lib/accommodations.ts`), each with its photos. Which photos go with which villa is set in `src/lib/stay-photos.ts` (the first photo is the large one, the rest fill the grid beside the text), and each room's layout is `src/components/RoomSection.astro`. The page opens with an overview of the pavilions and villas that works as a sub-menu (`src/lib/stay-overview.ts`: which photo and link each tile has).
+- Villas & Pavilions: the three pavilions and four pool villas (`src/lib/accommodations.ts`), each with its photos. Which photos go with which villa is set in `src/lib/stay-photos.ts` (the first photo is the large one, the rest fill the grid beside the text), and each room's layout is `src/components/RoomSection.astro`. The icon row under each room's name is `facts` in `accommodations.ts`. The page opens with an overview of the pavilions and villas that works as a sub-menu (`src/lib/stay-overview.ts`: which photo and link each tile has).
+
+- Weddings, Corporate retreat, Contact, FAQ, Reviews & Media Mentions and Promotions (Offers): the wording comes from the saved pages
+  and lives in `src/lib/wedding.ts`, `corporate.ts`, `faq.ts`, `reviews.ts` and `content.ts`. The FAQ is a set of `<details>` accordions
+  (no JavaScript). Links inside the text are written as `[label](address)` and drawn by `src/components/RichText.astro`.
 
 Typos in the original text were corrected (and nothing else was reworded). Every change is listed in
 `docs/content-fixes.md`, with the few judgement calls at the bottom.
 
 Still to add (the homepage only had a short summary of each):
 
-- Full copy for Weddings, Offers and the other pages that only have a short summary
-- The logo
+- Full copy for the About us and Getting here pages (only a short summary so far)
+- The logo and favicon
+- Photos for the meeting room (Corporate retreat) and the two pre-wedding couples (Weddings)
 - The six blog articles
 - Chinese and French versions (the current site has both)
 
@@ -95,6 +101,24 @@ To add a photo: drop the file in that folder, add an entry to `images.ts`, and s
 responsive photo). Both need a `sizes` value that says how wide the photo is shown, for example
 `(min-width: 768px) 50vw, 100vw`. `map-resort.webp` was cropped to remove the map viewer's controls
 and resized to 2400px wide.
+
+## Forms
+
+The Contact, Weddings and Corporate retreat pages share one form, `src/components/EnquiryForm.astro`. Each page says
+what to ask (the fields) and the subject line the team will see.
+
+- With `PUBLIC_WEB3FORMS_KEY` set (a free access key from [web3forms.com](https://web3forms.com), made for the resort's email address), the
+  form posts to Web3Forms, which emails the message to the resort, and shows a thank-you or an error line. The key is meant to be
+  public, so it is fine in the page.
+- Without a key, the form opens the visitor's email app with the message already written to `site.contact.email`.
+- A hidden tick box catches most spam bots. Groups marked required (the Weddings occasions) need at least one option ticked.
+
+## Icons
+
+A few small line icons sit beside the room facts on the Villas page and the contact details. They are drawn from
+[Lucide](https://lucide.dev) (ISC licence): the shapes are in `src/lib/icons.ts` and `src/components/Icon.astro` draws one by name
+(`<Icon name="phone" class="size-5" />`). To add an icon, copy its shapes from Lucide into `icons.ts`. Icons are decoration only (hidden from
+screen readers), so the meaning is always in the text beside them.
 
 ## Hero video
 

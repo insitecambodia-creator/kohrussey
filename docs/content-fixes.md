@@ -69,6 +69,47 @@ File: `src/lib/activities.ts`
 | Discover Koh Takiev | Discover Koh Ta Kiev | 1 |
 | Koh Takiev Hiking | Koh Ta Kiev Hiking | 1 |
 
+## FAQ
+File: `src/lib/faq.ts`
+
+| Before | After | Times |
+| --- | --- | --- |
+| island. as you will see | island, as you will see | 1 |
+| share is similar sounding | share its similar sounding | 1 |
+| most notorious island; | most notorious islands; | 1 |
+| Alila Villa? / the Alila Villa brand | Alila Villas? / the Alila Villas brand | 2 |
+| Airport, The airport code | Airport. The airport code | 1 |
+| On the other hand villas is a more | On the other hand, villas are a more | 1 |
+| Villas come is three | Villas come in three | 1 |
+| accomodation here | accommodation here | 1 |
+| many various ways | many different ways | 1 |
+| You can book our website or our partner. by contacting | You can book on our website or through our partner, or by contacting | 1 |
+| for safety reason only | for safety reasons only | 1 |
+| In normal situation, | In normal situations, | 1 |
+| off limit. | off limits. | 1 |
+| Koh Rong Salem | Koh Rong Samlem | 1 |
+| then a 30 minutes speed boat | then a 30-minute speed boat | 1 |
+| "Koh Russey" (straight quotes) | “Koh Russey” (curly quotes, as elsewhere) | 3 |
+
+## Reviews & Media Mentions
+File: `src/lib/reviews.ts`
+
+| Before | After | Times |
+| --- | --- | --- |
+| Tentyl Resorts | Rentyl Resorts | 1 |
+| Resort( | Resort ( | 1 |
+
+## Promotions
+File: `src/lib/content.ts`
+
+| Before | After | Times |
+| --- | --- | --- |
+| Chat on Whatsapp | Chat on WhatsApp | 1 |
+
+## Contact, Weddings, Corporate retreat
+
+No wording changes in the page text. In the forms, two labels that were garbled in the saved pages ("Email* *" became "Email *"; the stray labels "have you our" and "Phone Name did" were dropped) and the plain "First" / "Last" captions became the placeholders "First Name" / "Last Name".
+
 ## Judgement calls
 
 - "coco" in the ice cream flavours became "coconut" (chocolate is already listed, so it was not cocoa). Change it back if "coco" was intended.
@@ -76,6 +117,10 @@ File: `src/lib/activities.ts`
 - "flavours" became "flavors" to match the American spelling used everywhere else on the site.
 - Hyphens were added to compound adjectives ("slow-cooked", "pan-fried", "wok-fried") to match "Deep-fried" and "Flour-coated" elsewhere in the menus.
 - The list of resort activities was set in one consistent lower-case style.
+- FAQ: "Alila Villa" became "Alila Villas" (the brand's name) and "Koh Rong Salem" became "Koh Rong Samlem", the spelling used in the rest of the answer.
+- FAQ: the "Map of the region" button points to the Getting here page, the nearest match now that the old map page redirects there.
+- Reviews: the links are kept as on the old page. The first one (retalkasia.com) goes to an image on thesun.my, and "The Luxe Voyager" goes to a fivestaralliance.com page. Both look like mistakes on the old site; check them. The source name "www.retalkasia.com" was left as written (it may be meant to be "retailasia.com").
+- Offers: the old page says there are no active promotions. The all-inclusive villa section from the homepage was kept below it, because the homepage banner links here. Remove it if it is no longer offered.
 
 ## Text written for the new site
 
@@ -83,3 +128,6 @@ Everything above is wording copied from the old site. These texts are new, writt
 
 - Villas page overview, under "Pavilions" and "Villas" (`accommodationsOverviewText` in `src/lib/accommodations.ts`): what sets a pavilion apart from a villa. It uses only the sizes, bed, terrace/balcony, private pool, cabana, living and dining area, kitchen and guest numbers already given for each entry. It also implies pavilions have no private pool of their own (none is mentioned for them), so confirm that.
 - The "Page not found" page (`src/pages/404.astro`).
+- The facts with icons under each room's name on the Villas page (`facts` in `src/lib/accommodations.ts`): size, bed, view, pool and so on, each taken from that room's own text. The 2-Bedroom villa shows "2 bedrooms" and not a guest number, because the booking engine shows a different number of guests from the "up to 4" in the text; settle which is right.
+- Sentences for the forms (`src/components/EnquiryForm.astro`): the messages after sending, "Please choose at least one option." and the hidden "Contact form" heading on the contact page.
+- Reviews page meta description (`src/lib/reviews.ts`).

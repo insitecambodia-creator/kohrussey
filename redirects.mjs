@@ -20,6 +20,9 @@ export const redirects = {
   "/how-to-get-to-koh-russey-island": "/getting-here/",
   "/about-us": "/about/",
   "/contact-us": "/contact/",
+  "/koh-russey-resort-reviews-media-mentions": "/reviews/",
+  "/faq-frequently-asked-questions-about-koh-russey-resorts": "/faq/",
+  "/map-of-the-resort": "/getting-here/",
 };
 
 /** Astro integration: writes `dist/_redirects` (Netlify / Cloudflare Pages format) after the build. */

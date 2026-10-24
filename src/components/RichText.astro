@@ -1,0 +1,27 @@
+---
+// Text that may contain links written as [label](address) (see lib/text.ts).
+import { splitLinks } from "../lib/text";
+import { link } from "../lib/ui";
+
+interface Props {
+  text: string;
+}
+
+const parts = splitLinks(Astro.props.text);
+const isExternal = (href: string) => /^https?:\/\//.test(href);
+---
+
+{
+  parts.map((part) =>
+    part.href ? (
+      <a
+        href={part.href}
+        class={link}
+        target={isExternal(part.href) ? "_blank" : undefined}
+        rel={isExternal(part.href) ? "noopener noreferrer" : undefined}
+      >{part.text}</a>
+    ) : (
+      part.text
+    ),
+  )
+}

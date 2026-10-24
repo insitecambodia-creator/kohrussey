@@ -2,19 +2,34 @@
 import BookButton from "../components/BookButton.astro";
 import PageHeading from "../components/PageHeading.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { allInclusive } from "../lib/content";
-import { prose } from "../lib/ui";
+import { allInclusive, promotionsPage as page } from "../lib/content";
+import { site, whatsappLink } from "../lib/site";
+import { button, prose } from "../lib/ui";
 ---
 
-<BaseLayout title="Promotions & Special Offers" description="The All-Inclusive Villa Experience at Koh Russey Resort.">
-  <PageHeading title="Promotions & Special Offers" />
-  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-12">
-    <h2 data-reveal="slide" class="text-3xl md:col-span-5">{allInclusive.title}</h2>
-    <div class="md:col-span-7">
-      <p data-reveal="rise" data-delay="1" class:list={["text-ink/85", prose]}>{allInclusive.body}</p>
-      <div data-reveal="rise" data-delay="2" class="mt-8">
-        <BookButton>Book the all-inclusive package</BookButton>
+<BaseLayout title={page.metaTitle} description={page.description}>
+  <PageHeading title={page.title} />
+  <div class="mx-auto max-w-6xl px-4">
+    <section class="grid gap-8 py-14 md:grid-cols-12">
+      <h2 data-reveal="slide" class="text-3xl md:col-span-5">{page.heading}</h2>
+      <div class="md:col-span-7">
+        <p data-reveal="rise" data-delay="1" class:list={["text-ink/85", prose]}>{page.body}</p>
+        <div data-reveal="rise" data-delay="2" class="mt-8 flex flex-wrap gap-3">
+          <a href={site.contact.telegram} target="_blank" rel="noopener noreferrer" class={button.dark}>{page.telegramLabel}</a>
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class={button.outline}>{page.whatsappLabel}</a>
+        </div>
       </div>
-    </div>
+    </section>
+
+    {/* The current site shows the all-inclusive package on its homepage (this saved page does not mention it); kept here so the homepage link has somewhere to go. */}
+    <section class="grid gap-8 border-t border-ink/15 py-14 md:grid-cols-12">
+      <h2 data-reveal="slide" class="text-3xl md:col-span-5">{allInclusive.title}</h2>
+      <div class="md:col-span-7">
+        <p data-reveal="rise" data-delay="1" class:list={["text-ink/85", prose]}>{allInclusive.body}</p>
+        <div data-reveal="rise" data-delay="2" class="mt-8">
+          <BookButton>Book the all-inclusive package</BookButton>
+        </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>
