@@ -7,6 +7,8 @@
   --pool: #1f4e79;
   --lagoon: #2f7fc0;
   --accent: #d3984c;
+  /* A darker copper for text on light backgrounds (the gold above is only 2.3:1 on white). */
+  --copper: #8c5e22;
 }
 
 @theme inline {
@@ -15,6 +17,7 @@
   --color-pool: var(--pool);
   --color-lagoon: var(--lagoon);
   --color-accent: var(--accent);
+  --color-copper: var(--copper);
   /* --font-wulkan (from astro.config.mjs) already ends with the Georgia / Times / serif fallbacks. */
   --font-display: var(--font-wulkan), "Noto Serif Khmer", "Noto Serif SC";
   --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, "Noto Sans", "Noto Sans Khmer", sans-serif;
@@ -115,6 +118,7 @@ p {
  * everything simply stays visible.
  *   data-reveal="rise"   fade and lift (text)
  *   data-reveal="slide"  fade and slide in from the left
+ *   data-reveal="slide-right"  the same, from the right
  *   data-reveal="mask"   a curtain lifts off a photo (use <Photo> or <ParallaxFrame>)
  *   data-reveal-group    children arrive one after another (lists, columns)
  *   data-delay="1|2|3"   hold a reveal back a beat so it follows its heading
@@ -158,6 +162,11 @@ p {
   html.reveal-live [data-reveal="slide"]:not(.is-in) {
     opacity: 0;
     transform: translateX(-2rem);
+  }
+
+  html.reveal-live [data-reveal="slide-right"]:not(.is-in) {
+    opacity: 0;
+    transform: translateX(2rem);
   }
 
   html.reveal-live [data-reveal-group]:not(.is-in) > * {

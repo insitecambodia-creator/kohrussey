@@ -1,0 +1,73 @@
+---
+// One activity: a large rounded photo with a white card that overlaps its edge. `flip` puts the photo on the left
+// and the card on the right, so a run of activities alternates. On a phone the card sits over the foot of the photo.
+import type { ImageMetadata } from "astro";
+import { link, prose } from "../lib/ui";
+import Photo from "./Photo.astro";
+
+type Image = { src: ImageMetadata; alt: string; focus?: string };
+
+interface Props {
+  id: string;
+  title: string;
+  /** Facts such as "2 hours | Minimum 2 guests". A number of guests is set in bold. */
+  meta?: string[];
+  body: string;
+  link?: { label: string; href: string };
+  photo: Image;
+  /** Smaller photos shown under the main one. */
+  morePhotos?: Image[];
+  flip?: boolean;
+}
+
+const { id, title, meta = [], body, link: more, photo, morePhotos = [], flip = false } = Astro.props;
+---
+
+<article id={id} class="scroll-mt-24 py-10 md:py-14">
+  <div class="grid md:grid-cols-12">
+    <div class:list={["md:row-start-1 md:mt-14 md:col-span-8", flip ? "md:col-start-1" : "md:col-start-5"]}>
+      <Photo
+        image={photo}
+        sizes="(min-width: 1152px) 750px, (min-width: 768px) 66vw, 100vw"
+        class="aspect-[4/3] rounded-xl"
+      />
+      {
+        morePhotos.length > 0 ? (
+          <div class="mt-4 grid grid-cols-2 gap-4">
+            {morePhotos.map((p, i) => (
+              <Photo
+                image={p}
+                sizes="(min-width: 1152px) 365px, (min-width: 768px) 33vw, 50vw"
+                delay={i === 0 ? undefined : 2}
+                class="aspect-[4/3] rounded-xl"
+              />
+            ))}
+          </div>
+        ) : null
+      }
+    </div>
+
+    <div
+      data-reveal={flip ? "slide-right" : "slide"}
+      data-delay="2"
+      class:list={[
+        "relative z-10 mx-4 rounded-xl bg-white p-7 shadow-[0_22px_44px_-18px_rgb(19_33_54/0.35)]",
+        // On a phone the card overlaps the foot of the photo, unless smaller photos sit under it.
+        morePhotos.length > 0 ? "mt-6" : "-mt-10",
+        "md:row-start-1 md:col-span-6 md:mx-0 md:mt-0 md:min-h-[24rem] md:self-start md:p-12",
+        flip ? "md:col-start-7" : "md:col-start-1",
+      ]}
+    >
+      <h2 class="text-3xl md:text-4xl">{title}</h2>
+      {
+        meta.map((m) => (
+          <p class="mt-2 text-copper">
+            {m.split(/(\d+ guests)/).map((part, i) => (i % 2 === 1 ? <strong class="font-semibold">{part}</strong> : part))}
+          </p>
+        ))
+      }
+      <p class:list={["mt-6 text-ink/80 md:mt-10", prose]}>{body}</p>
+      {more ? <p class="mt-5"><a href={more.href} class={link}>{more.label}</a></p> : null}
+    </div>
+  </div>
+</article>
