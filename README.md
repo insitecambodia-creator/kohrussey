@@ -180,6 +180,14 @@ English is the main language. French and Chinese have a home page each, at the o
 - To translate another page, add `src/pages/fr/<page>.astro` (or `zh-hans`), pass `lang` to `BaseLayout`, and list the page in
   `homeAlternates`-style `alternates` so the pages are linked.
 
+## Structured data
+
+The three home pages carry schema.org markup for search engines (`src/lib/structured-data.ts`): the resort as a `Resort` (name, address, map
+position, phone, email, check-in and check-out times, amenities, social profiles, logo) and the website. The blog posts have their own
+`BlogPosting` and breadcrumb markup. The values come from the old site's markup, with the email corrected to `reservations@`; the
+pin position, the check-in and check-out times and the price range ("$$$") are from the old markup and worth checking.
+Test a live page with Google's Rich Results Test or the schema.org validator after launch.
+
 ## Audio
 
 A clip is a Markdown-free, plain mp3 in `public/audio/` (served as `/audio/<name>.mp3`) with its details in `src/lib/audio.ts`: title, length and

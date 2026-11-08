@@ -8,13 +8,15 @@ import BookButton from "../../components/BookButton.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { homeFr as t } from "../../lib/home-fr";
 import { homeAlternates } from "../../lib/i18n";
+import { homeSchema } from "../../lib/structured-data";
 import { images } from "../../lib/images";
 import { site, whatsappLink } from "../../lib/site";
 import { photos } from "../../lib/stay-photos";
 import { button, prose } from "../../lib/ui";
+const jsonLd = await homeSchema(Astro.site, t.description, "fr-FR");
 ---
 
-<BaseLayout lang="fr" title={t.metaTitle} description={t.description} alternates={homeAlternates}>
+<BaseLayout lang="fr" title={t.metaTitle} description={t.description} alternates={homeAlternates} jsonLd={jsonLd}>
   <section class="relative isolate flex min-h-[86svh] items-end overflow-hidden bg-ink text-salt">
     <Img
       src={images.poolMorning.src}

@@ -8,6 +8,7 @@ import RichText from "../../components/RichText.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { homeZh as t } from "../../lib/home-zh";
 import { homeAlternates } from "../../lib/i18n";
+import { homeSchema } from "../../lib/structured-data";
 import { images } from "../../lib/images";
 import { site } from "../../lib/site";
 import { photos } from "../../lib/stay-photos";
@@ -21,9 +22,10 @@ const mosaic = [
   images.oceanfrontDreams,
   images.massageBeach2,
 ];
+const jsonLd = await homeSchema(Astro.site, t.description, "zh-CN");
 ---
 
-<BaseLayout lang="zh" title={t.metaTitle} description={t.description} alternates={homeAlternates}>
+<BaseLayout lang="zh" title={t.metaTitle} description={t.description} alternates={homeAlternates} jsonLd={jsonLd}>
   <section class="relative isolate flex min-h-[86svh] items-end overflow-hidden bg-ink text-salt">
     <Img
       src={images.poolMorning.src}
