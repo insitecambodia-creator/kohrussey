@@ -1,11 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* The logo's navy (ink) and gold (accent), with a warm off-white ground and a mid sea blue (pool). */
+  /* The logo's navy (ink) and gold (accent), with a warm off-white ground (salt) and a golden brown (copper). */
   --salt: #f6f3ee;
   --ink: #132136;
-  --pool: #1f4e79;
-  --lagoon: #2f7fc0;
   --accent: #d3984c;
   /* A darker golden brown: for text on light backgrounds (the gold above is only 2.3:1 on white), and for bands with cream text (5.1:1). */
   --copper: #8c5e22;
@@ -14,8 +12,6 @@
 @theme inline {
   --color-salt: var(--salt);
   --color-ink: var(--ink);
-  --color-pool: var(--pool);
-  --color-lagoon: var(--lagoon);
   --color-accent: var(--accent);
   --color-copper: var(--copper);
   /* --font-wulkan (from astro.config.mjs) already ends with the Georgia / Times / serif fallbacks. */
@@ -73,8 +69,13 @@ p {
 }
 
 :focus-visible {
-  outline: 2px solid var(--lagoon);
+  outline: 2px solid var(--copper);
   outline-offset: 3px;
+}
+
+/* On dark areas the ring is cream. */
+:is(.bg-ink, .bg-copper) :focus-visible {
+  outline-color: var(--salt);
 }
 
 /* The one moment of motion: the hero photo settles into place on load. */
@@ -285,13 +286,13 @@ p {
   font-weight: 500;
 }
 .post-body a {
-  color: var(--pool);
+  color: var(--copper);
   text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, var(--pool) 40%, transparent);
+  text-decoration-color: color-mix(in oklab, var(--copper) 40%, transparent);
   text-underline-offset: 4px;
 }
 .post-body a:hover {
-  text-decoration-color: var(--pool);
+  text-decoration-color: var(--copper);
 }
 .post-body strong {
   font-weight: 600;

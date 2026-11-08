@@ -26,7 +26,7 @@ const { src, title, duration, seconds, transcript = [], class: className = "" } 
       type="button"
       data-toggle
       aria-label={`Play: ${title}`}
-      class="grid size-12 shrink-0 place-items-center rounded-full bg-ink text-salt transition-colors hover:bg-pool"
+      class="grid size-12 shrink-0 place-items-center rounded-full bg-ink text-salt transition-colors hover:bg-copper"
     >
       <span data-icon-play><Icon name="play" class="size-5 fill-current" /></span>
       <span data-icon-pause hidden><Icon name="pause" class="size-5 fill-current" /></span>
@@ -42,7 +42,7 @@ const { src, title, duration, seconds, transcript = [], class: className = "" } 
           value="0"
           aria-label={`Position in ${title}`}
           aria-valuetext={`0:00 of ${duration}`}
-          class="h-1 min-w-0 flex-1 cursor-pointer accent-pool"
+          class="h-1 min-w-0 flex-1 cursor-pointer accent-copper"
         />
         <span data-time class="whitespace-nowrap tabular-nums">0:00 / {duration}</span>
       </div>
@@ -53,7 +53,7 @@ const { src, title, duration, seconds, transcript = [], class: className = "" } 
   {
     transcript.length > 0 ? (
       <details class="mt-4">
-        <summary class="cursor-pointer text-sm text-pool underline underline-offset-4 decoration-pool/40 hover:decoration-pool">
+        <summary class="cursor-pointer text-sm text-copper underline underline-offset-4 decoration-copper/40 hover:decoration-copper">
           Read the transcript
         </summary>
         <div class="mt-4 max-w-[48ch] space-y-4 text-ink/85">

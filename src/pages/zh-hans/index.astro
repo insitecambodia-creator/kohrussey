@@ -61,7 +61,7 @@ const jsonLd = await homeSchema(Astro.site, t.description, "zh-CN");
   </section>
 
   <section id="reasons" class="mx-auto max-w-6xl scroll-mt-20 px-4 py-24 md:py-32">
-    <p data-reveal="rise" class="text-sm font-medium tracking-[0.12em] text-pool">{t.why.eyebrow}</p>
+    <p data-reveal="rise" class="text-sm font-medium tracking-[0.12em] text-copper">{t.why.eyebrow}</p>
     <h2 data-reveal="rise" data-delay="1" class="mt-4 text-3xl md:text-5xl">{t.why.title}</h2>
     <div data-reveal-group class="mt-12 grid gap-x-10 gap-y-10 border-t border-ink/15 pt-8 sm:grid-cols-2 lg:grid-cols-4">
       {
@@ -123,7 +123,7 @@ const jsonLd = await homeSchema(Astro.site, t.description, "zh-CN");
     </div>
   </section>
 
-  <section class="bg-pool text-salt">
+  <section class="bg-copper text-salt">
     <div class="mx-auto grid max-w-6xl gap-8 px-4 py-20 md:grid-cols-12 md:items-center">
       <h2 data-reveal="slide" class="text-4xl md:col-span-5 md:text-5xl">{t.slow.title}</h2>
       <div class="space-y-3 text-lg text-salt/90 md:col-span-7">
@@ -182,7 +182,7 @@ const jsonLd = await homeSchema(Astro.site, t.description, "zh-CN");
         {
           t.activities.items.map((a) => (
             <li class="border-b border-ink/15 py-4">
-              <a href={a.href} class="font-display text-xl font-medium hover:text-pool">{a.name}</a>
+              <a href={a.href} class="font-display text-xl font-medium hover:text-copper">{a.name}</a>
               <span class="mt-1 block text-ink/85">{a.text}</span>
             </li>
           ))

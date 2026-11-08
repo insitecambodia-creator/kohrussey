@@ -5,14 +5,14 @@ const base =
 
 /** Solid buttons: `dark` on light backgrounds, `accent` on dark ones. */
 export const button = {
-  dark: `${base} bg-ink text-salt hover:bg-pool`,
+  dark: `${base} bg-ink text-salt hover:bg-copper`,
   accent: `${base} bg-accent text-ink hover:bg-white`,
   outline: `${base} border border-ink text-ink hover:bg-ink hover:text-salt`,
   outlineOnDark: `${base} border border-salt/70 text-salt hover:bg-salt hover:text-ink`,
 } as const;
 
 /** Inline text link. */
-export const link = "text-pool underline underline-offset-4 decoration-pool/40 hover:decoration-pool";
+export const link = "text-copper underline underline-offset-4 decoration-copper/40 hover:decoration-copper";
 
 /** Readable measure for running text. */
 export const prose = "max-w-[62ch]";

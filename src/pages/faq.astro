@@ -19,7 +19,7 @@ import { button, prose } from "../lib/ui";
               <details class="group border-t border-ink/15 first:border-t-0 md:first:border-t">
                 <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-4 [&::-webkit-details-marker]:hidden">
                   <h3 class="font-display text-xl leading-snug">{item.question}</h3>
-                  <Icon name="chevron-down" class="mt-1 size-5 text-pool transition-transform group-open:rotate-180" />
+                  <Icon name="chevron-down" class="mt-1 size-5 text-copper transition-transform group-open:rotate-180" />
                 </summary>
                 <div class:list={["space-y-3 pb-6 text-ink/85", prose]}>
                   {item.answer.map((p) => (

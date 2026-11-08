@@ -40,14 +40,14 @@ import { button, prose } from "../lib/ui";
       <h2 data-reveal="rise" class="text-3xl md:col-span-5 md:text-4xl">{page.schedules.title}</h2>
       <div class="md:col-span-7">
         <p data-reveal="rise" data-delay="1" class="flex items-center gap-3 text-lg">
-          <Icon name="ship" class="size-6 text-pool" />
+          <Icon name="ship" class="size-6 text-copper" />
           {page.schedules.lead}
         </p>
         <ul data-reveal-group class="mt-6 flex flex-wrap gap-x-10 gap-y-4">
           {
             page.schedules.times.map((t) => (
               <li class="flex items-center gap-3">
-                <Icon name="clock" class="size-6 text-pool" />
+                <Icon name="clock" class="size-6 text-copper" />
                 <span class="font-display text-4xl md:text-5xl">{t}</span>
               </li>
             ))
