@@ -6,18 +6,22 @@
 //   (heavy) never competes with the page. Never for visitors who prefer reduced motion or have Save-Data on.
 // - The photo underneath stays visible until YouTube reports that playback has started, so a
 //   blocked, private or non-embeddable video never shows YouTube's error screen.
-// - It pauses while the hero is scrolled out of view.
+// - It pauses while it is scrolled out of view.
 // - It uses youtube-nocookie.com so YouTube sets no cookies until the visitor interacts.
+// - `lazy` is for a second video further down the page: it only loads when the visitor scrolls close to it.
+// Put it inside a positioned, `isolate`d, `overflow-hidden` section with a photo behind it (`-z-20`).
 interface Props {
   videoId: string;
+  lazy?: boolean;
 }
 
-const { videoId } = Astro.props;
+const { videoId, lazy = false } = Astro.props;
 ---
 
 <div
   aria-hidden="true"
   data-hero-video={videoId}
+  data-lazy={lazy ? "" : undefined}
   class="hero-video pointer-events-none absolute inset-0 -z-[15] overflow-hidden opacity-0 transition-opacity duration-[1600ms] data-[playing]:opacity-100"
 >
 </div>
@@ -25,12 +29,10 @@ const { videoId } = Astro.props;
 <script>
   const ORIGIN = "https://www.youtube-nocookie.com";
 
-  const root = document.querySelector<HTMLElement>("[data-hero-video]");
-  const videoId = root?.dataset.heroVideo;
   const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
   const skip = window.matchMedia("(prefers-reduced-motion: reduce)").matches || connection?.saveData;
 
-  if (root && videoId && !skip) {
+  const setUp = (root: HTMLElement, videoId: string) => {
     const params = new URLSearchParams({
       autoplay: "1",
       mute: "1",
@@ -85,13 +87,14 @@ const { videoId } = Astro.props;
       root.appendChild(frame);
     };
 
-    // Start once the page has loaded AND a visitor has shown up.
+    // Start once the page has loaded AND a visitor has shown up (AND, for a lazy video, it is close to the screen).
     let loaded = document.readyState === "complete";
     let visited = false;
+    let near = !root.hasAttribute("data-lazy");
     let started = false;
     const triggers = ["pointerdown", "pointermove", "keydown", "scroll", "touchstart"] as const;
     const tryStart = () => {
-      if (started || !loaded || !visited) return;
+      if (started || !loaded || !visited || !near) return;
       started = true;
       window.setTimeout(start, 0);
     };
@@ -110,6 +113,25 @@ const { videoId } = Astro.props;
         },
         { once: true },
       );
+    }
+    if (!near) {
+      const watcher = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          near = true;
+          watcher.disconnect();
+          tryStart();
+        },
+        { rootMargin: "500px 0px" },
+      );
+      watcher.observe(root);
+    }
+  };
+
+  if (!skip) {
+    for (const root of document.querySelectorAll<HTMLElement>("[data-hero-video]")) {
+      const videoId = root.dataset.heroVideo;
+      if (videoId) setUp(root, videoId);
     }
   }
 </script>

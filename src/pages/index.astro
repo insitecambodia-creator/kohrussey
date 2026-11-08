@@ -166,11 +166,20 @@ const jsonLd = await homeSchema(Astro.site, site.description, "en");
     </div>
   </section>
 
-  <section class="mt-28 bg-pool text-salt">
+  <section class="relative isolate mt-28 overflow-hidden bg-ink text-salt">
+    <Img
+      src={images.poolMorning.src}
+      alt=""
+      sizes="100vw"
+      quality={55}
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_65%]"
+    />
+    <HeroVideo videoId={site.heroVideo.youtubeId} lazy />
+    <div aria-hidden="true" class="absolute inset-0 -z-10 bg-ink/70"></div>
     <div class="mx-auto grid max-w-6xl gap-8 px-4 py-20 md:grid-cols-12 md:items-end">
       <h2 data-reveal="slide" class="text-4xl md:col-span-5 md:text-5xl">{allInclusive.title}</h2>
       <div class="md:col-span-7">
-        <p data-reveal="rise" data-delay="1" class:list={["text-salt/90", prose]}>
+        <p data-reveal="rise" data-delay="1" class:list={["text-salt", prose]}>
           {allInclusive.body}
         </p>
         <div data-reveal="rise" data-delay="2">
