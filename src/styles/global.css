@@ -7,10 +7,8 @@
   --pool: #1f4e79;
   --lagoon: #2f7fc0;
   --accent: #d3984c;
-  /* A darker copper for text on light backgrounds (the gold above is only 2.3:1 on white). */
+  /* A darker golden brown: for text on light backgrounds (the gold above is only 2.3:1 on white), and for bands with cream text (5.1:1). */
   --copper: #8c5e22;
-  /* A muted gold for full-width bands; navy text on it (5.3:1). */
-  --bronze: #ba8c57;
 }
 
 @theme inline {
@@ -20,7 +18,6 @@
   --color-lagoon: var(--lagoon);
   --color-accent: var(--accent);
   --color-copper: var(--copper);
-  --color-bronze: var(--bronze);
   /* --font-wulkan (from astro.config.mjs) already ends with the Georgia / Times / serif fallbacks. */
   --font-display: var(--font-wulkan), "Noto Serif Khmer", "Noto Serif SC";
   --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, "Noto Sans", "Noto Sans Khmer", sans-serif;
