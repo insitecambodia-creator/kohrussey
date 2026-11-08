@@ -90,21 +90,27 @@ const jsonLd = await homeSchema(Astro.site, site.description, "en");
     />
   </section>
 
-  <section class="mx-auto max-w-6xl px-4">
-    <div data-reveal-group class="grid gap-10 border-t border-ink/15 pt-8 md:grid-cols-3">
-      {
-        pillars.map((p) => (
-          <div>
-            <h2 class="text-3xl">{p.title}</h2>
-            <p class="mt-3 max-w-[32ch] text-ink/80">{p.body}</p>
-            <a href={p.href} class:list={[link, "mt-4 inline-block"]}>{p.cta}</a>
-          </div>
-        ))
-      }
+  <section class="bg-bronze text-ink">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <div data-reveal-group class="grid gap-10 md:grid-cols-3">
+        {
+          pillars.map((p) => (
+            <div>
+              <h2 class="text-3xl">{p.title}</h2>
+              <p class="mt-3 max-w-[32ch] text-ink/90">{p.body}</p>
+              <a
+                href={p.href}
+                class="mt-4 inline-block font-medium text-ink underline underline-offset-4 decoration-ink/50 hover:decoration-ink"
+                >{p.cta}</a
+              >
+            </div>
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <section class="mx-auto mt-28 grid max-w-6xl gap-12 px-4 md:grid-cols-12 md:items-center">
+  <section class="mx-auto mt-20 grid max-w-6xl gap-12 px-4 md:mt-24 md:grid-cols-12 md:items-center">
     <div class="md:col-span-5">
       <h2 data-reveal="rise" class="text-3xl md:text-5xl">{villas.title}</h2>
       <p data-reveal="rise" data-delay="1" class:list={["mt-5 text-ink/80", prose]}>
