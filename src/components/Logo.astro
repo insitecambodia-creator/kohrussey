@@ -1,0 +1,26 @@
+---
+// The Koh Russey Resort logo (navy words, gold bars). `light` turns it white, for the dark footer. It is a picture of 280 x 84
+// pixels, sharp up to about 140 pixels wide on a high-resolution screen; swap in a vector (SVG) file when there is one.
+import { Image } from "astro:assets";
+import logo from "../assets/images/koh-russey-resort-logo.png";
+import { site } from "../lib/site";
+
+interface Props {
+  /** White version, for dark backgrounds. */
+  light?: boolean;
+  /** Size classes (the height; the width follows). */
+  class?: string;
+}
+
+const { light = false, class: className = "" } = Astro.props;
+---
+
+<Image
+  src={logo}
+  alt={site.name}
+  width={141}
+  densities={[1, 2]}
+  format="png"
+  loading="eager"
+  class:list={[className || "h-9 w-auto sm:h-10", light && "brightness-0 invert"]}
+/>

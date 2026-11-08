@@ -2,6 +2,7 @@
 import { getPosts } from "../lib/blog";
 import { ui, type Locale } from "../lib/i18n";
 import { nav, secondaryNav, site, telLink, whatsappLink } from "../lib/site";
+import Logo from "./Logo.astro";
 
 interface Props {
   lang?: Locale;
@@ -27,7 +28,7 @@ const c = site.contact;
 <footer class="mt-24 bg-ink text-salt">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.2fr_1fr_1.2fr]">
     <div>
-      <p class="font-display text-2xl font-medium">{site.name}</p>
+      <Logo light class="h-12 w-auto" />
       <p class="mt-2 text-salt/80">{t.tagline}</p>
       <ul class="mt-5 flex gap-5 text-sm">
         {
