@@ -13,6 +13,7 @@ import { homeSchema } from "../lib/structured-data";
 import { allInclusive, introLead, introRest, location, reviews, spa, villas } from "../lib/content";
 import { images } from "../lib/images";
 import { site, telLink, whatsappLink } from "../lib/site";
+import { photos } from "../lib/stay-photos";
 import { link, prose } from "../lib/ui";
 
 const pillars = [
@@ -80,14 +81,25 @@ const jsonLd = await homeSchema(Astro.site, site.description, "en");
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 py-24 md:py-32">
-    <p data-reveal="rise" class="max-w-[40ch] font-display text-2xl leading-snug md:text-4xl">
-      {introRest}
-    </p>
-    <AudioPlayer
-      {...welcomeAudio}
-      class="mt-12 max-w-xl border-t border-ink/15 pt-8"
-    />
+  <section class="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+    <div class="grid lg:grid-cols-12">
+      <Photo
+        image={photos.kohRusseyIsland}
+        natural
+        sizes="(min-width: 1152px) 560px, (min-width: 1024px) 50vw, 100vw"
+        class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:self-start"
+      />
+      <div
+        data-reveal="slide-right"
+        data-delay="2"
+        class="relative z-10 mx-4 -mt-10 bg-white p-7 shadow-[0_22px_44px_-18px_rgb(19_33_54/0.3)] lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:mx-0 lg:mt-12 lg:self-start lg:p-9"
+      >
+        <p class="max-w-[42ch] font-display text-2xl leading-snug lg:text-3xl">
+          {introRest}
+        </p>
+        <AudioPlayer {...welcomeAudio} class="mt-6 max-w-xl border-t border-ink/15 pt-5" />
+      </div>
+    </div>
   </section>
 
   <section class="bg-copper text-salt">

@@ -42,6 +42,7 @@ import arrivalPavilion from "@/assets/images/resort/arrival-pavilion-evening.web
 import aerialDusk from "@/assets/images/resort/aerial-dusk.webp";
 import pavilionsAmongTrees from "@/assets/images/resort/pavilions-among-trees.webp";
 import gardenPath from "@/assets/images/resort/garden-path.webp";
+import kohRusseyIsland from "@/assets/images/resort/koh-russey-island.webp";
 
 /** `focus` is an optional Tailwind object-position class that sets which part shows when the photo is cropped. */
 export type Photo = { src: ImageMetadata; alt: string; focus?: string };
@@ -95,6 +96,7 @@ export const photos = {
   arrivalPavilion: { src: arrivalPavilion, alt: "The timber-clad arrival pavilion at dusk, lit from within beside the water" },
   aerialDusk: { src: aerialDusk, alt: "Aerial view of the resort among the forest at dusk, with the bay and a distant headland" },
   pavilionsAmongTrees: { src: pavilionsAmongTrees, alt: "The pavilions among the trees, with plants climbing the timber screens" },
+  kohRusseyIsland: { src: kohRusseyIsland, alt: "Aerial view of the resort: the long pool and gardens beside a sandy beach, with the forested headland and the turquoise sea beyond" },
   gardenPath: { src: gardenPath, alt: "A resort path between palms and tropical planting, with a dark timber building beyond" },
 } as const satisfies Record<string, Photo>;
 
