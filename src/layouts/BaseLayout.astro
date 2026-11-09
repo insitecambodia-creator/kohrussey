@@ -72,7 +72,8 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
-    <link rel="canonical" href={canonical} />
+    {site.googleVerification.map((token) => <meta name="google-site-verification" content={token} />)}
+    {Astro.url.pathname !== "/404/" && <link rel="canonical" href={canonical} />}
     {
       alternates && [
         ...(Object.entries(alternates) as [Locale, string][]).map(([code, path]) => (
@@ -101,6 +102,15 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
       )
     }
 
+    {
+      site.tagManagerId && (
+        <script
+          is:inline
+          set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',${JSON.stringify(site.tagManagerId)});`}
+        />
+      )
+    }
+
     {/* No favicon yet: an empty one stops the browser asking for /favicon.ico and logging a 404. */}
     <link rel="icon" href="data:," />
 
@@ -108,6 +118,19 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
     <Font cssVariable="--font-wulkan" preload={[{ weight: 400, style: "normal" }, { weight: 500, style: "normal" }]} />
   </head>
   <body class="flex min-h-full flex-col">
+    {
+      site.tagManagerId && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${site.tagManagerId}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+            title="Google Tag Manager"
+          />
+        </noscript>
+      )
+    }
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-salt focus:px-3 focus:py-2"

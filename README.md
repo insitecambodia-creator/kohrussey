@@ -217,6 +217,11 @@ The site is `noindex` with `Disallow: /` until `PUBLIC_ALLOW_INDEXING=true` is s
 redesign cannot compete with the live site before launch. With it on, `robots.txt` points to
 `/sitemap-index.xml`, which Astro generates from the pages.
 
+The step-by-step go-live list (securing accounts, the domain, build variables, Search Console) is in
+[`docs/launch.md`](docs/launch.md). The Google Search Console ownership tags are in `src/lib/site.ts`
+(`googleVerification`); `PUBLIC_GTM_ID` optionally adds a Google Tag Manager container; `public/_headers`
+holds the security and caching headers.
+
 ## Design
 
 The visual direction follows `SKILL.md` (the frontend-design guidance in the repo root).

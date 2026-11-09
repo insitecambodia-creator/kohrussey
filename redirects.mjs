@@ -25,6 +25,9 @@ export const redirects = {
   "/map-of-the-resort": "/getting-here/",
   // The old French restaurants page (not rebuilt yet) goes to the English one.
   "/fr/nos-restaurants": "/restaurants/",
+  // The old WordPress feed and tag page.
+  "/feed": "/rss.xml",
+  "/tag/snorkeling": "/blog/",
   // The six blog articles: they were at the top level of the old site and now live under /blog/.
   "/cambodia-wedding-destination-koh-russey-private-island": "/blog/cambodia-wedding-destination-koh-russey-private-island/",
   "/cambodia-welcomes-the-francophone-world-extend-your-journey-with-an-island-escape": "/blog/cambodia-welcomes-the-francophone-world-extend-your-journey-with-an-island-escape/",
