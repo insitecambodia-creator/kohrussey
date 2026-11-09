@@ -219,7 +219,7 @@ redesign cannot compete with the live site before launch. With it on, `robots.tx
 
 The step-by-step go-live list (securing accounts, the domain, build variables, Search Console) is in
 [`docs/launch.md`](docs/launch.md). The Google Search Console ownership tags are in `src/lib/site.ts`
-(`googleVerification`); `PUBLIC_GTM_ID` optionally adds a Google Tag Manager container; `public/_headers`
+(`googleVerification`: one tag everywhere, a second on the French and Chinese pages only, as on the old site); `PUBLIC_GTM_ID` optionally adds a Google Tag Manager container; `public/_headers`
 holds the security and caching headers.
 
 ## Design

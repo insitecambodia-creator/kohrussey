@@ -72,7 +72,11 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
-    {site.googleVerification.map((token) => <meta name="google-site-verification" content={token} />)}
+    {
+      [...site.googleVerification.all, ...(lang === "en" ? [] : site.googleVerification.translated)].map((token) => (
+        <meta name="google-site-verification" content={token} />
+      ))
+    }
     {Astro.url.pathname !== "/404/" && <link rel="canonical" href={canonical} />}
     {
       alternates && [

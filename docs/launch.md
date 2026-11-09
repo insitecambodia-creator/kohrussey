@@ -7,7 +7,7 @@ Work through this in order. Steps 1–2 matter most, because the old site was ha
 A hacked website usually means a stolen password somewhere, not only a weak plugin. Change all of these, with a new unique password and two-step verification on each:
 
 - Domain registrar (where `kohrusseyresort.com` is bought) – also switch on the registrar/transfer lock.
-- The DNS provider, if different from the registrar.
+- The mailboxes on the Haystack mail host, especially any used by WordPress to send mail (an SMTP plugin stores that password on the old site).
 - The old web host and the WordPress admin users (delete users you do not recognise).
 - Cloudflare, GitHub, n8n, Google (Search Console, Google Ads, Tag Manager, Sheets), Exely.
 - The email accounts on the domain (reservations@, info@).
@@ -16,13 +16,17 @@ Then open the DNS records and delete any you did not create (unknown A, CNAME or
 
 ## 2. Keep email working
 
-If email for `@kohrusseyresort.com` is hosted on the same account as the old website, write down every MX, SPF (TXT `v=spf1…`), DKIM and DMARC record **before** changing nameservers, and recreate each one in Cloudflare DNS. Pointing the website to the new host must not touch the MX records.
+The domain's DNS is already on Cloudflare, and email is hosted separately (`mail` points to the Haystack mail server, with Brevo for newsletters). Only two DNS records belong to the old website:
+
+- `www` (CNAME) pointing to the old Cloudways WordPress app, and
+- `kohrusseyresort.com` (A) pointing to its server.
+
+Everything else (the `mail`, `autoconfig`, `webmail` and `www.mail` CNAMEs, the MX record, the six SRV records and every TXT record: SPF, DKIM, DMARC, Brevo, Google verification) is email or ownership proof. **Do not delete or edit any of those.**
 
 ## 3. Connect the domain in Cloudflare
 
-1. Add `kohrusseyresort.com` to Cloudflare as a site (free plan) and, at the registrar, switch to the two nameservers Cloudflare shows. Check that every record from step 2 is copied across.
-2. Workers & Pages → this project → Settings → Domains & Routes → Add → Custom domain → `www.kohrusseyresort.com`.
-3. Send the bare `kohrusseyresort.com` to `www` with a Redirect Rule (301, keep the path and query string), so the two never compete in search results.
+1. Workers & Pages → this project → Settings → Domains & Routes → Add → Custom domain → `www.kohrusseyresort.com`. The old `www` CNAME is in the way, so delete it (or accept Cloudflare's offer to replace it). The site switches over within a minute or so.
+2. Replace the `kohrusseyresort.com` A record with a proxied placeholder (`A`, name `@`, content `192.0.2.1`, proxied), then add a Redirect Rule (Rules → Redirect Rules): hostname equals `kohrusseyresort.com` → dynamic redirect to `concat("https://www.kohrusseyresort.com", http.request.uri.path)`, status 301, preserve the query string. The bare address then never competes with `www` in search results.
 
 ## 4. Build variables (Workers & Pages → Settings → Variables and secrets, build section)
 
@@ -46,7 +50,7 @@ These are baked in at build time, so redeploy after changing them. `PUBLIC_ALLOW
 
 1. Open every page on the live domain once: home, `/fr/`, `/zh-hans/`, villas, restaurants, activities (and its three sub-pages), spa, weddings, corporate retreat, offers, FAQ, reviews, about, getting here, contact, blog, booking. Send one test enquiry from each form.
 2. Old addresses: try a few, for example `/about-us`, `/contact-us`, `/private-beachfront-residence` and one old blog address. Each should land on the new page.
-3. Search Console (the verification tags are already in the site, so the existing property keeps working):
+3. Search Console (the verification tags are already in the site, so the existing property keeps working). First open Settings → Users and permissions and Ownership verification and remove any owner you do not recognise, since a hacker can add themselves there:
    - Sitemaps → submit `sitemap-index.xml`.
    - Security & Manual Actions → if a "hacked content" or "deceptive pages" warning is shown, click Request review once the new site is live.
    - Removals → remove any spam URLs the hackers created (often `/?p=` or random `.html` addresses).

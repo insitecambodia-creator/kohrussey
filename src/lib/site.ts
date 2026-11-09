@@ -39,11 +39,12 @@ export const site = {
   },
   // Search engines stay out until the redesign is ready to go live (PUBLIC_ALLOW_INDEXING=true).
   allowIndexing: import.meta.env.PUBLIC_ALLOW_INDEXING === "true",
-  // Google Search Console proves ownership with these tags; they are the same ones the old site carried.
-  googleVerification: [
-    "8WnBAEgqZgdNDyeHmc8PvgGB1z7fsk2rk9KkpnbCAx0",
-    "y_z7mVeMU6lMcD8cWuox-u9_VF-UFPZ6WTJmgefdKps",
-  ],
+  // Google Search Console proves ownership with these tags, copied from the old site: the first was on every page,
+  // the second only on the French and Chinese pages.
+  googleVerification: {
+    all: ["8WnBAEgqZgdNDyeHmc8PvgGB1z7fsk2rk9KkpnbCAx0"],
+    translated: ["y_z7mVeMU6lMcD8cWuox-u9_VF-UFPZ6WTJmgefdKps"],
+  },
   // Optional. A Google Tag Manager container ID (GTM-XXXXXXX); nothing loads while it is empty.
   tagManagerId: (import.meta.env.PUBLIC_GTM_ID as string | undefined) ?? "",
 } as const;
