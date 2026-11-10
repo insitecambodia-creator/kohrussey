@@ -27,6 +27,11 @@ export const redirects = {
   "/fr/nos-restaurants": "/restaurants/",
   // The old WordPress feed and tag page.
   "/feed": "/rss.xml",
+  // The old WordPress (Yoast) sitemaps, which Google still has on file, lead to the new sitemap.
+  "/sitemap.xml": "/sitemap-index.xml",
+  "/sitemap_index.xml": "/sitemap-index.xml",
+  "/page-sitemap.xml": "/sitemap-0.xml",
+  "/post-sitemap.xml": "/sitemap-0.xml",
   "/tag/snorkeling": "/blog/",
   // The six blog articles: they were at the top level of the old site and now live under /blog/.
   "/cambodia-wedding-destination-koh-russey-private-island": "/blog/cambodia-wedding-destination-koh-russey-private-island/",

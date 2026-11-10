@@ -51,7 +51,7 @@ These are baked in at build time, so redeploy after changing them. `PUBLIC_ALLOW
 1. Open every page on the live domain once: home, `/fr/`, `/zh-hans/`, villas, restaurants, activities (and its three sub-pages), spa, weddings, corporate retreat, offers, FAQ, reviews, about, getting here, contact, blog, booking. Send one test enquiry from each form.
 2. Old addresses: try a few, for example `/about-us`, `/contact-us`, `/private-beachfront-residence` and one old blog address. Each should land on the new page.
 3. Search Console (the verification tags are already in the site, so the existing property keeps working). First open Settings → Users and permissions and Ownership verification and remove any owner you do not recognise, since a hacker can add themselves there:
-   - Sitemaps → submit `sitemap-index.xml`.
+   - Sitemaps → submit `sitemap-index.xml`. The old WordPress sitemaps (`page-sitemap.xml`, `sitemap_index.xml`) now redirect to the new one; once the new one shows Success, remove the two old entries (the three-dot menu) so they stop showing errors.
    - Security & Manual Actions → if a "hacked content" or "deceptive pages" warning is shown, click Request review once the new site is live.
    - Removals → remove any spam URLs the hackers created (often `/?p=` or random `.html` addresses).
    - URL Inspection → test the home page, then Request indexing.
