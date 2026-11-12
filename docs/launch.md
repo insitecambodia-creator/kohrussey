@@ -36,7 +36,7 @@ Everything else (the `mail`, `autoconfig`, `webmail` and `www.mail` CNAMEs, the 
 | `PUBLIC_ALLOW_INDEXING` | `true` |
 | `PUBLIC_LEADS_WEBHOOK_URL` | the n8n production URL (already set) |
 | `PUBLIC_WEB3FORMS_KEY` | optional, already set if used |
-| `PUBLIC_GTM_ID` | optional: `GTM-N6QTDNL3` is the container the old site used |
+| `PUBLIC_GTM_ID` | `GTM-N6QTDNL3`, the container the old site used (it carries Google Analytics 4) |
 
 These are baked in at build time, so redeploy after changing them. `PUBLIC_ALLOW_INDEXING=true` is what removes `noindex` and `Disallow: /`.
 
