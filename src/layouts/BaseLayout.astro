@@ -3,6 +3,7 @@ import "@fontsource-variable/hanken-grotesk";
 import "../styles/global.css";
 import type { ImageMetadata } from "astro";
 import { Font, getImage } from "astro:assets";
+import Analytics from "../components/Analytics.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
@@ -150,5 +151,6 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
     </main>
     <Footer lang={lang} />
     <ScrollReveal />
+    {site.tagManagerId && <Analytics />}
   </body>
 </html>

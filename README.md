@@ -222,6 +222,21 @@ The step-by-step go-live list (securing accounts, the domain, build variables, S
 (`googleVerification`: one tag everywhere, a second on the French and Chinese pages only, as on the old site); `PUBLIC_GTM_ID` adds a Google Tag Manager container (it carries Google Analytics 4 and the Ads tag; it starts after the page has loaded and the visitor touches the page, or after three seconds, so the speed scores are unaffected); `public/_headers`
 holds the security and caching headers.
 
+## Analytics events
+
+With `PUBLIC_GTM_ID` set, the site tells Google Tag Manager about the actions that matter. Each is one entry in the
+`dataLayer`, ready to use as a Custom Event trigger in Tag Manager:
+
+| Event | When |
+| --- | --- |
+| `generate_lead` | An enquiry form (contact, weddings, corporate retreat) was really sent. Carries `form_id` and `form_name`. Not sent when sending failed. |
+| `click_phone`, `click_email`, `click_whatsapp`, `click_telegram` | A visitor tapped that contact link. Carry `link_url` and `link_text`. |
+| `click_booking` | A visitor tapped a link to the booking page. |
+
+The click events come from `src/components/Analytics.astro`; `generate_lead` is sent by `src/components/EnquiryForm.astro`.
+In Tag Manager: one Custom Event trigger for `generate_lead`, and one for the regular expression `^click_` (tick
+"Use regex matching"), each with a Google Analytics 4 event tag whose event name is `{{Event}}`.
+
 ## Design
 
 The visual direction follows `SKILL.md` (the frontend-design guidance in the repo root).

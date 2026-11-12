@@ -196,6 +196,9 @@ const legend = "mb-2 block text-sm font-medium";
         if (results.some((r) => r.status === "fulfilled")) {
           form.reset();
           say("Thank you. Your message has been sent and our team will be in touch.");
+          // Tells Google Tag Manager (when it is set up) that a real enquiry was sent: one event per form, only on success.
+          const layer = (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer;
+          layer?.push({ event: "generate_lead", form_id: form.id, form_name: subject });
         } else {
           say(`Sorry, that did not send. Please write to us at ${form.dataset.email}.`);
         }

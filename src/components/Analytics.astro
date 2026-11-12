@@ -1,0 +1,30 @@
+---
+// Tells Google Tag Manager when a visitor taps a way to reach or book the resort, so Google Analytics and Google Ads
+// can count them. Only used when PUBLIC_GTM_ID is set. Each tap adds one entry to the dataLayer:
+//   click_phone, click_email, click_whatsapp, click_telegram, click_booking   (with link_url and link_text)
+// The enquiry forms add `generate_lead` themselves, once a message has really been sent.
+---
+
+<script is:inline>
+  (function () {
+    var layer = (window.dataLayer = window.dataLayer || []);
+    document.addEventListener("click", function (event) {
+      var target = event.target;
+      var link = target && target.closest ? target.closest("a[href]") : null;
+      if (!link) return;
+      var href = link.getAttribute("href") || "";
+      var kind = "";
+      if (/^tel:/i.test(href)) kind = "phone";
+      else if (/^mailto:/i.test(href)) kind = "email";
+      else if (/^https?:\/\/([^/]*\.)?(wa\.me|whatsapp\.com)(\/|$)/i.test(href)) kind = "whatsapp";
+      else if (/^https?:\/\/(t|telegram)\.me(\/|$)/i.test(href)) kind = "telegram";
+      else if (link.hostname === window.location.hostname && link.pathname.indexOf("/booking/") === 0) kind = "booking";
+      if (!kind) return;
+      layer.push({
+        event: "click_" + kind,
+        link_url: href,
+        link_text: (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 60),
+      });
+    });
+  })();
+</script>
