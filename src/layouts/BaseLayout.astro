@@ -107,12 +107,13 @@ const robots = !site.allowIndexing ? "noindex, nofollow" : noindex ? "noindex, f
     }
 
     {/* Google Tag Manager (which carries Google Analytics 4). It starts once the page has loaded and the visitor
-        touches the page, or after three seconds, so it never slows the first paint or the speed scores. */}
+        touches the page, or after three seconds, so it never slows the first paint or the speed scores. Tag Assistant's
+        preview (?gtm_debug=) starts it at once. */}
     {
       site.tagManagerId && (
         <script
           is:inline
-          set:html={`(function(w,d,id){w.dataLayer=w.dataLayer||[];var on=false;function go(){if(on)return;on=true;w.dataLayer.push({"gtm.start":new Date().getTime(),event:"gtm.js"});var s=d.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtm.js?id="+id;d.head.appendChild(s)}function arm(){["pointerdown","keydown","scroll","touchstart"].forEach(function(e){w.addEventListener(e,go,{once:true,passive:true})});setTimeout(go,3000)}d.readyState==="complete"?arm():w.addEventListener("load",arm)})(window,document,${JSON.stringify(site.tagManagerId)});`}
+          set:html={`(function(w,d,id){w.dataLayer=w.dataLayer||[];var on=false;function go(){if(on)return;on=true;w.dataLayer.push({"gtm.start":new Date().getTime(),event:"gtm.js"});var s=d.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtm.js?id="+id;d.head.appendChild(s)}function arm(){["pointerdown","keydown","scroll","touchstart"].forEach(function(e){w.addEventListener(e,go,{once:true,passive:true})});setTimeout(go,3000)}/[?&]gtm_(debug|preview)=/.test(w.location.search)?go():d.readyState==="complete"?arm():w.addEventListener("load",arm)})(window,document,${JSON.stringify(site.tagManagerId)});`}
         />
       )
     }
