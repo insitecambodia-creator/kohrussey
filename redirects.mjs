@@ -23,6 +23,9 @@ export const redirects = {
   "/koh-russey-resort-reviews-media-mentions": "/reviews/",
   "/faq-frequently-asked-questions-about-koh-russey-resorts": "/faq/",
   "/map-of-the-resort": "/getting-here/",
+  // The old addresses of the French and Chinese home pages (they now live at /fr/ and /zh-hans/).
+  "/fr/koh-russey-resort-sur-une-ile-privee-au-cambodge": "/fr/",
+  "/zh-hans/koh-russey-resort-竹岛": "/zh-hans/",
   // The old French restaurants page (not rebuilt yet) goes to the English one.
   "/fr/nos-restaurants": "/restaurants/",
   // The old WordPress feed and tag page.
@@ -49,9 +52,10 @@ export function redirectsFile() {
     hooks: {
       "astro:build:done": async ({ dir }) => {
         const { writeFile } = await import("node:fs/promises");
+        // The file is read as plain ASCII, so non-Latin addresses are written percent-encoded, as browsers send them.
         const lines = Object.entries(redirects).flatMap(([from, to]) => [
-          `${from} ${to} 301`,
-          `${from}/ ${to} 301`,
+          `${encodeURI(from)} ${to} 301`,
+          `${encodeURI(from)}/ ${to} 301`,
         ]);
         await writeFile(new URL("_redirects", dir), `${lines.join("\n")}\n`);
       },

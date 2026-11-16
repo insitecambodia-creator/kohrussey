@@ -53,7 +53,7 @@ These are baked in at build time, so redeploy after changing them. `PUBLIC_ALLOW
 3. Search Console (the verification tags are already in the site, so the existing property keeps working). First open Settings → Users and permissions and Ownership verification and remove any owner you do not recognise, since a hacker can add themselves there:
    - Sitemaps → submit `sitemap-index.xml`. The old WordPress sitemaps (`page-sitemap.xml`, `sitemap_index.xml`) now redirect to the new one; once the new one shows Success, remove the two old entries (the three-dot menu) so they stop showing errors.
    - Security & Manual Actions → if a "hacked content" or "deceptive pages" warning is shown, click Request review once the new site is live.
-   - Removals → remove any spam URLs the hackers created (often `/?p=` or random `.html` addresses).
+   - Removals → remove any spam URLs the hackers created (often `/?p=` or random `.html` addresses). The new site has none of them, so they answer "Page not found" (404) on purpose, and Google drops them within days or weeks. Redirect only addresses that were real pages of yours (the old French and Chinese home slugs are in `redirects.mjs`); never redirect spam addresses to the home page, because Google treats that as a soft 404.
    - URL Inspection → test the home page, then Request indexing.
 4. Keep the old hosting account for a short while only as a backup of the files and database, **offline** (not reachable from the internet), then close it. Do not restore anything from it onto the new site.
 
